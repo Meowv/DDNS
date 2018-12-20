@@ -126,6 +126,15 @@
   <data name="keywords" xml:space="preserve">
     <value>ngrok、ngrok内网穿透、ngrok内网转发、内外网通讯、内网映射、ngrok映射、ngrok微信开发、本地微信开发、内网端口映射工具、内网端口映射、怎么做内网映射、怎么内网映射、ngrok免费服务器</value>
   </data>
+  <data name="login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="nav_home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="register" xml:space="preserve">
+    <value>Register</value>
+  </data>
   <data name="title" xml:space="preserve">
     <value>NAT-DDNS</value>
   </data>

@@ -1,4 +1,29 @@
 ﻿$(function () {
+    var culture = getCookie(".AspNetCore.Culture") || "c=zh-CN|uic=zh-CN";
+    if (culture.indexOf("zh-CN") >= 0) {
+        $(".language span:eq(0)").addClass("active");
+    }
+    if (culture.indexOf("en-US") >= 0) {
+        $(".language span:eq(1)").addClass("active");
+    }
+    $(".language span").click(function () {
+        var _this = $(this);
+        if (!_this.hasClass("active")) {
+            var culture = _this.data("culture");
+            $.getJSON("/api/culture?culture=" + culture, function (result) {
+                if (result === 1) {
+                    window.location.reload();
+                }
+            });
+        }
+    });
+    function getCookie(name) {
+        var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+        if (arr = document.cookie.match(reg))
+            return unescape(arr[2]);
+        else return null;
+    }
+
     var numpic = $('#slides li').size() - 1;
     var nownow = 0;
     var inout = 0;

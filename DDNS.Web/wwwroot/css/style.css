@@ -945,3 +945,23 @@ a {
 #slides li {
     background: url(/images/banner.png) no-repeat center;
 }
+
+a.language {
+    border: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+a.language span {
+    margin-left: 3px;
+    margin-right: 3px;
+    cursor: pointer;
+}
+
+a.language span.active {
+    color: #18bd9c;
+}
+
+a.language span:hover {
+    color: #18bd9c;
+}
