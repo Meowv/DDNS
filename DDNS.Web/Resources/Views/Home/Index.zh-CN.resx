@@ -117,7 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Title" xml:space="preserve">
+  <data name="author" xml:space="preserve">
+    <value>阿星Plus</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>一条命令解决的外网访问内网问题，无需任何配置，下载客户端之后直接一条命令让外网访问您的内网不再是距离</value>
+  </data>
+  <data name="keywords" xml:space="preserve">
+    <value>ngrok、ngrok内网穿透、ngrok内网转发、内外网通讯、内网映射、ngrok映射、ngrok微信开发、本地微信开发、内网端口映射工具、内网端口映射、怎么做内网映射、怎么内网映射、ngrok免费服务器</value>
+  </data>
+  <data name="title" xml:space="preserve">
     <value>内网穿透</value>
   </data>
 </root>

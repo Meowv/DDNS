@@ -1,16 +1,140 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
-@inject IViewLocalizer Localizer
+@inject IViewLocalizer _localizer
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Index</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="@_localizer["description"]">
+    <meta name="keywords" content="@_localizer["keywords"]">
+    <meta name="author" content="@_localizer["author"]">
+    <title>@_localizer["title"]</title>
+    <link href="~/css/style.css" rel="stylesheet" />
+    <style>
+        a.language {
+            border: 0;
+            color: #666;
+            font-size:14px;
+        }
+        a.language span {
+            margin-left:3px;
+            margin-right:3px;
+            cursor:pointer;
+        }
+        a.language span.active{
+            color: #18bd9c;
+        }
+        a.language span:hover {
+            color: #18bd9c;
+        }
+    </style>
 </head>
 <body>
-    <h1>@Localizer["Title"]</h1>
-
-    <p>1111111</p>
-    <p>2222222</p>
-    <p>3333333</p>
+    <div class="head">
+        <div class="nav">
+            <ul>
+                <li class="on">
+                    <h1><a href="/"><span>首页</span></a></h1>
+                </li>
+            </ul>
+        </div>
+        <div class="featu">
+            <a href="/login" class="land">登陆</a>
+            <a href="/login/register" class="regis">注册</a>
+            <a class="language">
+                <span class="active">简</span>
+                <i>|</i>
+                <span>EN</span>
+            </a>
+        </div>
+    </div>
+    <div class="banner">
+        <div id="full-screen-slider">
+            <ul id="slides">
+                <li>
+                    <div class="ban">
+                        <div class="banbox">
+                            <h1>新增FRP服务器</h1>
+                            <h2>支持HTTPS、UDP转发</h2>
+                            <h3>使用DDNS的127.0.0.1:4040异步调试、其他穿透使用FRP</h3>
+                            <a href="/account/register">立即注册</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="ban">
+                        <div class="banbox">
+                            <h1>免费服务器支持绑定自定义域名</h1>
+                            <h2>实现内外网通讯</h2>
+                            <h3>外网访问内网服务器不再是距离</h3>
+                            <a href="/login/register">立即注册</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="ban">
+                        <div class="banbox">
+                            <h1>支持内网HTTP映射</h1>
+                            <h2>HTTP转发</h2>
+                            <h3>在您电脑的web服务直接开放给外网，再也不担心没有路由器权限和80端口被营运商封闭了</h3>
+                            <a href="/login/register">立即注册</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="ban">
+                        <div class="banbox">
+                            <h1>微信本地开发</h1>
+                            <h2>微信开发</h2>
+                            <h3>解决本地80端口无法访问，不需要重复的进行文件上传到服务器，节省大量的上传时间，基于本地写完代码就可以通过微信调试</h3>
+                            <a href="/login/register">立即注册</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="ban">
+                        <div class="banbox">
+                            <h1>外网管理内网服务器</h1>
+                            <h2>tcp端口转发</h2>
+                            <h3>不仅实现了http服务的端口转发同时支持tcp的端口，在外网可以通过ssh等方式连接服务器</h3>
+                            <a href="/login/register">立即注册</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="join">
+        <div class="join-box">
+            <div class="join-list1">
+                <h1>为什么使用DDNS？</h1>
+                <ul>
+                    <li><span></span>提供免费内网穿透服务，免费服务器支持绑定自定义域名</li>
+                    <li><span></span>管理内网服务器，内网web进行演示</li>
+                    <li><span></span>快速开发微信程序和第三方支付平台调试</li>
+                    <li><span></span>本地WEB外网访问、本地开发微信、TCP端口转发</li>
+                    <li><span></span>本站新增FRP服务器，基于 FRP 实现https、udp转发</li>
+                    <li><span></span>无需任何配置，下载客户端之后直接一条命令让外网访问您的内网不再是距离</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="join" id="qq-qun" style="background:#fff;">
+        <div class="join-box">
+            <div class="join-list2">
+                <h1>官方QQ群</h1>
+                <ul>
+                    <li><span></span>123456789（一号群）</li>
+                    <li><span></span>987654321（二号群）</li>
+                    <li><span></span>666666666（三号群）</li>
+                    <li><span></span>888888888（VIP群）</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
+<script src="~/js/jquery.min.js"></script>
+<script src="~/js/jquery.jslides.js"></script>
