@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>忘记密码</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link href="~/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/layuiadmin/style/admin.css" rel="stylesheet" />
+    <link href="~/layuiadmin/style/login.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="layadmin-user-login">
+        <div class="layadmin-user-login-main">
+            <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+                <div class="layui-form-item">
+                    <label class="layadmin-user-login-icon layui-icon layui-icon-username"></label>
+                    <input type="text" name="email" lay-verify="phone" placeholder="请输入注册时的邮箱" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-row">
+                        <div class="layui-col-xs7">
+                            <label class="layadmin-user-login-icon layui-icon layui-icon-vercode"></label>
+                            <input type="text" name="vercode" lay-verify="required" placeholder="验证码" class="layui-input">
+                        </div>
+                        <div class="layui-col-xs5">
+                            <div style="margin-left: 10px;">
+                                <img src="https://www.oschina.net/action/user/captcha" class="layadmin-user-login-codeimg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-forget-submit">找回密码</button>
+                </div>
+                <div class="layui-trans layui-form-item">
+                    <span class="layadmin-user-jump-change">
+                        已经有账户了？<a href="@Url.Action("Login", "Account")" class=" layadmin-link">点此登录</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../layuiadmin/layui/layui.js"></script>
+</body>
+</html>

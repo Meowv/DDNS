@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>登入</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link href="~/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/layuiadmin/style/admin.css" rel="stylesheet" />
+    <link href="~/layuiadmin/style/login.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="layadmin-user-login">
+        <div class="layadmin-user-login-main">
+            <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+                <div class="layui-form-item">
+                    <label class="layadmin-user-login-icon layui-icon layui-icon-username"></label>
+                    <input type="text" name="userName" lay-verify="required" placeholder="用户名" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <label class="layadmin-user-login-icon layui-icon layui-icon-password"></label>
+                    <input type="password" name="password" lay-verify="required" placeholder="密码" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-row">
+                        <div class="layui-col-xs7">
+                            <label class="layadmin-user-login-icon layui-icon layui-icon-vercode"></label>
+                            <input type="text" name="vercode" lay-verify="required" placeholder="验证码" class="layui-input">
+                        </div>
+                        <div class="layui-col-xs5">
+                            <div style="margin-left: 10px;">
+                                <img src="https://www.oschina.net/action/user/captcha" class="layadmin-user-login-codeimg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-login-submit">登 入</button>
+                </div>
+                <div class="layui-trans layui-form-item">
+                    <a href="@Url.Action("Forget", "Account")" class="layadmin-link">忘记密码？</a>
+                    <a href="@Url.Action("Register", "Account")" class="layadmin-user-jump-change layadmin-link">注册帐号</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/layuiadmin/layui/layui.js"></script>
+    <script>
+
+    </script>
+</body>
+</html>

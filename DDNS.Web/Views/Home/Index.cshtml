@@ -10,7 +10,7 @@
     <meta name="keywords" content="@_localizer["keywords"]">
     <meta name="author" content="@_localizer["author"]">
     <title>@_localizer["title"]</title>
-    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/css/style.css" asp-append-version="true" rel="stylesheet" />
 </head>
 <body>
     <div class="head">
@@ -22,8 +22,8 @@
             </ul>
         </div>
         <div class="featu">
-            <a href="/login" class="land">@_localizer["login"]</a>
-            <a href="/login/register" class="regis">@_localizer["register"]</a>
+            <a href="@Url.Action("Login", "Account")" class="land">@_localizer["login"]</a>
+            <a href="@Url.Action("Register", "Account")" class="regis">@_localizer["register"]</a>
             <a class="language">
                 <span data-culture="zh-CN">中文</span>
                 <i>|</i>
@@ -40,7 +40,7 @@
                             <h1>新增FRP服务器</h1>
                             <h2>支持HTTPS、UDP转发</h2>
                             <h3>使用DDNS的127.0.0.1:4040异步调试、其他穿透使用FRP</h3>
-                            <a href="/account/register">立即注册</a>
+                            <a href="@Url.Action("Register", "Account")">立即注册</a>
                         </div>
                     </div>
                 </li>
@@ -50,7 +50,7 @@
                             <h1>免费服务器支持绑定自定义域名</h1>
                             <h2>实现内外网通讯</h2>
                             <h3>外网访问内网服务器不再是距离</h3>
-                            <a href="/login/register">立即注册</a>
+                            <a href="@Url.Action("Register", "Account")">立即注册</a>
                         </div>
                     </div>
                 </li>
@@ -60,7 +60,7 @@
                             <h1>支持内网HTTP映射</h1>
                             <h2>HTTP转发</h2>
                             <h3>在您电脑的web服务直接开放给外网，再也不担心没有路由器权限和80端口被营运商封闭了</h3>
-                            <a href="/login/register">立即注册</a>
+                            <a href="@Url.Action("Register", "Account")">立即注册</a>
                         </div>
                     </div>
                 </li>
@@ -70,7 +70,7 @@
                             <h1>微信本地开发</h1>
                             <h2>微信开发</h2>
                             <h3>解决本地80端口无法访问，不需要重复的进行文件上传到服务器，节省大量的上传时间，基于本地写完代码就可以通过微信调试</h3>
-                            <a href="/login/register">立即注册</a>
+                            <a href="@Url.Action("Register", "Account")">立即注册</a>
                         </div>
                     </div>
                 </li>
@@ -80,7 +80,7 @@
                             <h1>外网管理内网服务器</h1>
                             <h2>tcp端口转发</h2>
                             <h3>不仅实现了http服务的端口转发同时支持tcp的端口，在外网可以通过ssh等方式连接服务器</h3>
-                            <a href="/login/register">立即注册</a>
+                            <a href="@Url.Action("Register", "Account")">立即注册</a>
                         </div>
                     </div>
                 </li>
@@ -122,4 +122,4 @@
 </body>
 </html>
 <script src="~/js/jquery.min.js"></script>
-<script src="~/js/home.js"></script>
+<script src="~/js/home.js" asp-append-version="true"></script>

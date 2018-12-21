@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace DDNS.Web.Controllers
 {
@@ -9,12 +6,6 @@ namespace DDNS.Web.Controllers
     {
         public IActionResult Index()
         {
-            //Response.Cookies.Append(
-            //    CookieRequestCultureProvider.DefaultCookieName,
-            //    CookieRequestCultureProvider.MakeCookieValue(new RequestCulture("en-US")),
-            //    new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
-            //);
-
             return View();
         }
     }
