@@ -12,6 +12,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="Resources\Views\Account\Forget.en-US.resx" />
+    <EmbeddedResource Remove="Resources\Views\Account\Forget.zh-CN.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
@@ -20,6 +25,11 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\css\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Resources\Views\Account\Forget.en-US.resx" />
+    <None Include="Resources\Views\Account\Forget.zh-CN.resx" />
   </ItemGroup>
 
   <ItemGroup>
