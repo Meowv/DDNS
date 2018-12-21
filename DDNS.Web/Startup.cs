@@ -1,7 +1,10 @@
-﻿using DDNS.Entity;
+﻿using DDNS.DataModel.Users;
+using DDNS.Entity;
+using DDNS.Provider.Users;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
@@ -35,9 +38,14 @@ namespace DDNS.Web
             }).AddCookie();
             services.AddOptions();
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<UsersProvider>();
+            services.AddScoped<UsersDataModel>();
+            services.AddSession();
+
             services.AddDbContext<DDNSDbContext>(options =>
             {
-                options.UseMySql(Configuration["ConnectionStrings:DDNSConnection"]);
+                options.UseMySql(Configuration.GetConnectionString("DDNSConnection"));
             });
 
             services.AddRouting(routes =>
@@ -101,7 +109,7 @@ namespace DDNS.Web
                 SupportedCultures = supportedCultures,
                 SupportedUICultures = supportedCultures
             });
-
+            app.UseSession();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseAuthentication();

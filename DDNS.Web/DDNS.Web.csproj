@@ -35,6 +35,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DDNS.Entity\DDNS.Entity.csproj" />
     <ProjectReference Include="..\DDNS.Provider\DDNS.Provider.csproj" />
+    <ProjectReference Include="..\DDNS.ViewModel\DDNS.ViewModel.csproj" />
   </ItemGroup>
 
 </Project>
