@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DDNS.DataModel\DDNS.DataModel.csproj" />
+    <ProjectReference Include="..\DDNS.Interface\DDNS.Interface.csproj" />
+  </ItemGroup>
+
 </Project>

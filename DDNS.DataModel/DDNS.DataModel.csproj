@@ -9,4 +9,8 @@
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DDNS.Entity\DDNS.Entity.csproj" />
+  </ItemGroup>
+
 </Project>
