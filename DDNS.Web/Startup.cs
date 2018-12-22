@@ -1,6 +1,10 @@
 ﻿using DDNS.DataModel.Users;
+using DDNS.DataModel.Verify;
 using DDNS.Entity;
+using DDNS.Entity.AppSettings;
 using DDNS.Provider.Users;
+using DDNS.Provider.Verify;
+using DDNS.Utility;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -38,9 +42,15 @@ namespace DDNS.Web
             }).AddCookie();
             services.AddOptions();
 
+            services.Configure<EmailConfig>(Configuration.GetSection("EmailConfig"));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<UsersProvider>();
             services.AddScoped<UsersDataModel>();
+            services.AddScoped<VerifyProvider>();
+            services.AddScoped<VerifyDataModel>();
+            services.AddSingleton<EmailUtil>();
+
+
             services.AddSession();
 
             services.AddDbContext<DDNSDbContext>(options =>

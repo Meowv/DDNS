@@ -52,6 +52,11 @@ namespace DDNS.DataModel.Users
             return await _content.Users.FindAsync(id);
         }
 
+        public async Task<UsersEntity> GetUserInfo(string email)
+        {
+            return await _content.Users.FindAsync(email);
+        }
+
         public async Task<IEnumerable<UsersEntity>> UserList()
         {
             return await _content.Users.ToListAsync();

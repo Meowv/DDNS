@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
-namespace DDNS.Web.API
+namespace DDNS.Web.API.Common
 {
     [Route("api")]
     [ApiController]
-    public class CommonController : ControllerBase
+    public class CommonApiController : ControllerBase
     {
         /// <summary>
         /// 设置网站语言

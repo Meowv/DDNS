@@ -5,7 +5,7 @@ using System.IO;
 
 namespace DDNS.Utility
 {
-    public static class VerifyCode
+    public static class VerifyCodeUtil
     {
         public static MemoryStream GenerateCode(out string code, int codeLength = 4)
         {

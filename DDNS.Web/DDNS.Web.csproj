@@ -12,6 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="Resources\Controllers\AccountController.en-US.resx" />
     <EmbeddedResource Remove="Resources\Views\Account\Forget.en-US.resx" />
     <EmbeddedResource Remove="Resources\Views\Account\Forget.zh-CN.resx" />
   </ItemGroup>
@@ -28,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Resources\Controllers\AccountController.en-US.resx" />
     <None Include="Resources\Views\Account\Forget.en-US.resx" />
     <None Include="Resources\Views\Account\Forget.zh-CN.resx" />
   </ItemGroup>
@@ -35,7 +37,10 @@
   <ItemGroup>
     <ProjectReference Include="..\DDNS.Entity\DDNS.Entity.csproj" />
     <ProjectReference Include="..\DDNS.Provider\DDNS.Provider.csproj" />
+    <ProjectReference Include="..\DDNS.Utility\DDNS.Utility.csproj" />
     <ProjectReference Include="..\DDNS.ViewModel\DDNS.ViewModel.csproj" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

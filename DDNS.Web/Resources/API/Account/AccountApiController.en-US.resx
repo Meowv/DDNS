@@ -117,25 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btn" xml:space="preserve">
-    <value>注 册</value>
+  <data name="body1" xml:space="preserve">
+    <value>Dear user：</value>
+  </data>
+  <data name="body2" xml:space="preserve">
+    <value>，Hello！</value>
+  </data>
+  <data name="body3" xml:space="preserve">
+    <value>Please click the following link to activate your account.</value>
+  </data>
+  <data name="body4" xml:space="preserve">
+    <value>If the above link cannot be clicked, please copy the above address to your browser's address bar.</value>
+  </data>
+  <data name="body5" xml:space="preserve">
+    <value>If you do not do it yourself, please ignore this email.</value>
   </data>
   <data name="email" xml:space="preserve">
-    <value>邮箱</value>
-  </data>
-  <data name="logintext" xml:space="preserve">
-    <value>用已有帐号登入</value>
+    <value>This email address is registered.</value>
   </data>
   <data name="password" xml:space="preserve">
-    <value>密码</value>
+    <value>Entered passwords differ.</value>
   </data>
-  <data name="repass" xml:space="preserve">
-    <value>确认密码</value>
+  <data name="success" xml:space="preserve">
+    <value>Success.</value>
   </data>
-  <data name="title" xml:space="preserve">
-    <value>注册</value>
-  </data>
-  <data name="username" xml:space="preserve">
-    <value>用户名</value>
+  <data name="user" xml:space="preserve">
+    <value>User already exists.</value>
   </data>
 </root>

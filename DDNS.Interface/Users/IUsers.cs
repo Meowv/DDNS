@@ -35,6 +35,13 @@ namespace DDNS.Interface.Users
         Task<UsersEntity> GetUserInfo(int id);
 
         /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        Task<UsersEntity> GetUserInfo(string email);
+
+        /// <summary>
         /// 用户列表
         /// </summary>
         /// <returns></returns>

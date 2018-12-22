@@ -56,6 +56,16 @@ namespace DDNS.Provider.Users
         }
 
         /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public Task<UsersEntity> GetUserInfo(string email)
+        {
+            return _data.GetUserInfo(email);
+        }
+
+        /// <summary>
         /// 用户列表
         /// </summary>
         /// <returns></returns>

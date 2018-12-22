@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DDNS.ViewModel.Account
+﻿namespace DDNS.ViewModel.Account
 {
     public class RegisterViewModel
     {
@@ -12,6 +8,6 @@ namespace DDNS.ViewModel.Account
 
         public string Password { get; set; }
 
-        public string ConfirmPassword { get; set; }
+        public string Repass { get; set; }
     }
 }

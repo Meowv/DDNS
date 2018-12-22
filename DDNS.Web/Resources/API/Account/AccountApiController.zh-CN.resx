@@ -117,25 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btn" xml:space="preserve">
-    <value>注 册</value>
+  <data name="body1" xml:space="preserve">
+    <value>尊敬的用户：</value>
+  </data>
+  <data name="body2" xml:space="preserve">
+    <value>，您好！</value>
+  </data>
+  <data name="body3" xml:space="preserve">
+    <value>请点击以下链接激活您的账号。</value>
+  </data>
+  <data name="body4" xml:space="preserve">
+    <value>如果以上链接无法点击，请将上面的地址复制到你的浏览器的地址栏。</value>
+  </data>
+  <data name="body5" xml:space="preserve">
+    <value>如非你本人操作，请忽略此邮件。</value>
   </data>
   <data name="email" xml:space="preserve">
-    <value>邮箱</value>
-  </data>
-  <data name="logintext" xml:space="preserve">
-    <value>用已有帐号登入</value>
+    <value>此邮箱已注册！</value>
   </data>
   <data name="password" xml:space="preserve">
-    <value>密码</value>
+    <value>两次密码不一致！</value>
   </data>
-  <data name="repass" xml:space="preserve">
-    <value>确认密码</value>
+  <data name="success" xml:space="preserve">
+    <value>注册成功！</value>
   </data>
-  <data name="title" xml:space="preserve">
-    <value>注册</value>
-  </data>
-  <data name="username" xml:space="preserve">
-    <value>用户名</value>
+  <data name="user" xml:space="preserve">
+    <value>用户已存在！</value>
   </data>
 </root>

@@ -117,25 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btn" xml:space="preserve">
-    <value>注 册</value>
+  <data name="expired" xml:space="preserve">
+    <value>The link has expired.</value>
   </data>
-  <data name="email" xml:space="preserve">
-    <value>邮箱</value>
-  </data>
-  <data name="logintext" xml:space="preserve">
-    <value>用已有帐号登入</value>
-  </data>
-  <data name="password" xml:space="preserve">
-    <value>密码</value>
-  </data>
-  <data name="repass" xml:space="preserve">
-    <value>确认密码</value>
-  </data>
-  <data name="title" xml:space="preserve">
-    <value>注册</value>
-  </data>
-  <data name="username" xml:space="preserve">
-    <value>用户名</value>
+  <data name="verifyed" xml:space="preserve">
+    <value>The account has been activated.</value>
   </data>
 </root>
