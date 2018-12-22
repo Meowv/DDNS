@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DDNS.Utility;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.IO;
 
 namespace DDNS.Web.API.Common
 {
@@ -25,6 +27,20 @@ namespace DDNS.Web.API.Common
             );
 
             return Ok(1);
+        }
+
+        /// <summary>
+        /// 验证码
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("verifycode")]
+        public IActionResult VerifyCode()
+        {
+            MemoryStream ms = VerifyCodeUtil.GenerateCode(out string code);
+            HttpContext.Session.SetString("verify_code", code);
+            Response.Body.Dispose();
+            return File(ms.ToArray(), @"image/png");
         }
     }
 }

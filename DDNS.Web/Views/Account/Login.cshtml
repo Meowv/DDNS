@@ -33,7 +33,7 @@
                         </div>
                         <div class="layui-col-xs5">
                             <div style="margin-left: 10px;">
-                                <img src="https://www.oschina.net/action/user/captcha" class="layadmin-user-login-codeimg">
+                                <img src="/api/verifycode" title="看不清？点击更换" class="layadmin-user-login-codeimg" id="verifycode">
                             </div>
                         </div>
                     </div>
@@ -50,7 +50,15 @@
     </div>
     <script src="~/layuiadmin/layui/layui.js"></script>
     <script>
+        layui.use(['form', 'layer'], function () {
+            var form = layui.form
+                , $ = layui.jquery
+                , layer = layui.layer;
 
+            $("#verifycode").bind("click", function () {
+                this.src = "/api/verifycode?r=" + Math.random();
+            });
+        });
     </script>
 </body>
 </html>

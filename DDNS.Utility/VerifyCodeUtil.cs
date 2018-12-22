@@ -16,7 +16,7 @@ namespace DDNS.Utility
             //验证码字体集合
             string[] fonts = { "Verdana", "Microsoft Sans Serif", "Comic Sans MS", "Arial" };
             //定义图像的大小，生成图像的实例
-            var image = new Bitmap((int)code.Length * 18, 32);
+            var image = new Bitmap(code.Length * 30, 40);
             var g = Graphics.FromImage(image);
             g.Clear(Color.White);//背景设为白色
             for (var i = 0; i < 100; i++)
@@ -37,7 +37,7 @@ namespace DDNS.Utility
                 {
                     ii = 2;
                 }
-                g.DrawString(code.Substring(i, 1), f, b, 3 + (i * 12), ii);//绘制一个验证字符  
+                g.DrawString(code.Substring(i, 1), f, b, 20 + (i * 20), ii);//绘制一个验证字符  
             }
             var ms = new MemoryStream();//生成内存流对象
             image.Save(ms, ImageFormat.Jpeg);

@@ -34,6 +34,19 @@
                     <input type="password" name="repass" lay-verify="repass" placeholder="@_localizer["repass"]" class="layui-input">
                 </div>
                 <div class="layui-form-item">
+                    <div class="layui-row">
+                        <div class="layui-col-xs7">
+                            <label class="layadmin-user-login-icon layui-icon layui-icon-vercode"></label>
+                            <input type="text" name="vercode" lay-verify="required" placeholder="验证码" class="layui-input">
+                        </div>
+                        <div class="layui-col-xs5">
+                            <div style="margin-left: 10px;">
+                                <img src="/api/verifycode" title="看不清？点击更换" class="layadmin-user-login-codeimg" id="verifycode">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
                     <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="reg-submit">@_localizer["btn"]</button>
                 </div>
                 <div class="layui-trans layui-form-item">
@@ -48,6 +61,10 @@
             var form = layui.form
                 , $ = layui.jquery
                 , layer = layui.layer;
+
+            $("#verifycode").bind("click", function () {
+                this.src = "/api/verifycode?r=" + Math.random();
+            });
 
             form.verify({
                 username: function (value, item) {
