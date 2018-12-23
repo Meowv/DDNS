@@ -6,11 +6,14 @@ using DDNS.Provider.Verify;
 using DDNS.Utility;
 using DDNS.ViewModel.Account;
 using DDNS.ViewModel.Response;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace DDNS.Web.API.Account
@@ -122,16 +125,23 @@ namespace DDNS.Web.API.Account
                 var user = await _userProvider.GetUserInfo(vm.UserName, vm.Password);
                 if (user != null)
                 {
-                    
-                    if (user.Status == (int)UserStatusEnum.Normal)
-                    {
-                        data.Code = 0;
-                        data.Msg = "登录成功！";
-                    }
                     if (user.Status == (int)UserStatusEnum.Forbidden)
                     {
                         data.Code = 1;
                         data.Msg = "账号已被禁用！";
+                    }
+                    else
+                    {
+                        data.Code = 0;
+                        data.Msg = "登录成功！";
+
+                        var claimIdentity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
+                        claimIdentity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
+                        claimIdentity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
+                        claimIdentity.AddClaim(new Claim(ClaimTypes.Email, user.Email));
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimIdentity));
+
+                        HttpContext.Session.Remove("verify_code");
                     }
                 }
                 else

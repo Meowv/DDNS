@@ -40,6 +40,7 @@ namespace DDNS.Web
             {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             }).AddCookie();
+            services.AddSession();
             services.AddOptions();
 
             services.Configure<EmailConfig>(Configuration.GetSection("EmailConfig"));
@@ -49,9 +50,6 @@ namespace DDNS.Web
             services.AddScoped<VerifyProvider>();
             services.AddScoped<VerifyDataModel>();
             services.AddSingleton<EmailUtil>();
-
-
-            services.AddSession();
 
             services.AddDbContext<DDNSDbContext>(options =>
             {
@@ -120,6 +118,7 @@ namespace DDNS.Web
                 SupportedUICultures = supportedCultures
             });
             app.UseSession();
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseAuthentication();
