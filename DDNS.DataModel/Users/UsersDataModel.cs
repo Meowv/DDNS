@@ -1,6 +1,8 @@
 ﻿using DDNS.Entity;
 using DDNS.Entity.Users;
+using DDNS.Utility;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -50,6 +52,11 @@ namespace DDNS.DataModel.Users
         public async Task<UsersEntity> GetUserInfo(int id)
         {
             return await _content.Users.FindAsync(id);
+        }
+
+        public async Task<UsersEntity> GetUserInfo(string userName, string password)
+        {
+            return await _content.Users.FirstOrDefaultAsync(u => (u.UserName == userName || u.Email == userName) && u.Password == MD5Util.TextToMD5(password));
         }
 
         public async Task<UsersEntity> GetUserInfo(string email)

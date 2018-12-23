@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DDNS.Entity\DDNS.Entity.csproj" />
+    <ProjectReference Include="..\DDNS.Utility\DDNS.Utility.csproj" />
   </ItemGroup>
 
 </Project>

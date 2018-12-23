@@ -42,5 +42,22 @@ namespace DDNS.Web.API.Common
             Response.Body.Dispose();
             return File(ms.ToArray(), @"image/png");
         }
+
+        /// <summary>
+        /// 检查验证码
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("check_verifycode")]
+        public IActionResult CheckVerifyCode(string code)
+        {
+            if (!string.IsNullOrEmpty(code))
+            {
+                var sessionCode = HttpContext.Session.GetString("verify_code");
+                return Ok(string.Equals(sessionCode.Trim(), code.Trim(), StringComparison.CurrentCultureIgnoreCase));
+            }
+            return Ok(false);
+        }
     }
 }

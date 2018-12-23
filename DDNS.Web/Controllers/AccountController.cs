@@ -1,11 +1,8 @@
 ﻿using DDNS.Entity.Users;
 using DDNS.Provider.Users;
 using DDNS.Provider.Verify;
-using DDNS.Utility;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
-using System.IO;
 using System.Threading.Tasks;
 
 namespace DDNS.Web.Controllers
@@ -67,7 +64,7 @@ namespace DDNS.Web.Controllers
         {
             if (string.IsNullOrEmpty(token))
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction(nameof(HomeController.Index), "Home");
             }
 
             var verify = _verifyProvider.GetVerifyInfo(token);

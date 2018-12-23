@@ -138,6 +138,9 @@
   <data name="password" xml:space="preserve">
     <value>Entered passwords differ.</value>
   </data>
+  <data name="subject" xml:space="preserve">
+    <value>【Test】Account activation</value>
+  </data>
   <data name="success" xml:space="preserve">
     <value>Success.</value>
   </data>

@@ -9,6 +9,7 @@ using DDNS.ViewModel.Response;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Options;
 using System;
 using System.Threading.Tasks;
 
@@ -25,14 +26,14 @@ namespace DDNS.Web.API.Account
         private readonly EmailUtil _email;
         private readonly EmailConfig _config;
 
-        public AccountApiController(UsersProvider usersProvider, VerifyProvider verifyProvider, IHttpContextAccessor accessor, IStringLocalizer<AccountApiController> localizer, EmailUtil email, EmailConfig config)
+        public AccountApiController(UsersProvider usersProvider, VerifyProvider verifyProvider, IHttpContextAccessor accessor, IStringLocalizer<AccountApiController> localizer, EmailUtil email, IOptions<EmailConfig> config)
         {
             _userProvider = usersProvider;
             _verifyProvider = verifyProvider;
             _accessor = accessor;
             _localizer = localizer;
             _email = email;
-            _config = config;
+            _config = config.Value;
         }
 
         /// <summary>
@@ -92,7 +93,53 @@ namespace DDNS.Web.API.Account
             body += string.Format(tempHtml, _localizer["body4"]);
             body += string.Format(tempHtml, _localizer["body5"]);
 
-            _email.SendEmail(vm.UserName, vm.Email, _localizer["subject"], body);
+            try
+            {
+                _email.SendEmail(vm.UserName, vm.Email, _localizer["subject"], body);
+            }
+            catch (Exception e)
+            {
+                data.Code = 0;
+                data.Msg = e.Message;
+            }
+
+            return data;
+        }
+
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="vm"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("login")]
+        public async Task<ResponseViewModel<object>> Login(LoginViewModel vm)
+        {
+            var data = new ResponseViewModel<object>();
+
+            if (ModelState.IsValid)
+            {
+                var user = await _userProvider.GetUserInfo(vm.UserName, vm.Password);
+                if (user != null)
+                {
+                    
+                    if (user.Status == (int)UserStatusEnum.Normal)
+                    {
+                        data.Code = 0;
+                        data.Msg = "登录成功！";
+                    }
+                    if (user.Status == (int)UserStatusEnum.Forbidden)
+                    {
+                        data.Code = 1;
+                        data.Msg = "账号已被禁用！";
+                    }
+                }
+                else
+                {
+                    data.Code = 1;
+                    data.Msg = "账号或密码不正确！";
+                }
+            }
 
             return data;
         }

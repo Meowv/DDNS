@@ -138,6 +138,9 @@
   <data name="password" xml:space="preserve">
     <value>两次密码不一致！</value>
   </data>
+  <data name="subject" xml:space="preserve">
+    <value>【测试】账号激活</value>
+  </data>
   <data name="success" xml:space="preserve">
     <value>注册成功！</value>
   </data>

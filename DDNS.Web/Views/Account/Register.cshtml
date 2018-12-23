@@ -37,7 +37,7 @@
                     <div class="layui-row">
                         <div class="layui-col-xs7">
                             <label class="layadmin-user-login-icon layui-icon layui-icon-vercode"></label>
-                            <input type="text" name="vercode" lay-verify="required" placeholder="验证码" class="layui-input">
+                            <input type="text" id="vercode" lay-verify="required" placeholder="验证码" class="layui-input">
                         </div>
                         <div class="layui-col-xs5">
                             <div style="margin-left: 10px;">
@@ -94,21 +94,37 @@
 
             form.on('submit(reg-submit)', function (data) {
                 $.ajax({
-                    url: '/api/register',
-                    type: "post",
+                    url: '/api/check_verifycode?code=' + $("#vercode").val().trim(),
+                    type: "get",
                     dataType: 'json',
-                    data: JSON.stringify(data.field),
+                    data: null,
                     success: function (result) {
-                        if (result.code === 0) {
-                            layer.msg(result.msg, {
-                                icon: 1,
-                                time: 1000
-                            }, function () {
-
+                        if (result) {
+                            $.ajax({
+                                url: '/api/register',
+                                type: "POST",
+                                dataType: 'json',
+                                data: JSON.stringify(data.field),
+                                contentType: 'application/json;charset=UTF-8',
+                                success: function (result) {
+                                    if (result.code === 0) {
+                                        layer.msg(result.msg, {
+                                            icon: 1,
+                                            time: 1000
+                                        }, function () {
+                                            window.location.href = "/account/login";
+                                        });
+                                    }
+                                    if (result.code === 1) {
+                                        layer.msg(result.msg, {
+                                            icon: 2,
+                                            time: 1000
+                                        });
+                                    }
+                                }
                             });
-                        }
-                        if (result.code === 1) {
-                            layer.msg(result.msg, {
+                        } else {
+                            layer.msg("验证码错误！", {
                                 icon: 2,
                                 time: 1000
                             });
