@@ -49,6 +49,7 @@
                             <cite>@User.Identity.Name</cite>
                         </a>
                         <dl class="layui-nav-child">
+                            <dd><a lay-href="@Url.Action("Home", "Console")">@_localizer["myinfo"]</a></dd>
                             <dd><a lay-href="@Url.Action("Password", "Account")">@_localizer["password"]</a></dd>
                             <dd><a href="@Url.Action("Logout", "Account")">@_localizer["logout"]</a></dd>
                         </dl>
@@ -58,7 +59,7 @@
             <div class="layui-side layui-side-menu">
                 <div class="layui-side-scroll">
                     <div class="layui-logo" lay-href="@Url.Action("Home", "Console")">
-                        <span>DDNS</span>
+                        <span>@_localizer["pro"]</span>
                     </div>
                     <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
                         <li data-name="home" class="layui-nav-item layui-nav-itemed">

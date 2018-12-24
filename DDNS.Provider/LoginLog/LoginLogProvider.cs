@@ -14,9 +14,24 @@ namespace DDNS.Provider.LoginLog
             _data = data;
         }
 
+        /// <summary>
+        /// 添加登录日志
+        /// </summary>
+        /// <param name="log"></param>
+        /// <returns></returns>
         public Task<bool> AddLoginLog(LoginLogEntity log)
         {
             return _data.AddLoginLog(log);
+        }
+
+        /// <summary>
+        /// 获取上次登录日志
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public Task<LoginLogEntity> GetLastLoginLog(int userId)
+        {
+            return _data.GetLastLoginLog(userId);
         }
     }
 }

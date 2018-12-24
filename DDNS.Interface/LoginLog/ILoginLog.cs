@@ -11,5 +11,12 @@ namespace DDNS.Interface.LoginLog
         /// <param name="log"></param>
         /// <returns></returns>
         Task<bool> AddLoginLog(LoginLogEntity log);
+
+        /// <summary>
+        /// 获取上次登录日志
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        Task<LoginLogEntity> GetLastLoginLog(int userId);
     }
 }

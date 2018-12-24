@@ -144,6 +144,9 @@
   <data name="password" xml:space="preserve">
     <value>Change Password</value>
   </data>
+  <data name="pro" xml:space="preserve">
+    <value>NAT-DDNS</value>
+  </data>
   <data name="refresh" xml:space="preserve">
     <value>Refresh</value>
   </data>
@@ -160,7 +163,7 @@
     <value>Close All Tabs</value>
   </data>
   <data name="title" xml:space="preserve">
-    <value>Back</value>
+    <value>NAT-DDNS</value>
   </data>
   <data name="tunnel" xml:space="preserve">
     <value>Tunnel</value>

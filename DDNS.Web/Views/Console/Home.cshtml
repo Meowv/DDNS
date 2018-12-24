@@ -1,2 +1,42 @@
-﻿<h1>后台首页</h1>
-
+﻿<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">设置我的资料</div>
+                <div class="layui-card-body">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">用户名：</label>
+                            <div class="layui-form-mid">@Model.UserName</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">邮箱：</label>
+                            <div class="layui-form-mid">@Model.Email</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">注册时间：</label>
+                            <div class="layui-form-mid">@Model.RegisterTime</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">上次登录时间：</label>
+                            <div class="layui-form-mid">@Model.LastLoginTime</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">上次登录IP：</label>
+                            <div class="layui-form-mid">@Model.LastLoginIP</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/jquery.min.js"></script>
+    <script>
+        $(".layui-form-label").css({
+            "width": "100px",
+            "font-weight":"bold"
+        });
+    </script>
+}

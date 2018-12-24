@@ -1,4 +1,6 @@
-﻿using DDNS.Provider.Users;
+﻿using DDNS.Provider.LoginLog;
+using DDNS.Provider.Users;
+using DDNS.ViewModel.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,9 +13,12 @@ namespace DDNS.Web.Controllers
     public class ConsoleController : Controller
     {
         private readonly UsersProvider _usersProvider;
-        public ConsoleController(UsersProvider usersProvider)
+        private readonly LoginLogProvider _loginLogProvider;
+
+        public ConsoleController(UsersProvider usersProvider, LoginLogProvider loginLogProvider)
         {
             _usersProvider = usersProvider;
+            _loginLogProvider = loginLogProvider;
         }
 
         /// <summary>
@@ -32,9 +37,23 @@ namespace DDNS.Web.Controllers
         /// 默认显示页面
         /// </summary>
         /// <returns></returns>
-        public IActionResult Home()
+        public async Task<IActionResult> Home()
         {
-            return View();
+            var userId = HttpContext.User.FindFirst(u => u.Type == ClaimTypes.NameIdentifier).Value;
+            var user = await _usersProvider.GetUserInfo(Convert.ToInt32(userId));
+
+            var log = await _loginLogProvider.GetLastLoginLog(Convert.ToInt32(userId));
+
+            var info = new UserInfoViewModel
+            {
+                UserName = user.UserName,
+                Email = user.Email,
+                RegisterTime = user.RegisterTime,
+                LastLoginTime = log.LoginTime,
+                LastLoginIP = log.LoginIp
+            };
+
+            return View(info);
         }
     }
 }

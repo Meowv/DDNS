@@ -144,6 +144,9 @@
   <data name="password" xml:space="preserve">
     <value>修改密码</value>
   </data>
+  <data name="pro" xml:space="preserve">
+    <value>内网穿透</value>
+  </data>
   <data name="refresh" xml:space="preserve">
     <value>刷新</value>
   </data>
@@ -160,7 +163,7 @@
     <value>关闭全部标签页</value>
   </data>
   <data name="title" xml:space="preserve">
-    <value>后台</value>
+    <value>内网穿透</value>
   </data>
   <data name="tunnel" xml:space="preserve">
     <value>隧道</value>
