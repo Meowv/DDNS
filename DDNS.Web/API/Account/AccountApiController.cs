@@ -179,5 +179,102 @@ namespace DDNS.Web.API.Account
 
             return data;
         }
+
+        /// <summary>
+        /// 忘记密码
+        /// </summary>
+        /// <param name="vm"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("forget")]
+        public async Task<ResponseViewModel<object>> Forget(ForgetViewModel vm)
+        {
+            var data = new ResponseViewModel<object>();
+
+            var user = await _userProvider.GetUserInfo(vm.Email);
+            if (user != null)
+            {
+                //发送找回密码邮件
+                var tempHtml = "<p>{0}</p>";
+                var body = string.Empty;
+                var url = _config.Domain + "/account/reset?token=" + MD5Util.TextToMD5(user.Email);
+                var link = "<a href='" + url + "'>" + url + "</a>";
+
+                body += string.Format(tempHtml, _localizer["forget.body1"]);
+                body += string.Format(tempHtml, user.UserName + _localizer["forget.body2"]);
+                body += string.Format(tempHtml, _localizer["forget.body3"] + link);
+                body += string.Format(tempHtml, _localizer["forget.body4"]);
+                body += string.Format(tempHtml, _localizer["forget.body5"]);
+
+                data.Msg = _localizer["forget.success"];
+
+                var verify = new VerifyEntity
+                {
+                    UserId = user.Id,
+                    Token = MD5Util.TextToMD5(user.Email),
+                    Status = (int)VerifyStatusEnum.Normal,
+                    Type = (int)VerifyTypeEnum.Password,
+                    Time = DateTime.Now
+                };
+                await _verifyProvider.AddVerify(verify);
+
+                try
+                {
+                    _email.SendEmail(user.UserName, user.Email, _localizer["forget.subject"], body);
+                }
+                catch (Exception e)
+                {
+                    data.Code = 1;
+                    data.Msg = e.Message;
+                }
+            }
+            else
+            {
+                data.Code = 1;
+                data.Msg = _localizer["forget.inexistent"];
+            }
+
+            return data;
+        }
+
+        /// <summary>
+        /// 重置密码
+        /// </summary>
+        /// <param name="vm"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("reset")]
+        public async Task<ResponseViewModel<bool>> Reset(ResetViewModel vm)
+        {
+            var data = new ResponseViewModel<bool>();
+
+            if (vm.Password != vm.Repass)
+            {
+                data.Code = 1;
+                data.Msg = _localizer["password"];
+
+                return data;
+            }
+
+            var verify = _verifyProvider.GetVerifyInfo(vm.Token, VerifyTypeEnum.Password);
+            if (verify != null)
+            {
+                var user = await _userProvider.GetUserInfo(verify.UserId);
+                user.Password = MD5Util.TextToMD5(vm.Password);
+
+                data.Code = 0;
+                data.Msg = _localizer["reset.success"];
+                data.Data = await _userProvider.UpdateUser(user);
+
+                await _verifyProvider.VerifySuccess(vm.Token);
+            }
+            else
+            {
+                data.Code = 1;
+                data.Msg = _localizer["reset.verify"];
+            }
+
+            return data;
+        }
     }
 }

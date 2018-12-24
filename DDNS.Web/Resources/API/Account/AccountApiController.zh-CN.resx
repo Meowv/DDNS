@@ -135,6 +135,30 @@
   <data name="email" xml:space="preserve">
     <value>此邮箱已注册！</value>
   </data>
+  <data name="forget.body1" xml:space="preserve">
+    <value>尊敬的用户：</value>
+  </data>
+  <data name="forget.body2" xml:space="preserve">
+    <value>，您好！</value>
+  </data>
+  <data name="forget.body3" xml:space="preserve">
+    <value>你通过邮箱发起了找回密码操作，请点击以下链接根据页面提示进行密码找回。</value>
+  </data>
+  <data name="forget.body4" xml:space="preserve">
+    <value>如果以上链接无法点击，请将上面的地址复制到你的浏览器的地址栏。</value>
+  </data>
+  <data name="forget.body5" xml:space="preserve">
+    <value>如非你本人操作，请忽略此邮件。</value>
+  </data>
+  <data name="forget.inexistent" xml:space="preserve">
+    <value>不存在此邮箱</value>
+  </data>
+  <data name="forget.subject" xml:space="preserve">
+    <value>【测试】找回密码</value>
+  </data>
+  <data name="forget.success" xml:space="preserve">
+    <value>发送成功，请前往邮箱进行密码重置操作</value>
+  </data>
   <data name="login.error" xml:space="preserve">
     <value>账号或密码不正确！</value>
   </data>
@@ -146,6 +170,12 @@
   </data>
   <data name="password" xml:space="preserve">
     <value>两次密码不一致！</value>
+  </data>
+  <data name="reset.success" xml:space="preserve">
+    <value>密码重置成功</value>
+  </data>
+  <data name="reset.verify" xml:space="preserve">
+    <value>未授权</value>
   </data>
   <data name="subject" xml:space="preserve">
     <value>【测试】账号激活</value>

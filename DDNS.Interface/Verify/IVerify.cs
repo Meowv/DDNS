@@ -23,7 +23,8 @@ namespace DDNS.Interface.Verify
         /// 获取验证信息
         /// </summary>
         /// <param name="token"></param>
+        /// <param name="type"></param>
         /// <returns></returns>
-        VerifyEntity GetVerifyInfo(string token);
+        VerifyEntity GetVerifyInfo(string token, VerifyTypeEnum type);
     }
 }

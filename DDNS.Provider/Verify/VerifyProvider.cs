@@ -23,9 +23,9 @@ namespace DDNS.Provider.Verify
             return _data.VerifySuccess(token);
         }
 
-        public VerifyEntity GetVerifyInfo(string token)
+        public VerifyEntity GetVerifyInfo(string token, VerifyTypeEnum type)
         {
-            return _data.GetVerifyInfo(token);
+            return _data.GetVerifyInfo(token, type);
         }
     }
 }

@@ -24,16 +24,16 @@ namespace DDNS.DataModel.Verify
             var _verify = _content.Verifies.Where(x => x.Token == token).FirstOrDefault();
             if (_verify != null)
             {
-                _verify.Status = (int)VerifyStatusEnum.Activated;
+                _verify.Status = (int)VerifyStatusEnum.Success;
                 return await _content.SaveChangesAsync() > 0;
             }
             else
                 return false;
         }
 
-        public VerifyEntity GetVerifyInfo(string token)
+        public VerifyEntity GetVerifyInfo(string token, VerifyTypeEnum type)
         {
-            return _content.Verifies.Where(x => x.Token == token && x.Status == (int)VerifyStatusEnum.Normal && x.Type == (int)VerifyTypeEnum.Register).FirstOrDefault();
+            return _content.Verifies.Where(x => x.Token == token && x.Status == (int)VerifyStatusEnum.Normal && x.Type == (int)type).FirstOrDefault();
         }
     }
 }

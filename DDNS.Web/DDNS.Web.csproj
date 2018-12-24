@@ -13,8 +13,6 @@
 
   <ItemGroup>
     <EmbeddedResource Remove="Resources\Controllers\AccountController.en-US.resx" />
-    <EmbeddedResource Remove="Resources\Views\Account\Forget.en-US.resx" />
-    <EmbeddedResource Remove="Resources\Views\Account\Forget.zh-CN.resx" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,8 +28,6 @@
 
   <ItemGroup>
     <None Include="Resources\Controllers\AccountController.en-US.resx" />
-    <None Include="Resources\Views\Account\Forget.en-US.resx" />
-    <None Include="Resources\Views\Account\Forget.zh-CN.resx" />
   </ItemGroup>
 
   <ItemGroup>

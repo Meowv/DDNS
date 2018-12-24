@@ -135,6 +135,30 @@
   <data name="email" xml:space="preserve">
     <value>This email address is registered.</value>
   </data>
+  <data name="forget.body1" xml:space="preserve">
+    <value>Dear user：</value>
+  </data>
+  <data name="forget.body2" xml:space="preserve">
+    <value>，Hello！</value>
+  </data>
+  <data name="forget.body3" xml:space="preserve">
+    <value>You initiated the password recovery operation through email. Please click the following link to retrieve the password according to the prompts on the page.</value>
+  </data>
+  <data name="forget.body4" xml:space="preserve">
+    <value>If the above link cannot be clicked, please copy the above address to your browser's address bar.</value>
+  </data>
+  <data name="forget.body5" xml:space="preserve">
+    <value>If you do not do it yourself, please ignore this email.</value>
+  </data>
+  <data name="forget.inexistent" xml:space="preserve">
+    <value>This mailbox does not exist</value>
+  </data>
+  <data name="forget.subject" xml:space="preserve">
+    <value>【Test】 Find password</value>
+  </data>
+  <data name="forget.success" xml:space="preserve">
+    <value>Send successfully, please go to the mailbox for password reset operation</value>
+  </data>
   <data name="login.error" xml:space="preserve">
     <value>Incorrect account or password.</value>
   </data>
@@ -146,6 +170,12 @@
   </data>
   <data name="password" xml:space="preserve">
     <value>Entered passwords differ.</value>
+  </data>
+  <data name="reset.success" xml:space="preserve">
+    <value>Password reset successful</value>
+  </data>
+  <data name="reset.verify" xml:space="preserve">
+    <value>Unauthorized</value>
   </data>
   <data name="subject" xml:space="preserve">
     <value>【Test】Account activation</value>

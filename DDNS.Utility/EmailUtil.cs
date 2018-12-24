@@ -41,29 +41,5 @@ namespace DDNS.Utility
                 client.Disconnect(true);
             }
         }
-
-        /// <summary>
-        /// 生成邮件内容
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="address"></param>
-        /// <returns></returns>
-        private string GenerateMessageBody(string name, string address)
-        {
-            var tempHtml = "<p>{0}</p>";
-            var body = string.Empty;
-
-            var url = _email.Domain + "/account/reset?token=" + MD5Util.TextToMD5(address);
-            var link = "<a href='" + url + "'>" + url + "</a>";
-
-            body += string.Format(tempHtml, "尊敬的用户：");
-            body += string.Format(tempHtml, name + "，您好！");
-            body += string.Format(tempHtml, "你通过邮箱发起了找回密码操作，请点击以下链接根据页面提示进行密码找回。" + link);
-            body += string.Format(tempHtml, "如果以上链接无法点击，请将上面的地址复制到你的浏览器的地址栏。");
-            body += string.Format(tempHtml, "（该链接在48小时内有效，48小时后需要重新提交修改）");
-            body += string.Format(tempHtml, "如非你本人操作，请忽略此邮件。");
-
-            return body;
-        }
     }
 }

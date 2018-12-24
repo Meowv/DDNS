@@ -1,4 +1,5 @@
 ﻿using DDNS.Entity.Users;
+using DDNS.Entity.Verify;
 using DDNS.Provider.Users;
 using DDNS.Provider.Verify;
 using Microsoft.AspNetCore.Mvc;
@@ -51,9 +52,22 @@ namespace DDNS.Web.Controllers
         /// 重置
         /// </summary>
         /// <returns></returns>
-        public IActionResult Reset()
+        public IActionResult Reset(string token)
         {
-            return View();
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+
+            var verify = _verifyProvider.GetVerifyInfo(token, VerifyTypeEnum.Password);
+            if (verify != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
         }
 
         /// <summary>
@@ -67,7 +81,7 @@ namespace DDNS.Web.Controllers
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
 
-            var verify = _verifyProvider.GetVerifyInfo(token);
+            var verify = _verifyProvider.GetVerifyInfo(token, VerifyTypeEnum.Register);
             if (verify != null)
             {
                 var user = await _usersProvider.GetUserInfo(verify.UserId);

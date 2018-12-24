@@ -8,9 +8,9 @@
         Normal = 0,
 
         /// <summary>
-        /// 激活
+        /// 激活账号/重置密码 成功操作标识
         /// </summary>
-        Activated = 1,
+        Success = 1,
 
         /// <summary>
         /// 过期
