@@ -1,7 +1,9 @@
-﻿using DDNS.DataModel.Users;
+﻿using DDNS.DataModel.LoginLog;
+using DDNS.DataModel.Users;
 using DDNS.DataModel.Verify;
 using DDNS.Entity;
 using DDNS.Entity.AppSettings;
+using DDNS.Provider.LoginLog;
 using DDNS.Provider.Users;
 using DDNS.Provider.Verify;
 using DDNS.Utility;
@@ -45,11 +47,13 @@ namespace DDNS.Web
 
             services.Configure<EmailConfig>(Configuration.GetSection("EmailConfig"));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<EmailUtil>();
             services.AddScoped<UsersProvider>();
             services.AddScoped<UsersDataModel>();
             services.AddScoped<VerifyProvider>();
             services.AddScoped<VerifyDataModel>();
-            services.AddSingleton<EmailUtil>();
+            services.AddScoped<LoginLogProvider>();
+            services.AddScoped<LoginLogDataModel>();
 
             services.AddDbContext<DDNSDbContext>(options =>
             {

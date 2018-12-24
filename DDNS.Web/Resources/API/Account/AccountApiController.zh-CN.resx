@@ -135,6 +135,15 @@
   <data name="email" xml:space="preserve">
     <value>此邮箱已注册！</value>
   </data>
+  <data name="login.error" xml:space="preserve">
+    <value>账号或密码不正确！</value>
+  </data>
+  <data name="login.forbidden" xml:space="preserve">
+    <value>账号已被禁用！</value>
+  </data>
+  <data name="login.success" xml:space="preserve">
+    <value>登录成功！</value>
+  </data>
   <data name="password" xml:space="preserve">
     <value>两次密码不一致！</value>
   </data>

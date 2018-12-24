@@ -1,6 +1,8 @@
 ﻿using DDNS.Entity.AppSettings;
+using DDNS.Entity.LoginLog;
 using DDNS.Entity.Users;
 using DDNS.Entity.Verify;
+using DDNS.Provider.LoginLog;
 using DDNS.Provider.Users;
 using DDNS.Provider.Verify;
 using DDNS.Utility;
@@ -24,15 +26,17 @@ namespace DDNS.Web.API.Account
     {
         private readonly UsersProvider _userProvider;
         private readonly VerifyProvider _verifyProvider;
+        private readonly LoginLogProvider _loginProvider;
         private readonly IHttpContextAccessor _accessor;
         private readonly IStringLocalizer<AccountApiController> _localizer;
         private readonly EmailUtil _email;
         private readonly EmailConfig _config;
 
-        public AccountApiController(UsersProvider usersProvider, VerifyProvider verifyProvider, IHttpContextAccessor accessor, IStringLocalizer<AccountApiController> localizer, EmailUtil email, IOptions<EmailConfig> config)
+        public AccountApiController(UsersProvider usersProvider, VerifyProvider verifyProvider, LoginLogProvider loginLogProvider, IHttpContextAccessor accessor, IStringLocalizer<AccountApiController> localizer, EmailUtil email, IOptions<EmailConfig> config)
         {
             _userProvider = usersProvider;
             _verifyProvider = verifyProvider;
+            _loginProvider = loginLogProvider;
             _accessor = accessor;
             _localizer = localizer;
             _email = email;
@@ -58,14 +62,29 @@ namespace DDNS.Web.API.Account
                 return data;
             }
 
+            var _user = await _userProvider.GetUserInfo(vm.UserName);
+            if (_user != null)
+            {
+                data.Code = 1;
+                data.Msg = _localizer["user"];
+
+                return data;
+            }
+            _user = await _userProvider.GetUserInfo(vm.Email);
+            if (_user != null)
+            {
+                data.Code = 1;
+                data.Msg = _localizer["email"];
+
+                return data;
+            }
+
             var user = new UsersEntity
             {
                 UserName = vm.UserName,
                 Email = vm.Email,
                 Password = MD5Util.TextToMD5(vm.Password),
                 RegisterTime = DateTime.Now,
-                LastLoginTime = DateTime.Now,
-                LastLoginIp = _accessor.HttpContext.Connection.RemoteIpAddress.ToString(),
                 Status = (int)UserStatusEnum.Unactivated,
                 IsDelete = (int)UserDeleteEnum.Normal,
                 IsAdmin = (int)UserTypeEnum.IsUser
@@ -128,12 +147,12 @@ namespace DDNS.Web.API.Account
                     if (user.Status == (int)UserStatusEnum.Forbidden)
                     {
                         data.Code = 1;
-                        data.Msg = "账号已被禁用！";
+                        data.Msg = _localizer["login.forbidden"];
                     }
                     else
                     {
                         data.Code = 0;
-                        data.Msg = "登录成功！";
+                        data.Msg = _localizer["login.success"];
 
                         var claimIdentity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
                         claimIdentity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
@@ -142,12 +161,19 @@ namespace DDNS.Web.API.Account
                         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimIdentity));
 
                         HttpContext.Session.Remove("verify_code");
+
+                        await _loginProvider.AddLoginLog(new LoginLogEntity
+                        {
+                            UserId = user.Id,
+                            LoginTime = DateTime.Now,
+                            LoginIp = _accessor.HttpContext.Connection.RemoteIpAddress.ToString()
+                        });
                     }
                 }
                 else
                 {
                     data.Code = 1;
-                    data.Msg = "账号或密码不正确！";
+                    data.Msg = _localizer["login.error"];
                 }
             }
 

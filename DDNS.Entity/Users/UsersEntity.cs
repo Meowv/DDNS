@@ -18,10 +18,6 @@ namespace DDNS.Entity.Users
 
         public DateTime RegisterTime { get; set; }
 
-        public DateTime LastLoginTime { get; set; }
-
-        public string LastLoginIp { get; set; }
-
         public int IsAdmin { get; set; }
     }
 }

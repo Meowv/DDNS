@@ -123,8 +123,14 @@
   <data name="email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="imgtitle" xml:space="preserve">
+    <value>Can't see? Click on the change</value>
+  </data>
   <data name="logintext" xml:space="preserve">
     <value>Login with an existing account</value>
+  </data>
+  <data name="msg" xml:space="preserve">
+    <value>Verification code error!</value>
   </data>
   <data name="password" xml:space="preserve">
     <value>Password</value>
@@ -137,5 +143,32 @@
   </data>
   <data name="username" xml:space="preserve">
     <value>UserName</value>
+  </data>
+  <data name="vercode" xml:space="preserve">
+    <value>Vercode</value>
+  </data>
+  <data name="verify.email" xml:space="preserve">
+    <value>The mailbox format is incorrect</value>
+  </data>
+  <data name="verify.pass" xml:space="preserve">
+    <value>Passwords must be 6-12 digits long and no Spaces are allowed</value>
+  </data>
+  <data name="verify.repass" xml:space="preserve">
+    <value>The two passwords do not match</value>
+  </data>
+  <data name="verify.username1" xml:space="preserve">
+    <value>The user name is 3 to 12 bits</value>
+  </data>
+  <data name="verify.username2" xml:space="preserve">
+    <value>User names cannot have special characters</value>
+  </data>
+  <data name="verify.username3" xml:space="preserve">
+    <value>You cannot underline the beginning and end of a user name</value>
+  </data>
+  <data name="verify.username4" xml:space="preserve">
+    <value>User names cannot be all Numbers</value>
+  </data>
+  <data name="verify.vercode" xml:space="preserve">
+    <value>The verification code cannot be empty</value>
   </data>
 </root>

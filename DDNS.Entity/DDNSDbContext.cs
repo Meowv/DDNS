@@ -1,4 +1,5 @@
-﻿using DDNS.Entity.Users;
+﻿using DDNS.Entity.LoginLog;
+using DDNS.Entity.Users;
 using DDNS.Entity.Verify;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,8 @@ namespace DDNS.Entity
         public DbSet<UsersEntity> Users { get; set; }
 
         public DbSet<VerifyEntity> Verifies { get; set; }
+
+        public DbSet<LoginLogEntity> LoginLog { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

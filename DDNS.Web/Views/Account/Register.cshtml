@@ -37,11 +37,11 @@
                     <div class="layui-row">
                         <div class="layui-col-xs7">
                             <label class="layadmin-user-login-icon layui-icon layui-icon-vercode"></label>
-                            <input type="text" id="vercode" lay-verify="required" placeholder="验证码" class="layui-input">
+                            <input type="text" id="vercode" lay-verify="vercode" placeholder="@_localizer["vercode"]" class="layui-input">
                         </div>
                         <div class="layui-col-xs5">
                             <div style="margin-left: 10px;">
-                                <img src="/api/verifycode" title="看不清？点击更换" class="layadmin-user-login-codeimg" id="verifycode">
+                                <img src="/api/verifycode" title="@_localizer["imgtitle"]" class="layadmin-user-login-codeimg" id="verifycode">
                             </div>
                         </div>
                     </div>
@@ -69,25 +69,34 @@
             form.verify({
                 username: function (value, item) {
                     if (value.trim().length < 3 || value.trim().length > 12) {
-                        return '用户名为3到12位';
+                        return '@_localizer["verify.username1"]';
                     }
                     if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)) {
-                        return '用户名不能有特殊字符';
+                        return '@_localizer["verify.username2"]';
                     }
                     if (/(^\_)|(\__)|(\_+$)/.test(value)) {
-                        return '用户名首尾不能出现下划线\'_\'';
+                        return '@_localizer["verify.username3"]\'_\'';
                     }
                     if (/^\d+\d+\d$/.test(value)) {
-                        return '用户名不能全为数字';
+                        return '@_localizer["verify.username4"]';
                     }
                 }
+                , vercode: function (value, item) {
+                    if (value.trim().length <= 0) {
+                        return '@_localizer["verify.vercode"]';
+                    }
+                }
+                , email: [
+                    /^([a-zA-Z0-9_\.\-])+\@@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
+                    , '@_localizer["verify.email"]'
+                ]
                 , pass: [
                     /^[\S]{6,12}$/
-                    , '密码必须6到12位，且不能出现空格'
+                    , '@_localizer["verify.pass"]'
                 ]
                 , repass: function (value) {
                     if (value !== $('#password').val()) {
-                        return '两次密码输入不一致';
+                        return '@_localizer["verify.repass"]';
                     }
                 }
             });
@@ -118,13 +127,13 @@
                                     if (result.code === 1) {
                                         layer.msg(result.msg, {
                                             icon: 2,
-                                            time: 1000
+                                            time: 2000
                                         });
                                     }
                                 }
                             });
                         } else {
-                            layer.msg("验证码错误！", {
+                            layer.msg("@_localizer["verify.msg"]", {
                                 icon: 2,
                                 time: 1000
                             });

@@ -117,7 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btn" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="forget" xml:space="preserve">
+    <value>forget the password</value>
+  </data>
+  <data name="imgtitle" xml:space="preserve">
+    <value>Can't see? Click on the change</value>
+  </data>
+  <data name="msg" xml:space="preserve">
+    <value>Verification code error!</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="register" xml:space="preserve">
+    <value>register</value>
+  </data>
   <data name="title" xml:space="preserve">
     <value>Login</value>
+  </data>
+  <data name="username" xml:space="preserve">
+    <value>UserName</value>
+  </data>
+  <data name="vercode" xml:space="preserve">
+    <value>Vercode</value>
+  </data>
+  <data name="verify.password" xml:space="preserve">
+    <value>The password cannot be empty</value>
+  </data>
+  <data name="verify.username" xml:space="preserve">
+    <value>The user name cannot be empty</value>
+  </data>
+  <data name="verify.vercode" xml:space="preserve">
+    <value>The verification code cannot be empty</value>
   </data>
 </root>

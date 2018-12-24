@@ -135,6 +135,15 @@
   <data name="email" xml:space="preserve">
     <value>This email address is registered.</value>
   </data>
+  <data name="login.error" xml:space="preserve">
+    <value>Incorrect account or password.</value>
+  </data>
+  <data name="login.forbidden" xml:space="preserve">
+    <value>The account has been disabled.</value>
+  </data>
+  <data name="login.success" xml:space="preserve">
+    <value>login successfully.</value>
+  </data>
   <data name="password" xml:space="preserve">
     <value>Entered passwords differ.</value>
   </data>

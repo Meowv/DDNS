@@ -19,31 +19,31 @@
             <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
                 <div class="layui-form-item">
                     <label class="layadmin-user-login-icon layui-icon layui-icon-username"></label>
-                    <input type="text" name="userName" lay-verify="username" placeholder="用户名" class="layui-input">
+                    <input type="text" name="userName" lay-verify="username" placeholder="@_localizer["username"]" class="layui-input">
                 </div>
                 <div class="layui-form-item">
                     <label class="layadmin-user-login-icon layui-icon layui-icon-password"></label>
-                    <input type="password" name="password" lay-verify="pass" placeholder="密码" class="layui-input">
+                    <input type="password" name="password" lay-verify="pass" placeholder="@_localizer["password"]" class="layui-input">
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-row">
                         <div class="layui-col-xs7">
                             <label class="layadmin-user-login-icon layui-icon layui-icon-vercode"></label>
-                            <input type="text" id="vercode" lay-verify="required" placeholder="验证码" class="layui-input">
+                            <input type="text" id="vercode" lay-verify="vercode" placeholder="@_localizer["vercode"]" class="layui-input">
                         </div>
                         <div class="layui-col-xs5">
                             <div style="margin-left: 10px;">
-                                <img src="/api/verifycode" title="看不清？点击更换" class="layadmin-user-login-codeimg" id="verifycode">
+                                <img src="/api/verifycode" title="@_localizer["imgtitle"]" class="layadmin-user-login-codeimg" id="verifycode">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="login-submit">登 入</button>
+                    <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="login-submit">@_localizer["btn"]</button>
                 </div>
                 <div class="layui-trans layui-form-item">
-                    <a href="@Url.Action("Forget", "Account")" class="layadmin-link">忘记密码？</a>
-                    <a href="@Url.Action("Register", "Account")" class="layadmin-user-jump-change layadmin-link">注册帐号</a>
+                    <a href="@Url.Action("Forget", "Account")" class="layadmin-link">@_localizer["forget"]？</a>
+                    <a href="@Url.Action("Register", "Account")" class="layadmin-user-jump-change layadmin-link">@_localizer["register"]</a>
                 </div>
             </div>
         </div>
@@ -58,12 +58,17 @@
             form.verify({
                 username: function (value, item) {
                     if (value.trim().length <= 0) {
-                        return '用户名不能为空';
+                        return '@_localizer["verify.username"]';
                     }
                 }
                 , pass: function (value, item) {
                     if (value.trim().length <= 0) {
-                        return '密码不能为空';
+                        return '@_localizer["verify.password"]';
+                    }
+                }
+                , vercode: function (value, item) {
+                    if (value.trim().length <= 0) {
+                        return '@_localizer["verify.vercode"]';
                     }
                 }
             });
@@ -100,7 +105,7 @@
                                 }
                             });
                         } else {
-                            layer.msg("验证码错误！", {
+                            layer.msg("@_localizer["msg"]！", {
                                 icon: 2,
                                 time: 1000
                             });

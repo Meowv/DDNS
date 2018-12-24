@@ -123,8 +123,14 @@
   <data name="email" xml:space="preserve">
     <value>邮箱</value>
   </data>
+  <data name="imgtitle" xml:space="preserve">
+    <value>看不清？点击更换</value>
+  </data>
   <data name="logintext" xml:space="preserve">
     <value>用已有帐号登入</value>
+  </data>
+  <data name="msg" xml:space="preserve">
+    <value>验证码错误！</value>
   </data>
   <data name="password" xml:space="preserve">
     <value>密码</value>
@@ -137,5 +143,32 @@
   </data>
   <data name="username" xml:space="preserve">
     <value>用户名</value>
+  </data>
+  <data name="vercode" xml:space="preserve">
+    <value>验证码</value>
+  </data>
+  <data name="verify.email" xml:space="preserve">
+    <value>邮箱格式不正确</value>
+  </data>
+  <data name="verify.pass" xml:space="preserve">
+    <value>密码必须6到12位，且不能出现空格</value>
+  </data>
+  <data name="verify.repass" xml:space="preserve">
+    <value>两次密码输入不一致</value>
+  </data>
+  <data name="verify.username1" xml:space="preserve">
+    <value>用户名为3到12位</value>
+  </data>
+  <data name="verify.username2" xml:space="preserve">
+    <value>用户名不能有特殊字符</value>
+  </data>
+  <data name="verify.username3" xml:space="preserve">
+    <value>用户名首尾不能出现下划线</value>
+  </data>
+  <data name="verify.username4" xml:space="preserve">
+    <value>用户名不能全为数字</value>
+  </data>
+  <data name="verify.vercode" xml:space="preserve">
+    <value>验证码不能为空</value>
   </data>
 </root>

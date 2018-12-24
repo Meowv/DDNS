@@ -58,11 +58,11 @@ namespace DDNS.Provider.Users
         /// <summary>
         /// 获取用户信息
         /// </summary>
-        /// <param name="email"></param>
+        /// <param name="userName"></param>
         /// <returns></returns>
-        public Task<UsersEntity> GetUserInfo(string email)
+        public Task<UsersEntity> GetUserInfo(string userName)
         {
-            return _data.GetUserInfo(email);
+            return _data.GetUserInfo(userName);
         }
 
         /// <summary>

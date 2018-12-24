@@ -59,9 +59,9 @@ namespace DDNS.DataModel.Users
             return await _content.Users.FirstOrDefaultAsync(u => (u.UserName == userName || u.Email == userName) && u.Password == MD5Util.TextToMD5(password));
         }
 
-        public async Task<UsersEntity> GetUserInfo(string email)
+        public async Task<UsersEntity> GetUserInfo(string userName)
         {
-            return await _content.Users.FindAsync(email);
+            return await _content.Users.FirstOrDefaultAsync(u => u.UserName == userName || u.Email == userName);
         }
 
         public async Task<IEnumerable<UsersEntity>> UserList()
