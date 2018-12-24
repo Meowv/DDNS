@@ -171,6 +171,12 @@
   <data name="password" xml:space="preserve">
     <value>Entered passwords differ.</value>
   </data>
+  <data name="password.error" xml:space="preserve">
+    <value>The old password is incorrect!</value>
+  </data>
+  <data name="password.success" xml:space="preserve">
+    <value>Successful!</value>
+  </data>
   <data name="reset.success" xml:space="preserve">
     <value>Password reset successful</value>
   </data>

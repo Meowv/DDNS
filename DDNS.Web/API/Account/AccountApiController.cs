@@ -10,6 +10,7 @@ using DDNS.ViewModel.Account;
 using DDNS.ViewModel.Response;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
@@ -272,6 +273,38 @@ namespace DDNS.Web.API.Account
             {
                 data.Code = 1;
                 data.Msg = _localizer["reset.verify"];
+            }
+
+            return data;
+        }
+
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="vm"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("password")]
+        [Authorize]
+        public async Task<ResponseViewModel<bool>> Password(PasswordViewModel vm)
+        {
+            var data = new ResponseViewModel<bool>();
+
+            var userId = HttpContext.User.FindFirst(u => u.Type == ClaimTypes.NameIdentifier).Value;
+            var user = await _userProvider.GetUserInfo(Convert.ToInt32(userId));
+
+            if (user != null && user.Password == MD5Util.TextToMD5(vm.OldPassword))
+            {
+                user.Password = MD5Util.TextToMD5(vm.Repass);
+
+                data.Code = 0;
+                data.Msg = _localizer["password.success"];
+                data.Data = await _userProvider.UpdateUser(user);
+            }
+            else
+            {
+                data.Code = 1;
+                data.Msg = _localizer["password.error"];
             }
 
             return data;
