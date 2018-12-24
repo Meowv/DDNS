@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="login-submit">@_localizer["btn"]</button>
+                    <button class="layui-btn layui-btn-fluid login-button" lay-submit lay-filter="login-submit">@_localizer["btn"]</button>
                 </div>
                 <div class="layui-trans layui-form-item">
                     <a href="@Url.Action("Forget", "Account")" class="layadmin-link">@_localizer["forget"]？</a>
@@ -112,6 +112,12 @@
                         }
                     }
                 });
+            });
+
+            $(document).keyup(function (event) {
+                if (event.keyCode == 13) {
+                    $(".login-button").trigger("click");
+                }
             });
 
             $("#verifycode").bind("click", function () {
