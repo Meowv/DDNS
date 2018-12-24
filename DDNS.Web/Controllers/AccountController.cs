@@ -2,6 +2,8 @@
 using DDNS.Entity.Verify;
 using DDNS.Provider.Users;
 using DDNS.Provider.Verify;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using System.Threading.Tasks;
@@ -98,6 +100,26 @@ namespace DDNS.Web.Controllers
             }
 
             return View();
+        }
+
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Password()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 退出
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }
 }
