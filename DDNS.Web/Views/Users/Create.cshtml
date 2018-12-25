@@ -1,1 +1,11 @@
 ﻿<p>添加用户</p>
+<button id="btn">tiaozhuan</button>
+@section Scripts{
+    <script src="~/js/jquery.min.js"></script>
+    <script>
+        $("#btn").click(function () {
+            var topLayui = parent === self ? layui : top.layui;
+            topLayui.index.openTabsPage("/users", "用户列表");
+        })
+    </script>
+}

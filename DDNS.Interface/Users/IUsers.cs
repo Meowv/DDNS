@@ -52,7 +52,10 @@ namespace DDNS.Interface.Users
         /// <summary>
         /// 用户列表
         /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="email"></param>
+        /// <param name="status"></param>
         /// <returns></returns>
-        Task<IEnumerable<UsersEntity>> UserList();
+        Task<IEnumerable<UsersEntity>> UserList(string userName = null, string email = null, int status = 0);
     }
 }

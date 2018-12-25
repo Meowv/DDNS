@@ -79,10 +79,13 @@ namespace DDNS.Provider.Users
         /// <summary>
         /// 用户列表
         /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="email"></param>
+        /// <param name="status"></param>
         /// <returns></returns>
-        public Task<IEnumerable<UsersEntity>> UserList()
+        public Task<IEnumerable<UsersEntity>> UserList(string userName = null, string email = null, int status = 0)
         {
-            return _data.UserList();
+            return _data.UserList(userName, email, status);
         }
     }
 }
