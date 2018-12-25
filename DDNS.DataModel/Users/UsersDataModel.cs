@@ -38,7 +38,24 @@ namespace DDNS.DataModel.Users
             var _user = await _content.Users.FindAsync(id);
             if (_user != null)
             {
-                _user.IsDelete = 1;
+                _user.IsDelete = (int)UserDeleteEnum.Deleted;
+                return await _content.SaveChangesAsync() > 0;
+            }
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// 禁用用户
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<bool> DisableUser(int id)
+        {
+            var _user = await _content.Users.FindAsync(id);
+            if (_user != null)
+            {
+                _user.Status = (int)UserStatusEnum.Disable;
                 return await _content.SaveChangesAsync() > 0;
             }
             else

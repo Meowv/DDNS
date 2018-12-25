@@ -145,7 +145,7 @@ namespace DDNS.Web.API.Account
                 var user = await _userProvider.GetUserInfo(vm.UserName, vm.Password);
                 if (user != null)
                 {
-                    if (user.Status == (int)UserStatusEnum.Forbidden)
+                    if (user.Status == (int)UserStatusEnum.Disable)
                     {
                         data.Code = 1;
                         data.Msg = _localizer["login.forbidden"];

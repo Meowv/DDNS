@@ -10,7 +10,7 @@
         /// <summary>
         /// 禁用
         /// </summary>
-        Forbidden = 1,
+        Disable = 1,
 
         /// <summary>
         /// 未激活
