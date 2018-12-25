@@ -15,6 +15,6 @@
         /// <summary>
         /// 未激活
         /// </summary>
-        Unactivated = 9,
+        UnActivated = 9,
     }
 }

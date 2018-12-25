@@ -86,7 +86,7 @@ namespace DDNS.Web.API.Account
                 Email = vm.Email,
                 Password = MD5Util.TextToMD5(vm.Password),
                 RegisterTime = DateTime.Now,
-                Status = (int)UserStatusEnum.Unactivated,
+                Status = (int)UserStatusEnum.UnActivated,
                 IsDelete = (int)UserDeleteEnum.Normal,
                 IsAdmin = (int)UserTypeEnum.IsUser
             };

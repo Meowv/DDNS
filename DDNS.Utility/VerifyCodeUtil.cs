@@ -7,6 +7,12 @@ namespace DDNS.Utility
 {
     public static class VerifyCodeUtil
     {
+        /// <summary>
+        /// 验证码
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="codeLength"></param>
+        /// <returns></returns>
         public static MemoryStream GenerateCode(out string code, int codeLength = 4)
         {
             code = GetRandomNum(codeLength);
