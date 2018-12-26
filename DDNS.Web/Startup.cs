@@ -1,9 +1,11 @@
 ﻿using DDNS.DataModel.LoginLog;
+using DDNS.DataModel.Tunnel;
 using DDNS.DataModel.Users;
 using DDNS.DataModel.Verify;
 using DDNS.Entity;
 using DDNS.Entity.AppSettings;
 using DDNS.Provider.LoginLog;
+using DDNS.Provider.Tunnel;
 using DDNS.Provider.Users;
 using DDNS.Provider.Verify;
 using DDNS.Utility;
@@ -54,6 +56,8 @@ namespace DDNS.Web
             services.AddScoped<VerifyDataModel>();
             services.AddScoped<LoginLogProvider>();
             services.AddScoped<LoginLogDataModel>();
+            services.AddScoped<TunnelProvider>();
+            services.AddScoped<TunnelDataModel>();
 
             services.AddDbContext<DDNSDbContext>(options =>
             {
