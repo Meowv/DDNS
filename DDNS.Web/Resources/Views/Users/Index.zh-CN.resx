@@ -204,6 +204,9 @@
   <data name="status.yes" xml:space="preserve">
     <value>是</value>
   </data>
+  <data name="text" xml:space="preserve">
+    <value>无数据</value>
+  </data>
   <data name="tip" xml:space="preserve">
     <value>系统提示</value>
   </data>

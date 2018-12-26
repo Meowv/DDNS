@@ -204,6 +204,9 @@
   <data name="status.yes" xml:space="preserve">
     <value>yse</value>
   </data>
+  <data name="text" xml:space="preserve">
+    <value>no data</value>
+  </data>
   <data name="tip" xml:space="preserve">
     <value>System prompt</value>
   </data>
