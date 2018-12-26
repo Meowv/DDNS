@@ -1,11 +1,99 @@
-﻿<p>添加用户</p>
-<button id="btn">tiaozhuan</button>
+﻿<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">@_localizer["title"]</div>
+                <div class="layui-card-body">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">@_localizer["username"]</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="userName" lay-verify="username" lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">@_localizer["email"]</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="email" lay-verify="email" lay-verType="tips" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">@_localizer["password"]</label>
+                            <div class="layui-input-inline">
+                                <input type="password" name="password" lay-verify="pass" lay-verType="tips" autocomplete="off" id="password" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="create">@_localizer["btn"]</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @section Scripts{
-    <script src="~/js/jquery.min.js"></script>
     <script>
-        $("#btn").click(function () {
-            var topLayui = parent === self ? layui : top.layui;
-            topLayui.index.openTabsPage("/users", "用户列表");
-        })
+        layui.config({
+            base: '../../../layuiadmin/'
+        }).extend({
+            index: 'lib/index'
+        }).use(['index', 'form', 'layer'], function () {
+            var form = layui.form
+                , $ = layui.jquery
+                , layer = layui.layer;
+
+            form.verify({
+                username: function (value, item) {
+                    if (value.trim().length < 3 || value.trim().length > 12) {
+                        return '@_localizer["verify.username1"]';
+                    }
+                    if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)) {
+                        return '@_localizer["verify.username2"]';
+                    }
+                    if (/(^\_)|(\__)|(\_+$)/.test(value)) {
+                        return '@_localizer["verify.username3"]\'_\'';
+                    }
+                    if (/^\d+\d+\d$/.test(value)) {
+                        return '@_localizer["verify.username4"]';
+                    }
+                }
+                , email: [
+                    /^([a-zA-Z0-9_\.\-])+\@@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
+                    , '@_localizer["verify.email"]'
+                ]
+                , pass: [
+                    /^[\S]{6,12}$/
+                    , '@_localizer["verify.pass"]'
+                ]
+            });
+
+            form.on('submit(create)', function (data) {
+                $.ajax({
+                    type: "post",
+                    dataType: 'json',
+                    url: '/api/add_user',
+                    data: JSON.stringify(data.field),
+                    contentType: 'application/json;charset=UTF-8',
+                    success: function (result) {
+                        if (result.code == 0) {
+                            layer.msg("@_localizer["msg"]！", {
+                                icon: 1,
+                                time: 1000
+                            }, function () {
+                                location.reload();
+                            });
+                        } else {
+                            layer.msg("@_localizer["error"]", {
+                                icon: 2,
+                                time: 1000
+                            });
+                        }
+                    }
+                });
+            });
+        });
     </script>
 }

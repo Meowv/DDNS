@@ -1,11 +1,22 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using DDNS.Provider.Users;
+using DDNS.Web.Filter;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace DDNS.Web.Controllers
 {
     [Authorize]
+    [PermissionFilter]
     public class UsersController : Controller
     {
+        private readonly UsersProvider _usersProvider;
+
+        public UsersController(UsersProvider usersProvider)
+        {
+            _usersProvider = usersProvider;
+        }
+
         /// <summary>
         /// 用户列表
         /// </summary>
@@ -29,29 +40,16 @@ namespace DDNS.Web.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            return View();
-        }
+            var user = await _usersProvider.GetUserInfo(id ?? 0);
 
-        /// <summary>
-        /// 用户信息
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public IActionResult Detail(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            return View();
+            return View(user);
         }
     }
 }

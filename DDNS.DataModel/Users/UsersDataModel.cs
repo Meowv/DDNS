@@ -142,11 +142,11 @@ namespace DDNS.DataModel.Users
 
             if (!string.IsNullOrEmpty(userName))
             {
-                list = list.Where(x => x.UserName == userName).ToList();
+                list = list.Where(x => x.UserName.Contains(userName)).ToList();
             }
             if (!string.IsNullOrEmpty(email))
             {
-                list = list.Where(x => x.Email == email).ToList();
+                list = list.Where(x => x.Email.Contains(email)).ToList();
             }
 
             list = list.Where(x => x.Status == status).OrderByDescending(x => x.RegisterTime).ToList();
