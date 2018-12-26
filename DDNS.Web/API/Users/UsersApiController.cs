@@ -4,6 +4,7 @@ using DDNS.Provider.Users;
 using DDNS.Utility;
 using DDNS.ViewModel.Response;
 using DDNS.ViewModel.User;
+using DDNS.Web.Filter;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -16,6 +17,7 @@ namespace DDNS.Web.API.Users
     [Route("api")]
     [ApiController]
     [Authorize]
+    [PermissionFilter]
     public class UsersApiController : ControllerBase
     {
         private readonly UsersProvider _usersProvider;

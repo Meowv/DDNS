@@ -159,6 +159,7 @@ namespace DDNS.Web.API.Account
                         claimIdentity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
                         claimIdentity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
                         claimIdentity.AddClaim(new Claim(ClaimTypes.Email, user.Email));
+                        claimIdentity.AddClaim(new Claim(ClaimTypes.Role, user.IsAdmin.ToString()));
                         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimIdentity));
 
                         HttpContext.Session.Remove("verify_code");
