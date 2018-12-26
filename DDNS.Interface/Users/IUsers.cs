@@ -28,6 +28,13 @@ namespace DDNS.Interface.Users
         Task<bool> DisableUser(int id);
 
         /// <summary>
+        /// 解除禁用
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<bool> RemoveDisable(int id);
+
+        /// <summary>
         /// 更新用户信息
         /// </summary>
         /// <param name="user"></param>

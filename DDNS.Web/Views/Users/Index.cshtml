@@ -1,11 +1,174 @@
-﻿<h1>用户列表</h1>
-<button id="btn">tiaozhuan</button>
+﻿<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="username" placeholder="按用户名筛选" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">邮箱</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="email" placeholder="按邮箱筛选" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn" lay-submit lay-filter="search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">是否禁用</label>
+                    <div class="layui-input-inline" style="width:100px;margin-top:-6px;">
+                        <input type="checkbox" name="status" lay-skin="switch" lay-text="是|否">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card-body">
+            <div style="padding-bottom: 10px;">
+                <button class="layui-btn layuiadmin-btn-list" data-type="add">添加用户</button>
+            </div>
+            <table id="userlist" lay-filter="userlist"></table>
+            <script type="text/html" id="statusTpl">
+                {{#  if(d.status === 0) { }}
+                <button class="layui-btn-primary layui-btn-xs">已激活</button>
+                {{#  } else if(d.status === 1) { }}
+                <button class="layui-btn-primary layui-btn-xs">已禁用</button>
+                {{#  } else { }}
+                <button class="layui-btn-primary layui-btn-xs">未激活</button>
+                {{#  } }}
+            </script>
+            <script type="text/html" id="table-content-list">
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+                {{# if(d.status === 0) { }}
+                <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="disable"><i class="layui-icon layui-icon-close"></i>禁用</a>
+                {{# } else if(d.status === 1) { }}
+                <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="ok"><i class="layui-icon layui-icon-ok"></i>解禁</a>
+                {{# } }}
+                <a class="layui-btn layui-btn layui-btn-xs" lay-event="open"><i class="layui-icon layui-icon-senior"></i>开通隧道</a>
+            </script>
+        </div>
+    </div>
+</div>
 @section Scripts{
-    <script src="~/js/jquery.min.js"></script>
     <script>
-        $("#btn").click(function () {
-            var topLayui = parent === self ? layui : top.layui;
-            topLayui.index.openTabsPage("/users/create", "添加用户");
-        })
+        layui.config({
+            base: '../../../layuiadmin/'
+        }).extend({
+            index: 'lib/index'
+        }).use(['index', 'form', 'table'], function () {
+            var table = layui.table
+                , form = layui.form                , $ = layui.jquery;            $(".layui-form-label").css("width", "auto");            form.on('submit(search)', function (data) {                var field = data.field;                if (field.email != "" || field.username != "") {
+                    table.reload('userlist', {
+                        where: field
+                        , page: {
+                            curr: 1
+                        }
+                    });
+                }            });            form.on('switch', function (data) {
+                var status = data.elem.checked ? 1 : 0;
+                table.reload('userlist', {
+                    where: {
+                        status: status
+                    }
+                    , page: {
+                        curr: 1
+                    }
+                });
+            });            table.render({
+                elem: '#userlist'
+                , url: '/api/users'
+                , cols: [
+                    [{
+                        field: 'id',
+                        width: 100,
+                        title: '用户ID'
+                    }, {
+                        field: 'userName',
+                        width: 150,
+                        title: '用户名',
+                    }, {
+                        field: 'email',
+                        title: '邮箱'
+                    }, {
+                        field: 'registerTime',
+                        title: '注册时间',
+                        sort: true
+                    }, {
+                        field: 'status',
+                        title: '状态',
+                        templet: '#statusTpl',
+                        align: 'center'
+                    }, {
+                        title: '操作',
+                        minWidth: 300,
+                        align: 'center',
+                        fixed: 'right',
+                        toolbar: '#table-content-list'
+                    }]
+                ],
+                page: true,
+                limit: 10,
+                limits: [10, 15, 20, 25, 30]
+            });
+
+            function userHandle(url, tip, msg, obj) {
+                layer.confirm(tip, {
+                    title: '系统提示'
+                    , btn: ['确定', '取消']
+                }, function (index) {
+                    $.ajax({
+                        type: "get",
+                        dataType: 'json',
+                        url: '/api/' + url + '?userId=' + obj.data.id,
+                        contentType: 'application/json;charset=UTF-8',
+                        success: function (result) {
+                            if (result.code == 0) {
+                                layer.msg(msg, {
+                                    icon: 1,
+                                    time: 1000
+                                }, function () {
+                                    obj.del();
+                                    layer.close(index);
+                                });
+                            } else {
+                                layer.msg("请稍后再试！", {
+                                    icon: 2,
+                                    time: 1000
+                                });
+                            }
+                        }
+                    });
+                });
+            }
+
+            table.on('tool(userlist)', function (obj) {
+                if (obj.event === 'edit') {
+                    layer.msg("edit")
+                } else if (obj.event === 'del') {
+                    userHandle('del_user', '确定删除此用户？', '删除成功！', obj);
+                } else if (obj.event === 'disable') {
+                    userHandle('disable_user', '确定禁用此用户？', '禁用成功！', obj);
+                } else if (obj.event === 'ok') {
+                    userHandle('remove_disable', '确定解禁此用户？', '解禁成功！', obj);
+                } else if (obj.event === 'open') {
+                    layer.msg("open")
+                }
+            });
+
+            var active = {
+                add: function () {
+                    var topLayui = parent === self ? layui : top.layui;
+                    topLayui.index.openTabsPage("/users/create", "添加用户");
+                }
+            };
+            $('.layui-btn.layuiadmin-btn-list').on('click', function () {
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            });        });
     </script>
 }

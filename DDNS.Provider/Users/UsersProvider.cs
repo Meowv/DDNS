@@ -46,6 +46,16 @@ namespace DDNS.Provider.Users
         }
 
         /// <summary>
+        /// 解除禁用
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Task<bool> RemoveDisable(int id)
+        {
+            return _data.RemoveDisable(id);
+        }
+
+        /// <summary>
         /// 更新用户信息
         /// </summary>
         /// <param name="user"></param>

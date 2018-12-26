@@ -62,6 +62,23 @@ namespace DDNS.DataModel.Users
         }
 
         /// <summary>
+        /// 解除禁用
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<bool> RemoveDisable(int id)
+        {
+            var _user = await _content.Users.FindAsync(id);
+            if (_user != null)
+            {
+                _user.Status = (int)UserStatusEnum.Normal;
+                return await _content.SaveChangesAsync() > 0;
+            }
+            else
+                return false;
+        }
+
+        /// <summary>
         /// 更新用户信息
         /// </summary>
         /// <param name="user"></param>
@@ -131,10 +148,8 @@ namespace DDNS.DataModel.Users
             {
                 list = list.Where(x => x.Email == email).ToList();
             }
-            if (status == 0)
-            {
-                list = list.Where(x => x.Status == status).ToList();
-            }
+
+            list = list.Where(x => x.Status == status).OrderByDescending(x => x.RegisterTime).ToList();
 
             return list;
         }

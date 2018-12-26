@@ -150,5 +150,22 @@ namespace DDNS.Web.API.Users
 
             return data;
         }
+
+        /// <summary>
+        /// 解除禁用
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("remove_disable")]
+        public async Task<ResponseViewModel<bool>> RemoveDisable(int userId)
+        {
+            var data = new ResponseViewModel<bool>
+            {
+                Data = await _usersProvider.RemoveDisable(userId)
+            };
+
+            return data;
+        }
     }
 }
