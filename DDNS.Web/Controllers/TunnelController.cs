@@ -21,7 +21,7 @@ namespace DDNS.Web.Controllers
         }
 
         /// <summary>
-        /// 申请开通隧道
+        /// 开通隧道
         /// </summary>
         /// <returns></returns>
         public IActionResult Create()

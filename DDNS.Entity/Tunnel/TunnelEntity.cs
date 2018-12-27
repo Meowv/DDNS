@@ -4,7 +4,7 @@ namespace DDNS.Entity.Tunnel
 {
     public class TunnelEntity
     {
-        public int TunneId { get; set; }
+        public string TunneId { get; set; } = Guid.NewGuid().ToString();
 
         public int UserId { get; set; }
 
