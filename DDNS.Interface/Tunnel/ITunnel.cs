@@ -11,20 +11,33 @@ namespace DDNS.Interface.Tunnel
         /// </summary>
         /// <param name="tunnel"></param>
         /// <returns></returns>
-        Task<bool> Create(TunnelEntity tunnel);
+        Task<bool> Create(TunnelsEntity tunnel);
 
         /// <summary>
         /// 编辑隧道
         /// </summary>
         /// <param name="tunnel"></param>
         /// <returns></returns>
-        Task<bool> Edit(TunnelEntity tunnel);
+        Task<bool> Edit(TunnelsEntity tunnel);
+
+        /// <summary>
+        /// 获取隧道信息
+        /// </summary>
+        /// <param name="tunnelId"></param>
+        /// <returns></returns>
+        Task<TunnelsEntity> GetTunnel(long tunnelId);
+
+        /// <summary>
+        /// 获取隧道信息
+        /// </summary>
+        /// <param name="subDomain"></param>
+        /// <returns></returns>
+        Task<TunnelsEntity> GetTunnel(string subDomain);
 
         /// <summary>
         /// 隧道列表
         /// </summary>
-        /// <param name="userId"></param>
         /// <returns></returns>
-        Task<IEnumerable<TunnelEntity>> Tunnels(int userId);
+        Task<IEnumerable<TunnelsEntity>> Tunnels(int userId);
     }
 }

@@ -1,1 +1,197 @@
-﻿<p>隧道列表</p>
+﻿<div class="layui-card">
+    <div class="layui-card-body">
+        <table id="userlist" lay-filter="userlist"></table>
+        <script type="text/html" id="statusTpl">
+            {{#  if(d.status === 0) { }}
+            <button class="layui-btn-primary layui-btn-xs">@_localizer["status.0"]</button>
+            {{#  } else if(d.status === 1) { }}
+            <button class="layui-btn-primary layui-btn-xs">@_localizer["status.1"]</button>
+            {{#  } else { }}
+            <button class="layui-btn-primary layui-btn-xs">@_localizer["status.9"]</button>
+            {{#  } }}
+        </script>
+        <script type="text/html" id="table-content-list">
+            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>@_localizer["btn.edit"]</a>
+        </script>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        layui.config({
+            base: '../../../layuiadmin/'
+        }).extend({
+            index: 'lib/index'
+        }).use(['index', 'form', 'table'], function () {
+            var table = layui.table
+                , form = layui.form
+                , $ = layui.jquery;
+
+            $(".layui-form-label").css("width", "auto");
+
+            form.on('submit(search)', function (data) {
+                var field = data.field;
+                if (field.email != "" || field.username != "") {
+                    table.reload('userlist', {
+                        where: field
+                        , page: {
+                            curr: 1
+                        }
+                    });
+                }
+            });
+            form.on('switch', function (data) {
+                var status = data.elem.checked ? 1 : 0;
+                table.reload('userlist', {
+                    where: {
+                        status: status
+                    }
+                    , page: {
+                        curr: 1
+                    }
+                });
+            });
+
+            table.render({
+                elem: '#userlist'
+                , url: '/api/tunnels'
+                , cols: [
+                    [{
+                        field: 'id',
+                        width: 100,
+                        title: 'ID'
+                    }, {
+                        field: 'userName',
+                        width: 150,
+                        title: '@_localizer["username"]',
+                    }, {
+                        field: 'email',
+                        title: '@_localizer["email"]'
+                    }, {
+                        field: 'registerTime',
+                        title: '@_localizer["registertime"]',
+                        sort: true
+                    }, {
+                        field: 'status',
+                        width: 100,
+                        title: '@_localizer["status"]',
+                        templet: '#statusTpl',
+                        align: 'center'
+                    }, {
+                        title: '@_localizer["operate"]',
+                        width: 100,
+                        align: 'center',
+                        fixed: 'right',
+                        toolbar: '#table-content-list'
+                    }]
+                ],
+                page: true,
+                limit: 10,
+                limits: [10, 15, 20, 25, 30],
+                text: {
+                    none: '@_localizer["text"]'
+                }
+            });
+
+            function userHandle(url, tip, msg, obj) {
+                layer.confirm(tip, {
+                    title: '@_localizer["tip"]'
+                    , btn: ['@_localizer["btn.confirm"]', '@_localizer["btn.cancel"]']
+                }, function (index) {
+                    $.ajax({
+                        type: "get",
+                        dataType: 'json',
+                        url: '/api/' + url + '?userId=' + obj.data.id,
+                        contentType: 'application/json;charset=UTF-8',
+                        success: function (result) {
+                            if (result.code == 0) {
+                                layer.msg(msg, {
+                                    icon: 1,
+                                    time: 1000
+                                }, function () {
+                                    obj.del();
+                                    layer.close(index);
+                                });
+                            } else {
+                                layer.msg("@_localizer["error"]", {
+                                    icon: 2,
+                                    time: 1000
+                                });
+                            }
+                        }
+                    });
+                });
+            }
+
+            table.on('tool(userlist)', function (obj) {
+                if (obj.event === 'edit') {
+                    layer.open({
+                        type: 2,
+                        title: '@_localizer["edit.title"]',
+                        content: '/users/edit?id=' + obj.data.id,
+                        maxmin: true,
+                        area: ['450px', '300px'],
+                        btn: ['@_localizer["btn.confirm"]', '@_localizer["btn.cancel"]'],
+                        yes: function (index, layero) {
+                            var iframeWindow = window['layui-layer-iframe' + index],
+                                submit = layero.find('iframe').contents().find("#update");
+
+                            iframeWindow.layui.form.on('submit(update)', function (data) {
+                                var field = data.field;
+
+                                $.ajax({
+                                    type: "post",
+                                    dataType: 'json',
+                                    url: '/api/edit_user?userId=' + obj.data.id,
+                                    data: JSON.stringify(field),
+                                    contentType: 'application/json;charset=UTF-8',
+                                    success: function (result) {
+                                        if (result.code == 0) {
+                                            layer.msg("@_localizer["edit.msg"]", {
+                                                icon: 1,
+                                                time: 1000
+                                            }, function () {
+                                                obj.update({
+                                                    userName: field.userName,
+                                                    email: field.email
+                                                });
+
+                                                form.render();
+                                                layer.close(index);
+                                            });
+                                        } else {
+                                            layer.msg(result.msg, {
+                                                icon: 2,
+                                                time: 1000
+                                            });
+                                        }
+                                    }
+                                });
+                            });
+
+                            submit.trigger('click');
+                        }
+                    });
+                } else if (obj.event === 'del') {
+                    userHandle('del_user', '@_localizer["del.title"]', '@_localizer["del.msg"]', obj);
+                } else if (obj.event === 'disable') {
+                    userHandle('disable_user', '@_localizer["disable.title"]', '@_localizer["disable.msg"]', obj);
+                } else if (obj.event === 'ok') {
+                    userHandle('remove_disable', '@_localizer["remove_disable.title"]', '@_localizer["remove_disable.msg"]', obj);
+                } else if (obj.event === 'open') {
+                    layer.msg("open")
+                }
+            });
+
+            var active = {
+                add: function () {
+                    var topLayui = parent === self ? layui : top.layui;
+                    topLayui.index.openTabsPage("/users/create", "adduser");
+                }
+            };
+            $('.layui-btn.layuiadmin-btn-list').on('click', function () {
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            });
+        });
+    </script>
+}

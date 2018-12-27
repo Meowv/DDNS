@@ -20,7 +20,7 @@ namespace DDNS.DataModel.Tunnel
         /// </summary>
         /// <param name="tunnel"></param>
         /// <returns></returns>
-        public async Task<bool> Create(TunnelEntity tunnel)
+        public async Task<bool> Create(TunnelsEntity tunnel)
         {
             await _content.Tunnels.AddAsync(tunnel);
             return await _content.SaveChangesAsync() > 0;
@@ -31,9 +31,9 @@ namespace DDNS.DataModel.Tunnel
         /// </summary>
         /// <param name="tunnel"></param>
         /// <returns></returns>
-        public async Task<bool> Edit(TunnelEntity tunnel)
+        public async Task<bool> Edit(TunnelsEntity tunnel)
         {
-            var _tunnel = await _content.Tunnels.FirstOrDefaultAsync(t => t.TunneId == tunnel.TunneId);
+            var _tunnel = await _content.Tunnels.FirstOrDefaultAsync(t => t.TunnelId == tunnel.TunnelId);
             if (_tunnel != null)
             {
                 _tunnel = tunnel;
@@ -47,11 +47,30 @@ namespace DDNS.DataModel.Tunnel
         }
 
         /// <summary>
+        /// 获取隧道信息
+        /// </summary>
+        /// <param name="tunnelId"></param>
+        /// <returns></returns>
+        public async Task<TunnelsEntity> GetTunnel(long tunnelId)
+        {
+            return await _content.Tunnels.Where(t => t.TunnelId == tunnelId).FirstOrDefaultAsync();
+        }
+
+        /// <summary>
+        /// 获取隧道信息
+        /// </summary>
+        /// <param name="subDomain"></param>
+        /// <returns></returns>
+        public async Task<TunnelsEntity> GetTunnel(string subDomain)
+        {
+            return await _content.Tunnels.Where(t => t.SubDomain == subDomain).FirstOrDefaultAsync();
+        }
+
+        /// <summary>
         /// 隧道列表
         /// </summary>
-        /// <param name="userId"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<TunnelEntity>> Tunnels(int userId)
+        public async Task<IEnumerable<TunnelsEntity>> Tunnels(int userId)
         {
             return await _content.Tunnels.Where(t => t.UserId == userId).ToListAsync();
         }

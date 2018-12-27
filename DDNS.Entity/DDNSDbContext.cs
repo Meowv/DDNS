@@ -16,7 +16,7 @@ namespace DDNS.Entity
 
         public DbSet<LoginLogEntity> LoginLog { get; set; }
 
-        public DbSet<TunnelEntity> Tunnels { get; set; }
+        public DbSet<TunnelsEntity> Tunnels { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

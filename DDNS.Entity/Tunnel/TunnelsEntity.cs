@@ -1,10 +1,12 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace DDNS.Entity.Tunnel
 {
-    public class TunnelEntity
+    public class TunnelsEntity
     {
-        public string TunneId { get; set; } = Guid.NewGuid().ToString();
+        [Key]
+        public int TunnelId { get; set; }
 
         public int UserId { get; set; }
 
@@ -20,9 +22,9 @@ namespace DDNS.Entity.Tunnel
 
         public DateTime CreateTime { get; set; }
 
-        public DateTime OpenTime { get; set; }
+        public DateTime? OpenTime { get; set; }
 
-        public DateTime ExpiredTime { get; set; }
+        public DateTime? ExpiredTime { get; set; }
 
         public string FullUrl { get; set; }
     }
