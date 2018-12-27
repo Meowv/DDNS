@@ -7,6 +7,7 @@ using DDNS.ViewModel.User;
 using DDNS.Web.Filter;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,11 +23,13 @@ namespace DDNS.Web.API.Users
     {
         private readonly UsersProvider _usersProvider;
         private readonly LoginLogProvider _loginLogProvider;
+        private readonly IStringLocalizer<UsersApiController> _localizer;
 
-        public UsersApiController(UsersProvider usersProvider, LoginLogProvider loginLogProvider)
+        public UsersApiController(UsersProvider usersProvider, LoginLogProvider loginLogProvider, IStringLocalizer<UsersApiController> localizer)
         {
             _usersProvider = usersProvider;
             _loginLogProvider = loginLogProvider;
+            _localizer = localizer;
         }
 
         /// <summary>
@@ -110,9 +113,34 @@ namespace DDNS.Web.API.Users
             var data = new ResponseViewModel<bool>();
 
             var user = await _usersProvider.GetUserInfo(userId);
+
+            if (vm.UserName != user.UserName)
+            {
+                if (await _usersProvider.GetUserInfo(vm.UserName) != null)
+                {
+                    data.Code = 1;
+                    data.Msg = _localizer["username"];
+
+                    return data;
+                }
+            }
+            if (vm.Email != user.Email)
+            {
+                if (await _usersProvider.GetUserInfo(vm.Email) != null)
+                {
+                    data.Code = 1;
+                    data.Msg = _localizer["email"];
+
+                    return data;
+                }
+            }
+
             user.UserName = vm.UserName;
             user.Email = vm.Email;
-            user.Password = MD5Util.TextToMD5(vm.Password);
+            if (!string.IsNullOrEmpty(vm.Password))
+            {
+                user.Password = MD5Util.TextToMD5(vm.Password);
+            }
 
             data.Data = await _usersProvider.UpdateUser(user);
 

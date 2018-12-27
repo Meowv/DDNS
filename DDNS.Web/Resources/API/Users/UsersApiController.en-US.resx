@@ -117,31 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btn" xml:space="preserve">
-    <value>Modify</value>
-  </data>
   <data name="email" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="password" xml:space="preserve">
-    <value>Password</value>
+    <value>Mailbox already exists</value>
   </data>
   <data name="username" xml:space="preserve">
-    <value>UserName</value>
-  </data>
-  <data name="verify.email" xml:space="preserve">
-    <value>The mailbox format is incorrect</value>
-  </data>
-  <data name="verify.username1" xml:space="preserve">
-    <value>The user name is 3 to 12 bits</value>
-  </data>
-  <data name="verify.username2" xml:space="preserve">
-    <value>User names cannot have special characters</value>
-  </data>
-  <data name="verify.username3" xml:space="preserve">
-    <value>You cannot underline the beginning and end of a user name</value>
-  </data>
-  <data name="verify.username4" xml:space="preserve">
-    <value>User names cannot be all Numbers</value>
+    <value>The user name already exists</value>
   </data>
 </root>

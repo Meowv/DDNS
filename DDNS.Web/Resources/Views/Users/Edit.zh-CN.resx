@@ -132,9 +132,6 @@
   <data name="verify.email" xml:space="preserve">
     <value>邮箱格式不正确</value>
   </data>
-  <data name="verify.pass" xml:space="preserve">
-    <value>密码必须6到12位，且不能出现空格</value>
-  </data>
   <data name="verify.username1" xml:space="preserve">
     <value>用户名为3到12位</value>
   </data>

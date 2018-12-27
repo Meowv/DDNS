@@ -111,12 +111,13 @@
                         sort: true
                     }, {
                         field: 'status',
+                        width: 100,
                         title: '@_localizer["status"]',
                         templet: '#statusTpl',
                         align: 'center'
                     }, {
                         title: '@_localizer["operate"]',
-                        minWidth: 300,
+                        width: 350,
                         align: 'center',
                         fixed: 'right',
                         toolbar: '#table-content-list'
@@ -197,7 +198,7 @@
                                                 layer.close(index);
                                             });
                                         } else {
-                                            layer.msg("@_localizer["error"]", {
+                                            layer.msg(result.msg, {
                                                 icon: 2,
                                                 time: 1000
                                             });
