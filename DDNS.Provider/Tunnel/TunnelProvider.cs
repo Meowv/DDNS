@@ -63,5 +63,17 @@ namespace DDNS.Provider.Tunnel
         {
             return _data.Tunnels(userId);
         }
+
+        /// <summary>
+        /// 隧道列表
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="email"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<UserTunnelsEntity>> Tunnels(string userName = null, string email = null, int status = 0)
+        {
+            return _data.Tunnels(userName, email, status);
+        }
     }
 }

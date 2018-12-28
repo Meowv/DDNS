@@ -190,5 +190,53 @@ namespace DDNS.Web.API.Tunnels
 
             return result;
         }
+
+        /// <summary>
+        /// 隧道列表
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="limit"></param>
+        /// <param name="userName"></param>
+        /// <param name="email"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("v2/tunnels")]
+        [PermissionFilter]
+        public async Task<ResponseViewModel<List<UserTunnelsViewModel>>> Tunnels(int page, int limit, string userName, string email, int status)
+        {
+            var tunnels = new List<UserTunnelsViewModel>();
+
+            var list = await _tunnelProvider.Tunnels(userName, email, status);
+
+            var curList = list.ToList().Skip(limit * (page - 1)).Take(limit).ToList();
+            curList.ForEach(x =>
+            {
+                var vm = new UserTunnelsViewModel
+                {
+                    TunnelId = x.TunnelId,
+                    UserName = x.UserName,
+                    Email = x.Email,
+                    AuthToken = x.AuthToken,
+                    TunnelProtocol = x.TunnelProtocol,
+                    TunnelName = x.TunnelName,
+                    SubDomain = x.SubDomain,
+                    LocalPort = x.LocalPort,
+                    CreateTime = x.CreateTime.ToLongDateString(),
+                    OpenTime = x.OpenTime == null ? null : Convert.ToDateTime(x.OpenTime).ToLongDateString(),
+                    ExpiredTime = x.ExpiredTime == null ? null : Convert.ToDateTime(x.ExpiredTime).ToLongDateString(),
+                    FullUrl = x.FullUrl
+                };
+                tunnels.Add(vm);
+            });
+
+            var data = new ResponseViewModel<List<UserTunnelsViewModel>>
+            {
+                Count = list.Count(),
+                Data = tunnels
+            };
+            return data;
+        }
     }
 }

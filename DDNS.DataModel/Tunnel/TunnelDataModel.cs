@@ -74,5 +74,45 @@ namespace DDNS.DataModel.Tunnel
         {
             return await _content.Tunnels.Where(t => t.UserId == userId).ToListAsync();
         }
+
+        /// <summary>
+        /// 隧道列表
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="email"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<UserTunnelsEntity>> Tunnels(string userName = null, string email = null, int status = 0)
+        {
+            var list = await _content.Tunnels.Join(_content.Users, t => t.UserId, u => u.Id, (t, u) => new UserTunnelsEntity
+            {
+                TunnelId = t.TunnelId,
+                TunnelProtocol = t.TunnelProtocol,
+                TunnelName = t.TunnelName,
+                SubDomain = t.SubDomain,
+                LocalPort = t.LocalPort,
+                Status = t.Status,
+                CreateTime = t.CreateTime,
+                OpenTime = t.OpenTime,
+                ExpiredTime = t.ExpiredTime,
+                FullUrl = t.FullUrl,
+                UserName = u.UserName,
+                Email = u.Email,
+                AuthToken = u.AuthToken
+            }).ToListAsync();
+
+            if (!string.IsNullOrEmpty(userName))
+            {
+                list = list.Where(x => x.UserName.Contains(userName)).ToList();
+            }
+            if (!string.IsNullOrEmpty(email))
+            {
+                list = list.Where(x => x.Email.Contains(email)).ToList();
+            }
+
+            list = list.Where(x => x.Status == status).OrderBy(x => x.CreateTime).ToList();
+
+            return list;
+        }
     }
 }
