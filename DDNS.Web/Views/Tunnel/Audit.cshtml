@@ -71,7 +71,8 @@
                 form.val("tunnel", {
                     "username": ''
                     , "email": ''
-                });                table.reload('tunnelList', {
+                });
+                table.reload('tunnelList', {
                     where: {
                         status: data.value
                         , username: ''
@@ -133,34 +134,29 @@
                 }
             });
 
-            function AuditTunnel(obj, data) {
-                layer.confirm("操作确认？", {
-                    title: '@_localizer["系统提示"]'
-                    , btn: ['@_localizer["确认"]', '@_localizer["取消"]']
-                }, function (index) {
-                    $.ajax({
-                        type: "post",
-                        dataType: 'json',
-                        data: JSON.stringify(data),
-                        url: '/api/audit_tunnel',
-                        contentType: 'application/json;charset=UTF-8',
-                        success: function (result) {
-                            if (result.code == 0) {
-                                layer.msg("操作成功", {
-                                    icon: 1,
-                                    time: 1000
-                                }, function () {
-                                    obj.del();
-                                    layer.close(index);
-                                });
-                            } else {
-                                layer.msg(res.msg, {
-                                    icon: 2,
-                                    time: 1000
-                                });
-                            }
+            function AuditTunnel(obj, data, index) {
+                $.ajax({
+                    type: "post",
+                    dataType: 'json',
+                    data: JSON.stringify(data),
+                    url: '/api/audit_tunnel',
+                    contentType: 'application/json;charset=UTF-8',
+                    success: function (result) {
+                        if (result.code == 0) {
+                            layer.msg("操作成功", {
+                                icon: 1,
+                                time: 1000
+                            }, function () {
+                                obj.del();
+                                layer.close(index);
+                            });
+                        } else {
+                            layer.msg(res.msg, {
+                                icon: 2,
+                                time: 1000
+                            });
                         }
-                    });
+                    }
                 });
             }
 
@@ -170,10 +166,38 @@
                 data.tunnelId = obj.data.tunnelId;
                 if (obj.event === 'pass') {
                     data.status = 1;
+                    layer.open({
+                        type: 2,
+                        title: '设置到期时间',
+                        content: '/tunnel/auditdetail?tunnelId=' + obj.data.tunnelId,
+                        maxmin: true,
+                        area: ['700px', '500px'],
+                        btn: ['确认', '@_localizer["取消"]'],
+                        yes: function (index, layero) {
+                            var iframeWindow = window['layui-layer-iframe' + index],
+                                submit = layero.find('iframe').contents().find("#ok");
+
+                            iframeWindow.layui.form.on('submit(ok)', function (_data) {
+                                data.expiredTime = _data.field.expiredTime;
+                                data.remotePort = _data.field.remotePort;
+                                AuditTunnel(obj, data, index);
+                            });
+
+                            submit.trigger('click');
+                        }
+                    });
                 } else if (obj.event === 'refuse') {
                     data.status = -1;
+                    layer.confirm("操作确认？", {
+                        title: '@_localizer["系统提示"]'
+                        , btn: ['@_localizer["确认"]', '@_localizer["取消"]']
+                    }, function (index) {
+                        console.log(data)
+                        AuditTunnel(obj, data, index);
+                    });
                 }
-                AuditTunnel(obj, data);
+
+                
             });
         });
     </script>

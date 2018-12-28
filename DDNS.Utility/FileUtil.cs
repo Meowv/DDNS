@@ -59,8 +59,9 @@ namespace DDNS.Utility
         /// <param name="tunnel"></param>
         /// <param name="user"></param>
         /// <param name="path"></param>
+        /// <param name="port"></param>
         /// <returns></returns>
-        public static async Task WriteTunnel(TunnelsEntity tunnel, UsersEntity user, string path)
+        public static async Task WriteTunnel(TunnelsEntity tunnel, UsersEntity user, string path, int port)
         {
             var list = new List<string>();
             var exist = false;
@@ -77,6 +78,7 @@ namespace DDNS.Utility
                     if (user.AuthToken == authToken)
                     {
                         subDomains += "," + tunnel.SubDomain;
+                        remotePorts += "," + port;
                         exist = true;
                     }
                     var _item = authToken + "|" + subDomains + "|" + remotePorts + "|" + userName;
@@ -85,7 +87,7 @@ namespace DDNS.Utility
             }
             if (!exist)
             {
-                list.Add(user.AuthToken + "|" + tunnel.SubDomain + "|" + tunnel.LocalPort + "|" + user.UserName);
+                list.Add(user.AuthToken + "|" + tunnel.SubDomain + "|" + port + "|" + user.UserName);
             }
             WriteFile(path, list);
         }

@@ -1,4 +1,5 @@
-﻿using DDNS.Provider.Users;
+﻿using DDNS.Provider.Tunnel;
+using DDNS.Provider.Users;
 using DDNS.Web.Filter;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +11,11 @@ namespace DDNS.Web.Controllers
     public class TunnelController : Controller
     {
         private readonly UsersProvider _usersProvider;
-        public TunnelController(UsersProvider usersProvider)
+        private readonly TunnelProvider _tunnelProvider;
+        public TunnelController(UsersProvider usersProvider, TunnelProvider tunnelProvider)
         {
             _usersProvider = usersProvider;
+            _tunnelProvider = tunnelProvider;
         }
 
         /// <summary>
@@ -57,6 +60,19 @@ namespace DDNS.Web.Controllers
         public IActionResult Audit()
         {
             return View();
+        }
+
+        /// <summary>
+        /// 申请隧道详情
+        /// </summary>
+        /// <param name="tunnelId"></param>
+        /// <returns></returns>
+        [PermissionFilter]
+        public async Task<IActionResult> AuditDetail(string tunnelId)
+        {
+            var tunnel = await _tunnelProvider.GetTunnel(tunnelId);
+
+            return View(tunnel);
         }
     }
 }

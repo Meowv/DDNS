@@ -42,7 +42,13 @@
             <div class="layui-input-inline">
                 <input type="text" name="localPort" autocomplete="off" class="layui-input" value="80">
             </div>
-            <div class="layui-form-mid layui-word-aux">本地映射端口，如需修改其他端口，则实际端口</div>
+            <div class="layui-form-mid layui-word-aux">本地映射端口</div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">@_localizer["远程端口"]</label>
+            <div class="layui-input-inline">
+                <input type="text" name="remotePort" lay-verify="number" autocomplete="off" class="layui-input">
+            </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">@_localizer["到期时间"]</label>

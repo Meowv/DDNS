@@ -129,7 +129,7 @@ namespace DDNS.Web.API.Tunnels
 
             try
             {
-                await FileUtil.WriteTunnel(tunnel, user, _tunnelConfig.FilePath);
+                await FileUtil.WriteTunnel(tunnel, user, _tunnelConfig.FilePath, vm.RemotePort);
             }
             catch (Exception e)
             {
@@ -260,13 +260,13 @@ namespace DDNS.Web.API.Tunnels
             {
                 tunnel.Status = vm.Status;
 
-                data.Data = await _tunnelProvider.Edit(tunnel);
-
                 if (vm.Status == 1)
                 {
+                    tunnel.OpenTime = DateTime.Now;
+                    tunnel.ExpiredTime = vm.ExpiredTime;
                     try
                     {
-                        await FileUtil.WriteTunnel(tunnel, user, _tunnelConfig.FilePath);
+                        await FileUtil.WriteTunnel(tunnel, user, _tunnelConfig.FilePath, vm.RemotePort);
                     }
                     catch (Exception e)
                     {
@@ -276,6 +276,8 @@ namespace DDNS.Web.API.Tunnels
                         return data;
                     }
                 }
+
+                data.Data = await _tunnelProvider.Edit(tunnel);
             }
 
             return data;

@@ -11,6 +11,8 @@ namespace DDNS.ViewModel.Tunnel
         public string SubDomain { get; set; }
 
         public string LocalPort { get; set; }
+
+        public int RemotePort { get; set; }
     }
 
     public class AdminTunnelsViewModel : TunnelsViewModel
