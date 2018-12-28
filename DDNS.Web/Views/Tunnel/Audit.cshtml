@@ -3,15 +3,15 @@
         <div class="layui-form" lay-filter="tunnel" style="padding-top:15px;height:auto;">
             <div class="layui-form-item">
                 <div class="layui-inline">
-                    <label class="layui-form-label">@_localizer["用户名"]</label>
+                    <label class="layui-form-label">@_localizer["username"]</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="username" placeholder="@_localizer["按用户名筛选"]" autocomplete="off" class="layui-input">
+                        <input type="text" name="username" placeholder="@_localizer["filter.username"]" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
-                    <label class="layui-form-label">@_localizer["邮箱"]</label>
+                    <label class="layui-form-label">@_localizer["email"]</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="email" placeholder="@_localizer["按邮箱筛选"]" autocomplete="off" class="layui-input">
+                        <input type="text" name="email" placeholder="@_localizer["filter.email"]" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
@@ -21,9 +21,9 @@
                 </div>
                 <div class="layui-form layui-inline">
                     <div class="layui-input-block">
-                        <input type="radio" name="status" value="0" title="待审核" checked="">
-                        <input type="radio" name="status" value="-1" title="拒绝">
-                        <input type="radio" name="status" value="1" title="已通过">
+                        <input type="radio" name="status" value="0" title="@_localizer["status0"]" checked="">
+                        <input type="radio" name="status" value="-1" title="@_localizer["status1"]">
+                        <input type="radio" name="status" value="1" title="@_localizer["status2"]">
                     </div>
                 </div>
             </div>
@@ -32,12 +32,12 @@
             <table id="tunnelList" lay-filter="tunnelList"></table>
             <script type="text/html" id="table-content-list">
                 {{# if(d.status === 0) { }}
-                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="pass"><i class="layui-icon layui-icon-ok"></i>@_localizer["通过"]</a>
-                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="refuse"><i class="layui-icon layui-icon-close"></i>@_localizer["拒绝"]</a>
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="pass"><i class="layui-icon layui-icon-ok"></i>@_localizer["btn.pass"]</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="refuse"><i class="layui-icon layui-icon-close"></i>@_localizer["btn.refuse"]</a>
                 {{# } else if(d.status === 1) { }}
                 @*<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="refuse"><i class="layui-icon layui-icon-close"></i>@_localizer["拒绝"]</a>*@
                 {{# } else if(d.status === -1) { }}
-                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="pass"><i class="layui-icon layui-icon-ok"></i>@_localizer["通过"]</a>
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="pass"><i class="layui-icon layui-icon-ok"></i>@_localizer["btn.pass"]</a>
                 {{# } }}
             </script>
         </div>
@@ -90,36 +90,36 @@
                 , cols: [
                     [{
                         field: 'tunnelId',
-                        title: '@_localizer["渠道ID"]'
+                        title: '@_localizer["tunnelId"]'
                     }, {
                         field: 'userName',
-                        title: '@_localizer["用户名"]'
+                        title: '@_localizer["tunnelName"]'
                     }, {
                         field: 'email',
-                        title: '@_localizer["邮箱"]'
+                        title: '@_localizer["email"]'
                     }, {
                         field: 'tunnelName',
-                        title: '@_localizer["隧道名称"]'
+                        title: '@_localizer["tunnelName"]'
                     }, {
                         field: 'tunnelProtocol',
-                        title: '@_localizer["隧道协议"]'
+                        title: '@_localizer["tunnelProtocol"]'
                     }, {
                         field: 'localPort',
-                        title: '@_localizer["本地端口"]'
+                        title: '@_localizer["localPort"]'
                     }, {
                         field: 'subDomain',
-                        title: '@_localizer["前置域名"]'
+                        title: '@_localizer["subDomain"]'
                     }, {
                         field: 'createTime',
-                        title: '@_localizer["申请时间"]'
+                        title: '@_localizer["createTime"]'
                     }, {
                         field: 'openTime',
-                        title: '@_localizer["开通时间"]'
+                        title: '@_localizer["openTime"]'
                     }, {
                         field: 'expiredTime',
-                        title: '@_localizer["到期时间"]'
+                        title: '@_localizer["expiredTime"]'
                     }, {
-                        title: '@_localizer["操作"]',
+                        title: '@_localizer["operate"]',
                         width: 150,
                         align: 'center',
                         fixed: 'right',
@@ -130,7 +130,7 @@
                 limit: 10,
                 limits: [10, 15, 20, 25, 30],
                 text: {
-                    none: '@_localizer["无数据"]'
+                    none: '@_localizer["none"]'
                 }
             });
 
@@ -143,7 +143,7 @@
                     contentType: 'application/json;charset=UTF-8',
                     success: function (result) {
                         if (result.code == 0) {
-                            layer.msg("操作成功", {
+                            layer.msg("@_localizer["audit_tunnel.msg"]", {
                                 icon: 1,
                                 time: 1000
                             }, function () {
@@ -168,11 +168,11 @@
                     data.status = 1;
                     layer.open({
                         type: 2,
-                        title: '设置到期时间',
+                        title: '@_localizer["auditdetail.title"]',
                         content: '/tunnel/auditdetail?tunnelId=' + obj.data.tunnelId,
                         maxmin: true,
                         area: ['700px', '500px'],
-                        btn: ['确认', '@_localizer["取消"]'],
+                        btn: ['@_localizer["btn.ok"]', '@_localizer["btn.cancel"]'],
                         yes: function (index, layero) {
                             var iframeWindow = window['layui-layer-iframe' + index],
                                 submit = layero.find('iframe').contents().find("#ok");
@@ -188,9 +188,9 @@
                     });
                 } else if (obj.event === 'refuse') {
                     data.status = -1;
-                    layer.confirm("操作确认？", {
-                        title: '@_localizer["系统提示"]'
-                        , btn: ['@_localizer["确认"]', '@_localizer["取消"]']
+                    layer.confirm("@_localizer["refuse.tip"]", {
+                        title: '@_localizer["tips"]'
+                        , btn: ['@_localizer["btn.ok"]', '@_localizer["btn.cancel"]']
                     }, function (index) {
                         console.log(data)
                         AuditTunnel(obj, data, index);

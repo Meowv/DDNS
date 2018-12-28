@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Views\Tunnel\" />
     <Folder Include="wwwroot\css\" />
   </ItemGroup>
 

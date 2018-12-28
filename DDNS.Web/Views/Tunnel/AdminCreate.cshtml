@@ -14,57 +14,57 @@
 <body>
     <div class="layui-form" style="padding: 20px 30px 0 0;">
         <div class="layui-form-item">
-            <label class="layui-form-label">@_localizer["用户名"]</label>
+            <label class="layui-form-label">@_localizer["username"]</label>
             <div class="layui-form-mid">@Model.UserName</div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">@_localizer["隧道协议"]</label>
+            <label class="layui-form-label">@_localizer["tunnelprotocol"]</label>
             <div class="layui-input-block">
                 <input type="radio" name="tunnelProtocol" value="http" title="http" checked="">
                 <input type="radio" name="tunnelProtocol" value="https" title="https" disabled>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">@_localizer["隧道名称"]</label>
+            <label class="layui-form-label">@_localizer["tunnelname"]</label>
             <div class="layui-input-inline">
                 <input type="text" name="tunnelName" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">@_localizer["前置域名"]</label>
+            <label class="layui-form-label">@_localizer["subdomain"]</label>
             <div class="layui-input-inline">
                 <input type="text" name="subDomain" lay-verify="required" lay-verType="tips" autocomplete="off" class="layui-input">
             </div>
-            <div class="layui-form-mid layui-word-aux">请输入纯字母或者纯数字的字符</div>
+            <div class="layui-form-mid layui-word-aux">@_localizer["subdomain.tip"]</div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">@_localizer["本地端口"]</label>
+            <label class="layui-form-label">@_localizer["localport"]</label>
             <div class="layui-input-inline">
                 <input type="text" name="localPort" autocomplete="off" class="layui-input" value="80">
             </div>
-            <div class="layui-form-mid layui-word-aux">本地映射端口</div>
+            <div class="layui-form-mid layui-word-aux">@_localizer["localport.tip"]</div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">@_localizer["远程端口"]</label>
+            <label class="layui-form-label">@_localizer["remoteport"]</label>
             <div class="layui-input-inline">
                 <input type="text" name="remotePort" lay-verify="number" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">@_localizer["到期时间"]</label>
+            <label class="layui-form-label">@_localizer["expiredtime"]</label>
             <div class="layui-input-inline">
                 <input type="text" name="expiredTime" id="expiredTime" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">@_localizer["访问地址"]</label>
+            <label class="layui-form-label">@_localizer["fullurl"]</label>
             <div class="layui-input-inline">
                 <input type="text" name="fullUrl" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item layui-hide">
             <div class="layui-input-block">
-                <input type="button" lay-submit lay-filter="create" id="create" value="@_localizer["确认"]">
+                <input type="button" lay-submit lay-filter="create" id="create" value="@_localizer["btn"]">
             </div>
         </div>
     </div>
@@ -87,7 +87,10 @@
         });
 
         form.verify({
-            required: [/[\S]+/, "@_localizer["必填项不能为空"]"],
+            required: [/[\S]+/, "@_localizer["required"]"],
+            number: function (e) {
+                if (!e || isNaN(e)) return "@_localizer["number"]"
+            }
         });
     });
 </script>

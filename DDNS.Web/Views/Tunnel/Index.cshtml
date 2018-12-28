@@ -3,18 +3,18 @@
         <table id="userlist" lay-filter="userlist"></table>
         <script type="text/html" id="statusTpl">
             {{#  if(d.status === 0) { }}
-            <button class="layui-btn-primary layui-btn-xs">@_localizer["待审核"]</button>
+            <button class="layui-btn-primary layui-btn-xs">@_localizer["status0"]</button>
             {{#  } else if(d.status === 1) { }}
-            <button class="layui-btn-primary layui-btn-xs">@_localizer["已通过"]</button>
+            <button class="layui-btn-primary layui-btn-xs">@_localizer["status1"]</button>
             {{#  } else { }}
-            <button class="layui-btn-primary layui-btn-xs">@_localizer["拒绝"]</button>
+            <button class="layui-btn-primary layui-btn-xs">@_localizer["status2"]</button>
             {{#  } }}
         </script>
         <script type="text/html" id="onlineTpl">
-            <a class="layui-btn layui-btn-xs" lay-event="online">@_localizer["查看状态"]</a>
+            <a class="layui-btn layui-btn-xs" lay-event="online">@_localizer["checkstatus"]</a>
         </script>
         <script type="text/html" id="table-content-list">
-            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>@_localizer["编辑"]</a>
+            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>@_localizer["edit"]</a>
         </script>
     </div>
 </div>
@@ -34,41 +34,41 @@
                 , cols: [
                     [{
                         field: 'tunnelId',
-                        title: '@_localizer["隧道ID"]'
+                        title: '@_localizer["tunnelId"]'
                     }, {
                         field: 'tunnelName',
-                        title: '@_localizer["隧道名称"]',
+                        title: '@_localizer["tunnelName"]',
                     }, {
                         field: 'tunnelProtocol',
-                        title: '@_localizer["隧道协议"]'
+                        title: '@_localizer["tunnelProtocol"]'
                     }, {
                         field: 'localPort',
-                        title: '@_localizer["本地端口"]',
+                        title: '@_localizer["localPort"]',
                     }, {
                         field: 'subDomain',
-                        title: '@_localizer["前置域名"]',
+                        title: '@_localizer["subDomain"]',
                     }, {
                         field: 'openTime',
-                        title: '@_localizer["开通日期"]',
+                        title: '@_localizer["openTime"]',
                         sort: true,
                     }, {
                         field: 'expiredTime',
-                        title: '@_localizer["到期日期"]',
+                        title: '@_localizer["expiredTime"]',
                         sort: true,
                     }, {
                         field: 'fullUrl',
-                        title: '@_localizer["访问地址"]',
+                        title: '@_localizer["fullUrl"]',
                     }, {
                         field: 'status',
-                        title: '@_localizer["是否开通"]',
+                        title: '@_localizer["isopen"]',
                         templet: '#statusTpl',
                         align: 'center',
                     }, {
-                        title: '@_localizer["状态"]',
+                        title: '@_localizer["status"]',
                         templet: '#onlineTpl',
                         align: 'center',
                     }, {
-                        title: '@_localizer["操作"]',
+                        title: '@_localizer["operate"]',
                         align: 'center',
                         fixed: 'right',
                         toolbar: '#table-content-list'
@@ -78,14 +78,14 @@
                 limit: 10,
                 limits: [10, 15, 20, 25, 30],
                 text: {
-                    none: '@_localizer["text"]'
+                    none: '@_localizer["none"]'
                 }
             });
 
             table.on('tool(userlist)', function (obj) {
                 if (obj.event === 'edit') {
                     layer.prompt({
-                        title: '修改隧道名称'
+                        title: '@_localizer["edit_tunnel.title"]'
                         , value: obj.data.tunnelName
                     }, function (text, index) {
                         var d = new Object();
@@ -98,7 +98,7 @@
                             contentType: 'application/json;charset=UTF-8',
                             success: function (result) {
                                 if (result.code == 0) {
-                                    layer.msg("修改成功！", {
+                                    layer.msg("@_localizer["edit_tunnel.msg"]！", {
                                         icon: 1,
                                         time: 1000
                                     }, function () {
@@ -113,9 +113,9 @@
                     });
                 } else if (obj.event === 'online') {
                     if (obj.data.status == 1) {
-                        layer.msg("隧道不在线");
+                        layer.msg("@_localizer["online"]");
                     } else {
-                        layer.msg("隧道未开通");
+                        layer.msg("@_localizer["offline"]");
                     }
                 }
             });

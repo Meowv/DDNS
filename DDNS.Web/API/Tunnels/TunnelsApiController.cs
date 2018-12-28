@@ -9,6 +9,7 @@ using DDNS.Web.Filter;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -26,11 +27,14 @@ namespace DDNS.Web.API.Tunnels
         private readonly TunnelProvider _tunnelProvider;
         private readonly UsersProvider _usersProvider;
         private readonly TunnelConfig _tunnelConfig;
-        public TunnelsApiController(TunnelProvider tunnelProvider, UsersProvider usersProvider, IOptions<TunnelConfig> config)
+        private readonly IStringLocalizer<TunnelsApiController> _localizer;
+
+        public TunnelsApiController(TunnelProvider tunnelProvider, UsersProvider usersProvider, IOptions<TunnelConfig> config, IStringLocalizer<TunnelsApiController> localizer)
         {
             _tunnelProvider = tunnelProvider;
             _usersProvider = usersProvider;
             _tunnelConfig = config.Value;
+            _localizer = localizer;
         }
 
         /// <summary>
@@ -49,7 +53,7 @@ namespace DDNS.Web.API.Tunnels
             if (await _tunnelProvider.GetTunnelBySubDomail(vm.SubDomain) != null)
             {
                 data.Code = 1;
-                data.Msg = "前置域名已存在";
+                data.Msg = _localizer["add_tunnel.msg"];
 
                 return data;
             }
@@ -58,7 +62,7 @@ namespace DDNS.Web.API.Tunnels
             if (await _tunnelProvider.GetTunnel(tunnelId) != null)
             {
                 data.Code = 1;
-                data.Msg = "隧道ID重复";
+                data.Msg = _localizer["add_tunnel.error"];
 
                 return data;
             }
@@ -96,7 +100,7 @@ namespace DDNS.Web.API.Tunnels
             if (await _tunnelProvider.GetTunnelBySubDomail(vm.SubDomain) != null)
             {
                 data.Code = 1;
-                data.Msg = "前置域名已存在";
+                data.Msg = _localizer["add_tunnel.msg"];
 
                 return data;
             }
@@ -105,7 +109,7 @@ namespace DDNS.Web.API.Tunnels
             if (await _tunnelProvider.GetTunnel(tunnelId) != null)
             {
                 data.Code = 1;
-                data.Msg = "隧道ID重复";
+                data.Msg = _localizer["add_tunnel.error"];
 
                 return data;
             }

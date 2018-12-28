@@ -2,39 +2,39 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-header">@_localizer["申请开通隧道"]</div>
+                <div class="layui-card-header">@_localizer["title"]</div>
                 <div class="layui-card-body">
                     <div class="layui-form">
                         <div class="layui-form-item">
-                            <label class="layui-form-label">@_localizer["隧道协议"]</label>
+                            <label class="layui-form-label">@_localizer["tunnelProtocol"]</label>
                             <div class="layui-input-block">
                                 <input type="radio" name="tunnelProtocol" value="http" title="http" checked="">
                                 <input type="radio" name="tunnelProtocol" value="https" title="https" disabled>
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">@_localizer["隧道名称"]</label>
+                            <label class="layui-form-label">@_localizer["tunnelName"]</label>
                             <div class="layui-input-inline">
                                 <input type="text" name="tunnelName" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">@_localizer["前置域名"]</label>
+                            <label class="layui-form-label">@_localizer["subDomain"]</label>
                             <div class="layui-input-inline">
                                 <input type="text" name="subDomain" lay-verify="required" lay-verType="tips" autocomplete="off" class="layui-input">
                             </div>
-                            <div class="layui-form-mid layui-word-aux">请输入纯字母或者纯数字的字符</div>
+                            <div class="layui-form-mid layui-word-aux">@_localizer["subDomain.tip"]</div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">@_localizer["本地端口"]</label>
+                            <label class="layui-form-label">@_localizer["localPort"]</label>
                             <div class="layui-input-inline">
                                 <input type="text" name="localPort" autocomplete="off" class="layui-input" value="80">
                             </div>
-                            <div class="layui-form-mid layui-word-aux">本地映射端口，如需修改其他端口，则实际端口</div>
+                            <div class="layui-form-mid layui-word-aux">@_localizer["localPort.tip"]</div>
                         </div>
                         <div class="layui-form-item">
                             <div class="layui-input-block">
-                                <button class="layui-btn" lay-submit lay-filter="create">@_localizer["确认"]</button>
+                                <button class="layui-btn" lay-submit lay-filter="create">@_localizer["btn"]</button>
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                 , layer = layui.layer;
 
             form.verify({
-                required: [/[\S]+/, "@_localizer["必填项不能为空"]"],
+                required: [/[\S]+/, "@_localizer["required"]"],
             });
 
             form.on('submit(create)', function (data) {
@@ -67,7 +67,7 @@
                     contentType: 'application/json;charset=UTF-8',
                     success: function (result) {
                         if (result.code == 0) {
-                            layer.msg("@_localizer["开通成功"]！", {
+                            layer.msg("@_localizer["add_tunnel.msg"]！", {
                                 icon: 1,
                                 time: 1000
                             }, function () {
