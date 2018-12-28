@@ -1,0 +1,87 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>admincreate</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link href="~/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="layui-form" style="padding: 20px 30px 0 0;">
+        <div class="layui-form-item">
+            <label class="layui-form-label">@_localizer["用户名"]</label>
+            <div class="layui-form-mid">@Model.UserName</div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">@_localizer["隧道协议"]</label>
+            <div class="layui-input-block">
+                <input type="radio" name="tunnelProtocol" value="http" title="http" checked="">
+                <input type="radio" name="tunnelProtocol" value="https" title="https" disabled>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">@_localizer["隧道名称"]</label>
+            <div class="layui-input-inline">
+                <input type="text" name="tunnelName" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">@_localizer["前置域名"]</label>
+            <div class="layui-input-inline">
+                <input type="text" name="subDomain" lay-verify="required" lay-verType="tips" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">请输入纯字母或者纯数字的字符</div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">@_localizer["本地端口"]</label>
+            <div class="layui-input-inline">
+                <input type="text" name="localPort" autocomplete="off" class="layui-input" value="80">
+            </div>
+            <div class="layui-form-mid layui-word-aux">本地映射端口，如需修改其他端口，则实际端口</div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">@_localizer["到期时间"]</label>
+            <div class="layui-input-inline">
+                <input type="text" name="expiredTime" id="expiredTime" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">@_localizer["访问地址"]</label>
+            <div class="layui-input-inline">
+                <input type="text" name="fullUrl" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item layui-hide">
+            <div class="layui-input-block">
+                <input type="button" lay-submit lay-filter="create" id="create" value="@_localizer["确认"]">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '../../../layuiadmin/'
+    }).extend({
+        index: 'lib/index'
+    }).use(['index', 'form', 'laydate'], function () {
+        var form = layui.form
+            , laydate = layui.laydate;
+
+        laydate.render({
+            elem: '#expiredTime'
+            , type: 'datetime'
+            , lang: 'en'
+        });
+
+        form.verify({
+            required: [/[\S]+/, "@_localizer["必填项不能为空"]"],
+        });
+    });
+</script>

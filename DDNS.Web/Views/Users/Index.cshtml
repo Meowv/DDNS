@@ -217,7 +217,47 @@
                 } else if (obj.event === 'ok') {
                     userHandle('remove_disable', '@_localizer["remove_disable.title"]', '@_localizer["remove_disable.msg"]', obj);
                 } else if (obj.event === 'open') {
-                    layer.msg("open")
+                    layer.open({
+                        type: 2,
+                        title: '@_localizer["开通隧道"]',
+                        content: '/tunnel/admincreate?userId=' + obj.data.id,
+                        maxmin: true,
+                        area: ['800px', '500px'],
+                        btn: ['@_localizer["btn.confirm"]', '@_localizer["btn.cancel"]'],
+                        yes: function (index, layero) {
+                            var iframeWindow = window['layui-layer-iframe' + index],
+                                submit = layero.find('iframe').contents().find("#create");
+
+                            iframeWindow.layui.form.on('submit(create)', function (data) {
+                                var field = data.field;
+
+                                $.ajax({
+                                    type: "post",
+                                    dataType: 'json',
+                                    url: '/api/v2/add_tunnel?userId=' + obj.data.id,
+                                    data: JSON.stringify(field),
+                                    contentType: 'application/json;charset=UTF-8',
+                                    success: function (result) {
+                                        if (result.code == 0) {
+                                            layer.msg("开通成功！", {
+                                                icon: 1,
+                                                time: 1000
+                                            }, function () {
+                                                layer.closeAll();
+                                            });
+                                        } else {
+                                            layer.msg(result.msg, {
+                                                icon: 2,
+                                                time: 1000
+                                            });
+                                        }
+                                    }
+                                });
+                            });
+
+                            submit.trigger('click');
+                        }
+                    });
                 }
             });
 

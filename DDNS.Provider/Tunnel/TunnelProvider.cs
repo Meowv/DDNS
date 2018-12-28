@@ -40,7 +40,7 @@ namespace DDNS.Provider.Tunnel
         /// </summary>
         /// <param name="tunnelId"></param>
         /// <returns></returns>
-        public Task<TunnelsEntity> GetTunnel(long tunnelId)
+        public Task<TunnelsEntity> GetTunnel(string tunnelId)
         {
             return _data.GetTunnel(tunnelId);
         }
@@ -50,9 +50,9 @@ namespace DDNS.Provider.Tunnel
         /// </summary>
         /// <param name="subDomain"></param>
         /// <returns></returns>
-        public Task<TunnelsEntity> GetTunnel(string subDomain)
+        public Task<TunnelsEntity> GetTunnelBySubDomail(string subDomain)
         {
-            return _data.GetTunnel(subDomain);
+            return _data.GetTunnelBySubDomail(subDomain);
         }
 
         /// <summary>

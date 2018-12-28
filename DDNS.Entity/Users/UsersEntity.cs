@@ -19,5 +19,7 @@ namespace DDNS.Entity.Users
         public DateTime RegisterTime { get; set; }
 
         public int IsAdmin { get; set; }
+
+        public string AuthToken { get; set; }
     }
 }

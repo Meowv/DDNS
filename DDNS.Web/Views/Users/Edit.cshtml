@@ -12,7 +12,7 @@
     <link href="~/layuiadmin/layui/css/layui.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list" style="padding: 20px 30px 0 0;">
+    <div class="layui-form" style="padding: 20px 30px 0 0;">
         <div class="layui-form-item">
             <label class="layui-form-label">@_localizer["username"]</label>
             <div class="layui-input-inline">
@@ -32,17 +32,12 @@
             </div>
         </div>
         <div class="layui-form-item layui-hide">
-            <div class="layui-input-block">
-
-            </div>
-        </div>
-        <div class="layui-form-item layui-hide">
             <input type="button" lay-submit lay-filter="update" id="update" value="@_localizer["btn"]">
         </div>
     </div>
 </body>
 </html>
-<script src="../../../layuiadmin/layui/layui.js"></script>
+<script src="~/layuiadmin/layui/layui.js"></script>
 <script>
     layui.config({
         base: '../../../layuiadmin/'

@@ -6,7 +6,7 @@ namespace DDNS.Entity.Tunnel
     public class TunnelsEntity
     {
         [Key]
-        public int TunnelId { get; set; }
+        public string TunnelId { get; set; }
 
         public int UserId { get; set; }
 

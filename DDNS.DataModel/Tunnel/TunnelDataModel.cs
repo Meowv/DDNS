@@ -51,7 +51,7 @@ namespace DDNS.DataModel.Tunnel
         /// </summary>
         /// <param name="tunnelId"></param>
         /// <returns></returns>
-        public async Task<TunnelsEntity> GetTunnel(long tunnelId)
+        public async Task<TunnelsEntity> GetTunnel(string tunnelId)
         {
             return await _content.Tunnels.Where(t => t.TunnelId == tunnelId).FirstOrDefaultAsync();
         }
@@ -61,7 +61,7 @@ namespace DDNS.DataModel.Tunnel
         /// </summary>
         /// <param name="subDomain"></param>
         /// <returns></returns>
-        public async Task<TunnelsEntity> GetTunnel(string subDomain)
+        public async Task<TunnelsEntity> GetTunnelBySubDomail(string subDomain)
         {
             return await _content.Tunnels.Where(t => t.SubDomain == subDomain).FirstOrDefaultAsync();
         }

@@ -86,45 +86,48 @@ namespace DDNS.Web.API.Account
                 Email = vm.Email,
                 Password = MD5Util.TextToMD5(vm.Password),
                 RegisterTime = DateTime.Now,
-                Status = (int)UserStatusEnum.UnActivated,
+                //Status = (int)UserStatusEnum.UnActivated,
+                Status = (int)UserStatusEnum.Normal,
                 IsDelete = (int)UserDeleteEnum.Normal,
-                IsAdmin = (int)UserTypeEnum.IsUser
+                IsAdmin = (int)UserTypeEnum.IsUser,
+                AuthToken = GuidUtil.GenerateGuid()
             };
 
             data.Data = await _userProvider.AddUser(user);
             data.Msg = _localizer["success"];
 
-            var verify = new VerifyEntity
-            {
-                UserId = _userProvider.GetUserInfo(vm.Email).Id,
-                Token = MD5Util.TextToMD5(vm.Email),
-                Status = (int)VerifyStatusEnum.Normal,
-                Type = (int)VerifyTypeEnum.Register,
-                Time = DateTime.Now
-            };
-            await _verifyProvider.AddVerify(verify);
+            #region 注册成功，发送激活邮件
+            //var verify = new VerifyEntity
+            //{
+            //    UserId = _userProvider.GetUserInfo(vm.Email).Id,
+            //    Token = MD5Util.TextToMD5(vm.Email),
+            //    Status = (int)VerifyStatusEnum.Normal,
+            //    Type = (int)VerifyTypeEnum.Register,
+            //    Time = DateTime.Now
+            //};
+            //await _verifyProvider.AddVerify(verify);
 
-            //发送激活邮件
-            var tempHtml = "<p>{0}</p>";
-            var body = string.Empty;
-            var url = _config.Domain + "/account/verify?token=" + MD5Util.TextToMD5(vm.Email);
-            var link = "<a href='" + url + "'>" + url + "</a>";
+            //var tempHtml = "<p>{0}</p>";
+            //var body = string.Empty;
+            //var url = _config.Domain + "/account/verify?token=" + MD5Util.TextToMD5(vm.Email);
+            //var link = "<a href='" + url + "'>" + url + "</a>";
 
-            body += string.Format(tempHtml, _localizer["body1"]);
-            body += string.Format(tempHtml, vm.UserName + _localizer["body2"]);
-            body += string.Format(tempHtml, _localizer["body3"] + link);
-            body += string.Format(tempHtml, _localizer["body4"]);
-            body += string.Format(tempHtml, _localizer["body5"]);
+            //body += string.Format(tempHtml, _localizer["body1"]);
+            //body += string.Format(tempHtml, vm.UserName + _localizer["body2"]);
+            //body += string.Format(tempHtml, _localizer["body3"] + link);
+            //body += string.Format(tempHtml, _localizer["body4"]);
+            //body += string.Format(tempHtml, _localizer["body5"]);
 
-            try
-            {
-                _email.SendEmail(vm.UserName, vm.Email, _localizer["subject"], body);
-            }
-            catch (Exception e)
-            {
-                data.Code = 0;
-                data.Msg = e.Message;
-            }
+            //try
+            //{
+            //    _email.SendEmail(vm.UserName, vm.Email, _localizer["subject"], body);
+            //}
+            //catch (Exception e)
+            //{
+            //    data.Code = 0;
+            //    data.Msg = e.Message;
+            //}
+            #endregion
 
             return data;
         }

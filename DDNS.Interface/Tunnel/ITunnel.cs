@@ -25,14 +25,14 @@ namespace DDNS.Interface.Tunnel
         /// </summary>
         /// <param name="tunnelId"></param>
         /// <returns></returns>
-        Task<TunnelsEntity> GetTunnel(long tunnelId);
+        Task<TunnelsEntity> GetTunnel(string tunnelId);
 
         /// <summary>
         /// 获取隧道信息
         /// </summary>
         /// <param name="subDomain"></param>
         /// <returns></returns>
-        Task<TunnelsEntity> GetTunnel(string subDomain);
+        Task<TunnelsEntity> GetTunnelBySubDomail(string subDomain);
 
         /// <summary>
         /// 隧道列表

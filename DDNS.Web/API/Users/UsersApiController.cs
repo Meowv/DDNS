@@ -92,7 +92,8 @@ namespace DDNS.Web.API.Users
                 RegisterTime = DateTime.Now,
                 Status = (int)UserStatusEnum.Normal,
                 IsDelete = (int)UserDeleteEnum.Normal,
-                IsAdmin = (int)UserTypeEnum.IsUser
+                IsAdmin = (int)UserTypeEnum.IsUser,
+                AuthToken = GuidUtil.GenerateGuid()
             };
 
             data.Data = await _usersProvider.AddUser(user);

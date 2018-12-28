@@ -48,8 +48,10 @@ namespace DDNS.Web
             services.AddOptions();
 
             services.Configure<EmailConfig>(Configuration.GetSection("EmailConfig"));
+            services.Configure<TunnelConfig>(Configuration.GetSection("TunnelConfig"));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<EmailUtil>();
+            services.AddSingleton<TunnelConfig>();
             services.AddScoped<UsersProvider>();
             services.AddScoped<UsersDataModel>();
             services.AddScoped<VerifyProvider>();
