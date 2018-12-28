@@ -98,7 +98,8 @@ namespace DDNS.DataModel.Tunnel
                 FullUrl = t.FullUrl,
                 UserName = u.UserName,
                 Email = u.Email,
-                AuthToken = u.AuthToken
+                AuthToken = u.AuthToken,
+                UserId = t.UserId
             }).ToListAsync();
 
             if (!string.IsNullOrEmpty(userName))

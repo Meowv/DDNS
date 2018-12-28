@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DDNS.ViewModel.Tunnel
+﻿namespace DDNS.ViewModel.Tunnel
 {
     public class UserTunnelsViewModel
     {
@@ -27,5 +25,9 @@ namespace DDNS.ViewModel.Tunnel
         public string ExpiredTime { get; set; }
 
         public string FullUrl { get; set; }
+
+        public int Status { get; set; }
+
+        public int UserId { get; set; }
     }
 }

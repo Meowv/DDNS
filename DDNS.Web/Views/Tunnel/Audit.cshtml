@@ -1,1 +1,180 @@
-﻿<p>审核申请隧道</p>
+﻿<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form" lay-filter="tunnel" style="padding-top:15px;height:auto;">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">@_localizer["用户名"]</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="username" placeholder="@_localizer["按用户名筛选"]" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">@_localizer["邮箱"]</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="email" placeholder="@_localizer["按邮箱筛选"]" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn" lay-submit lay-filter="search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+                </div>
+                <div class="layui-form layui-inline">
+                    <div class="layui-input-block">
+                        <input type="radio" name="status" value="0" title="待审核" checked="">
+                        <input type="radio" name="status" value="-1" title="拒绝">
+                        <input type="radio" name="status" value="1" title="已通过">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card-body">
+            <table id="tunnelList" lay-filter="tunnelList"></table>
+            <script type="text/html" id="table-content-list">
+                {{# if(d.status === 0) { }}
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="pass"><i class="layui-icon layui-icon-ok"></i>@_localizer["通过"]</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="refuse"><i class="layui-icon layui-icon-close"></i>@_localizer["拒绝"]</a>
+                {{# } else if(d.status === 1) { }}
+                @*<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="refuse"><i class="layui-icon layui-icon-close"></i>@_localizer["拒绝"]</a>*@
+                {{# } else if(d.status === -1) { }}
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="pass"><i class="layui-icon layui-icon-ok"></i>@_localizer["通过"]</a>
+                {{# } }}
+            </script>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        layui.config({
+            base: '../../../layuiadmin/'
+        }).extend({
+            index: 'lib/index'
+        }).use(['index', 'form', 'table'], function () {
+            var table = layui.table
+                , form = layui.form
+                , $ = layui.jquery;
+
+            $(".layui-form-label").css("width", "auto");
+
+            form.on('submit(search)', function (data) {
+                var field = data.field;
+                if (field.email != "" || field.username != "") {
+                    table.reload('tunnelList', {
+                        where: field
+                        , page: {
+                            curr: 1
+                        }
+                    });
+                }
+            });
+            form.on('radio', function (data) {
+                form.val("tunnel", {
+                    "username": ''
+                    , "email": ''
+                });                table.reload('tunnelList', {
+                    where: {
+                        status: data.value
+                        , username: ''
+                        , email: ''
+                    }
+                    , page: {
+                        curr: 1
+                    }
+                });
+            });
+
+            table.render({
+                elem: '#tunnelList'
+                , url: '/api/v2/tunnels'
+                , cols: [
+                    [{
+                        field: 'tunnelId',
+                        title: '@_localizer["渠道ID"]'
+                    }, {
+                        field: 'userName',
+                        title: '@_localizer["用户名"]'
+                    }, {
+                        field: 'email',
+                        title: '@_localizer["邮箱"]'
+                    }, {
+                        field: 'tunnelName',
+                        title: '@_localizer["隧道名称"]'
+                    }, {
+                        field: 'tunnelProtocol',
+                        title: '@_localizer["隧道协议"]'
+                    }, {
+                        field: 'localPort',
+                        title: '@_localizer["本地端口"]'
+                    }, {
+                        field: 'subDomain',
+                        title: '@_localizer["前置域名"]'
+                    }, {
+                        field: 'createTime',
+                        title: '@_localizer["申请时间"]'
+                    }, {
+                        field: 'openTime',
+                        title: '@_localizer["开通时间"]'
+                    }, {
+                        field: 'expiredTime',
+                        title: '@_localizer["到期时间"]'
+                    }, {
+                        title: '@_localizer["操作"]',
+                        width: 150,
+                        align: 'center',
+                        fixed: 'right',
+                        toolbar: '#table-content-list'
+                    }]
+                ],
+                page: true,
+                limit: 10,
+                limits: [10, 15, 20, 25, 30],
+                text: {
+                    none: '@_localizer["无数据"]'
+                }
+            });
+
+            function AuditTunnel(obj, data) {
+                layer.confirm("操作确认？", {
+                    title: '@_localizer["系统提示"]'
+                    , btn: ['@_localizer["确认"]', '@_localizer["取消"]']
+                }, function (index) {
+                    $.ajax({
+                        type: "post",
+                        dataType: 'json',
+                        data: JSON.stringify(data),
+                        url: '/api/audit_tunnel',
+                        contentType: 'application/json;charset=UTF-8',
+                        success: function (result) {
+                            if (result.code == 0) {
+                                layer.msg("操作成功", {
+                                    icon: 1,
+                                    time: 1000
+                                }, function () {
+                                    obj.del();
+                                    layer.close(index);
+                                });
+                            } else {
+                                layer.msg(res.msg, {
+                                    icon: 2,
+                                    time: 1000
+                                });
+                            }
+                        }
+                    });
+                });
+            }
+
+            table.on('tool(tunnelList)', function (obj) {
+                var data = new Object();
+                data.userId = obj.data.userId;
+                data.tunnelId = obj.data.tunnelId;
+                if (obj.event === 'pass') {
+                    data.status = 1;
+                } else if (obj.event === 'refuse') {
+                    data.status = -1;
+                }
+                AuditTunnel(obj, data);
+            });
+        });
+    </script>
+}

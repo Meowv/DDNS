@@ -226,7 +226,9 @@ namespace DDNS.Web.API.Tunnels
                     CreateTime = x.CreateTime.ToLongDateString(),
                     OpenTime = x.OpenTime == null ? null : Convert.ToDateTime(x.OpenTime).ToLongDateString(),
                     ExpiredTime = x.ExpiredTime == null ? null : Convert.ToDateTime(x.ExpiredTime).ToLongDateString(),
-                    FullUrl = x.FullUrl
+                    FullUrl = x.FullUrl,
+                    Status = x.Status,
+                    UserId = x.UserId
                 };
                 tunnels.Add(vm);
             });
@@ -236,6 +238,46 @@ namespace DDNS.Web.API.Tunnels
                 Count = list.Count(),
                 Data = tunnels
             };
+            return data;
+        }
+
+        /// <summary>
+        /// 审核用户申请隧道
+        /// </summary>
+        /// <param name="vm"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("audit_tunnel")]
+        [PermissionFilter]
+        public async Task<ResponseViewModel<bool>> AuditTunnel(AuditTunnelViewModel vm)
+        {
+            var data = new ResponseViewModel<bool>();
+
+            var user = await _usersProvider.GetUserInfo(vm.UserId);
+            var tunnel = await _tunnelProvider.GetTunnel(vm.TunnelId);
+
+            if (tunnel != null && user != null)
+            {
+                tunnel.Status = vm.Status;
+
+                data.Data = await _tunnelProvider.Edit(tunnel);
+
+                if (vm.Status == 1)
+                {
+                    try
+                    {
+                        await FileUtil.WriteTunnel(tunnel, user, _tunnelConfig.FilePath);
+                    }
+                    catch (Exception e)
+                    {
+                        data.Code = 1;
+                        data.Msg = e.Message;
+
+                        return data;
+                    }
+                }
+            }
+
             return data;
         }
     }
