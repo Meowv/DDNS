@@ -117,7 +117,79 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="title" xml:space="preserve">
-    <value>DDNS</value>
+  <data name="body1" xml:space="preserve">
+    <value>尊敬的用戶：</value>
+  </data>
+  <data name="body2" xml:space="preserve">
+    <value>，您好！</value>
+  </data>
+  <data name="body3" xml:space="preserve">
+    <value>請點擊以下鏈接激活您的賬號。</value>
+  </data>
+  <data name="body4" xml:space="preserve">
+    <value>如果以上鍊接無法點擊，請將上面的地址複製到你的瀏覽器的地址欄。</value>
+  </data>
+  <data name="body5" xml:space="preserve">
+    <value>如非你本人操作，請忽略此郵件。</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>此郵箱已註冊！</value>
+  </data>
+  <data name="forget.body1" xml:space="preserve">
+    <value>尊敬的用戶：</value>
+  </data>
+  <data name="forget.body2" xml:space="preserve">
+    <value>，您好！</value>
+  </data>
+  <data name="forget.body3" xml:space="preserve">
+    <value>你通過郵箱發起了找回密碼操作，請點擊以下鏈接根據頁面提示進行密碼找回。</value>
+  </data>
+  <data name="forget.body4" xml:space="preserve">
+    <value>如果以上鍊接無法點擊，請將上面的地址複製到你的瀏覽器的地址欄。</value>
+  </data>
+  <data name="forget.body5" xml:space="preserve">
+    <value>如非你本人操作，請忽略此郵件。</value>
+  </data>
+  <data name="forget.inexistent" xml:space="preserve">
+    <value>不存在此郵箱</value>
+  </data>
+  <data name="forget.subject" xml:space="preserve">
+    <value>找回密碼</value>
+  </data>
+  <data name="forget.success" xml:space="preserve">
+    <value>發送成功，請前往郵箱進行密碼重置操作</value>
+  </data>
+  <data name="login.error" xml:space="preserve">
+    <value>賬號或密碼不正確！</value>
+  </data>
+  <data name="login.forbidden" xml:space="preserve">
+    <value>賬號已被禁用！</value>
+  </data>
+  <data name="login.success" xml:space="preserve">
+    <value>登錄成功！</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>兩次密碼不一致！</value>
+  </data>
+  <data name="password.error" xml:space="preserve">
+    <value>舊密碼不正確！</value>
+  </data>
+  <data name="password.success" xml:space="preserve">
+    <value>修改成功！</value>
+  </data>
+  <data name="reset.success" xml:space="preserve">
+    <value>密碼重置成功</value>
+  </data>
+  <data name="reset.verify" xml:space="preserve">
+    <value>未授權</value>
+  </data>
+  <data name="subject" xml:space="preserve">
+    <value>賬號激活</value>
+  </data>
+  <data name="success" xml:space="preserve">
+    <value>註冊成功！</value>
+  </data>
+  <data name="user" xml:space="preserve">
+    <value>用戶已存在！</value>
   </data>
 </root>

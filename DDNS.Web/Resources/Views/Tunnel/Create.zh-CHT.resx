@@ -117,7 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="add_tunnel.msg" xml:space="preserve">
+    <value>申請成功</value>
+  </data>
+  <data name="btn" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="fullurl" xml:space="preserve">
+    <value>訪問地址</value>
+  </data>
+  <data name="localPort" xml:space="preserve">
+    <value>本地端口</value>
+  </data>
+  <data name="localPort.tip" xml:space="preserve">
+    <value>本地映射端口</value>
+  </data>
+  <data name="required" xml:space="preserve">
+    <value>前置域名不能爲空</value>
+  </data>
+  <data name="subDomain" xml:space="preserve">
+    <value>前置域名</value>
+  </data>
+  <data name="subDomain.tip" xml:space="preserve">
+    <value>請輸入純字母或者純數字的字符</value>
+  </data>
   <data name="title" xml:space="preserve">
-    <value>DDNS</value>
+    <value>申請開通隧道</value>
+  </data>
+  <data name="tunnelName" xml:space="preserve">
+    <value>隧道名稱</value>
+  </data>
+  <data name="tunnelName.tip" xml:space="preserve">
+    <value>僅用於標記隧道，可以不填寫</value>
+  </data>
+  <data name="tunnelProtocol" xml:space="preserve">
+    <value>隧道協議</value>
   </data>
 </root>

@@ -117,7 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="title" xml:space="preserve">
-    <value>DDNS</value>
+  <data name="email" xml:space="preserve">
+    <value>郵箱已存在</value>
+  </data>
+  <data name="username" xml:space="preserve">
+    <value>用戶名已存在</value>
   </data>
 </root>

@@ -117,7 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="accounttext" xml:space="preserve">
+    <value>已經有賬戶了？</value>
+  </data>
+  <data name="btn" xml:space="preserve">
+    <value>找回密碼</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>請輸入註冊時的郵箱</value>
+  </data>
+  <data name="imgtitle" xml:space="preserve">
+    <value>看不清？點擊更換</value>
+  </data>
+  <data name="logintext" xml:space="preserve">
+    <value>點此登錄</value>
+  </data>
+  <data name="msg" xml:space="preserve">
+    <value>驗證碼錯誤！</value>
+  </data>
   <data name="title" xml:space="preserve">
-    <value>DDNS</value>
+    <value>忘記密碼</value>
+  </data>
+  <data name="vercode" xml:space="preserve">
+    <value>驗證碼</value>
+  </data>
+  <data name="verify.email" xml:space="preserve">
+    <value>郵箱格式不正確</value>
+  </data>
+  <data name="verify.vercode" xml:space="preserve">
+    <value>驗證碼不能爲空</value>
   </data>
 </root>

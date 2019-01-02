@@ -117,7 +117,64 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="audittunnel" xml:space="preserve">
+    <value>審覈隧道</value>
+  </data>
+  <data name="createtunnel" xml:space="preserve">
+    <value>申請隧道</value>
+  </data>
+  <data name="createuser" xml:space="preserve">
+    <value>添加用戶</value>
+  </data>
+  <data name="flexible" xml:space="preserve">
+    <value>側邊伸縮</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>主頁</value>
+  </data>
+  <data name="homepage" xml:space="preserve">
+    <value>查看首頁</value>
+  </data>
+  <data name="logout" xml:space="preserve">
+    <value>退出</value>
+  </data>
+  <data name="myinfo" xml:space="preserve">
+    <value>我的信息</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>修改密碼</value>
+  </data>
+  <data name="pro" xml:space="preserve">
+    <value>內網穿透</value>
+  </data>
+  <data name="refresh" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="setting" xml:space="preserve">
+    <value>設置</value>
+  </data>
+  <data name="tabsevent1" xml:space="preserve">
+    <value>關閉當前標籤頁</value>
+  </data>
+  <data name="tabsevent2" xml:space="preserve">
+    <value>關閉其它標籤頁</value>
+  </data>
+  <data name="tabsevent3" xml:space="preserve">
+    <value>關閉全部標籤頁</value>
+  </data>
   <data name="title" xml:space="preserve">
-    <value>DDNS</value>
+    <value>內網穿透</value>
+  </data>
+  <data name="tunnel" xml:space="preserve">
+    <value>隧道</value>
+  </data>
+  <data name="tunnels" xml:space="preserve">
+    <value>隧道列表</value>
+  </data>
+  <data name="user" xml:space="preserve">
+    <value>用戶</value>
+  </data>
+  <data name="users" xml:space="preserve">
+    <value>用戶列表</value>
   </data>
 </root>

@@ -117,7 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="title" xml:space="preserve">
-    <value>DDNS</value>
+  <data name="btn" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="expiredTime" xml:space="preserve">
+    <value>到期時間</value>
+  </data>
+  <data name="expiredTime.tip" xml:space="preserve">
+    <value>到期時間爲空則無到期時間</value>
+  </data>
+  <data name="localPort" xml:space="preserve">
+    <value>本地端口</value>
+  </data>
+  <data name="number" xml:space="preserve">
+    <value>端口不正確</value>
+  </data>
+  <data name="remotePort" xml:space="preserve">
+    <value>遠程端口</value>
+  </data>
+  <data name="subDomain" xml:space="preserve">
+    <value>前置域名</value>
+  </data>
+  <data name="tunnelId" xml:space="preserve">
+    <value>渠道ID</value>
+  </data>
+  <data name="tunnelName" xml:space="preserve">
+    <value>隧道名稱</value>
+  </data>
+  <data name="tunnelProtocol" xml:space="preserve">
+    <value>隧道協議</value>
   </data>
 </root>

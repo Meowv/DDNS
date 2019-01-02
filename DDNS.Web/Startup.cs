@@ -90,7 +90,8 @@ namespace DDNS.Web
                 var supportedCultures = new List<CultureInfo>
                     {
                         new CultureInfo("en-US"),
-                        new CultureInfo("zh-CN")
+                        new CultureInfo("zh-CN"),
+                        new CultureInfo("zh-CHT")
                     };
 
                 options.DefaultRequestCulture = new RequestCulture("zh-CN");
@@ -119,7 +120,8 @@ namespace DDNS.Web
             var supportedCultures = new[]
                 {
                     new CultureInfo("en-US"),
-                    new CultureInfo("zh-CN")
+                    new CultureInfo("zh-CN"),
+                    new CultureInfo("zh-CHT")
                 };
             app.UseRequestLocalization(new RequestLocalizationOptions
             {

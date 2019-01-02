@@ -117,7 +117,88 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="title" xml:space="preserve">
-    <value>DDNS</value>
+  <data name="auditdetail.title" xml:space="preserve">
+    <value>設置到期時間</value>
+  </data>
+  <data name="audit_tunnel.msg" xml:space="preserve">
+    <value>操作成功</value>
+  </data>
+  <data name="btn.cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="btn.ok" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="btn.pass" xml:space="preserve">
+    <value>通過</value>
+  </data>
+  <data name="btn.refuse" xml:space="preserve">
+    <value>拒絕</value>
+  </data>
+  <data name="createTime" xml:space="preserve">
+    <value>申請時間</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>郵箱</value>
+  </data>
+  <data name="expiredTime" xml:space="preserve">
+    <value>到期時間</value>
+  </data>
+  <data name="filter.email" xml:space="preserve">
+    <value>按郵箱篩選</value>
+  </data>
+  <data name="filter.subDomain" xml:space="preserve">
+    <value>按前置域名搜索</value>
+  </data>
+  <data name="filter.username" xml:space="preserve">
+    <value>按用戶名篩選</value>
+  </data>
+  <data name="fullUrl" xml:space="preserve">
+    <value>訪問地址</value>
+  </data>
+  <data name="localPort" xml:space="preserve">
+    <value>本地端口</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>無數據</value>
+  </data>
+  <data name="openTime" xml:space="preserve">
+    <value>開通時間</value>
+  </data>
+  <data name="operate" xml:space="preserve">
+    <value>操作</value>
+  </data>
+  <data name="refuse.tip" xml:space="preserve">
+    <value>操作確認？</value>
+  </data>
+  <data name="status0" xml:space="preserve">
+    <value>待審覈</value>
+  </data>
+  <data name="status1" xml:space="preserve">
+    <value>拒絕</value>
+  </data>
+  <data name="status2" xml:space="preserve">
+    <value>已通過-正常</value>
+  </data>
+  <data name="status3" xml:space="preserve">
+    <value>已通過-到期</value>
+  </data>
+  <data name="subDomain" xml:space="preserve">
+    <value>前置域名</value>
+  </data>
+  <data name="tips" xml:space="preserve">
+    <value>系統提示</value>
+  </data>
+  <data name="tunnelId" xml:space="preserve">
+    <value>渠道ID</value>
+  </data>
+  <data name="tunnelName" xml:space="preserve">
+    <value>隧道名稱</value>
+  </data>
+  <data name="tunnelProtocol" xml:space="preserve">
+    <value>隧道協議</value>
+  </data>
+  <data name="username" xml:space="preserve">
+    <value>用戶名</value>
   </data>
 </root>

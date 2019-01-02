@@ -117,7 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="title" xml:space="preserve">
-    <value>DDNS</value>
+  <data name="btn" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="expiredtime" xml:space="preserve">
+    <value>到期時間</value>
+  </data>
+  <data name="fullurl" xml:space="preserve">
+    <value>訪問地址</value>
+  </data>
+  <data name="laydate.lang" xml:space="preserve">
+    <value>cn</value>
+  </data>
+  <data name="localport" xml:space="preserve">
+    <value>本地端口</value>
+  </data>
+  <data name="localport.tip" xml:space="preserve">
+    <value>本地映射端口</value>
+  </data>
+  <data name="number" xml:space="preserve">
+    <value>端口不正確</value>
+  </data>
+  <data name="remoteport" xml:space="preserve">
+    <value>遠程端口</value>
+  </data>
+  <data name="required" xml:space="preserve">
+    <value>前置域名不能爲空</value>
+  </data>
+  <data name="subdomain" xml:space="preserve">
+    <value>前置域名</value>
+  </data>
+  <data name="subdomain.tip" xml:space="preserve">
+    <value>請輸入字母或者數字組成的名稱，全局唯一</value>
+  </data>
+  <data name="tunnelname" xml:space="preserve">
+    <value>隧道名稱</value>
+  </data>
+  <data name="tunnelname.tip" xml:space="preserve">
+    <value>僅用於標記隧道，可以不填寫</value>
+  </data>
+  <data name="tunnelprotocol" xml:space="preserve">
+    <value>隧道協議</value>
+  </data>
+  <data name="username" xml:space="preserve">
+    <value>用戶名</value>
   </data>
 </root>

@@ -117,7 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="title" xml:space="preserve">
-    <value>DDNS</value>
+  <data name="expired" xml:space="preserve">
+    <value>鏈接已過期！</value>
+  </data>
+  <data name="verifyed" xml:space="preserve">
+    <value>賬號已激活！</value>
   </data>
 </root>

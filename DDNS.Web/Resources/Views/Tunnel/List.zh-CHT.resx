@@ -117,7 +117,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="title" xml:space="preserve">
-    <value>DDNS</value>
+  <data name="checkstatus" xml:space="preserve">
+    <value>查看狀態</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>編輯</value>
+  </data>
+  <data name="edit_tunnel.msg" xml:space="preserve">
+    <value>修改成功</value>
+  </data>
+  <data name="edit_tunnel.title" xml:space="preserve">
+    <value>修改隧道名稱</value>
+  </data>
+  <data name="expiredTime" xml:space="preserve">
+    <value>到期日期</value>
+  </data>
+  <data name="fullUrl" xml:space="preserve">
+    <value>訪問地址</value>
+  </data>
+  <data name="isopen" xml:space="preserve">
+    <value>是否開通</value>
+  </data>
+  <data name="localPort" xml:space="preserve">
+    <value>本地端口</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>無數據</value>
+  </data>
+  <data name="offline" xml:space="preserve">
+    <value>隧道未開通</value>
+  </data>
+  <data name="online" xml:space="preserve">
+    <value>隧道不在線</value>
+  </data>
+  <data name="openTime" xml:space="preserve">
+    <value>開通日期</value>
+  </data>
+  <data name="operate" xml:space="preserve">
+    <value>操作</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>狀態</value>
+  </data>
+  <data name="status0" xml:space="preserve">
+    <value>待審覈</value>
+  </data>
+  <data name="status1" xml:space="preserve">
+    <value>正常</value>
+  </data>
+  <data name="status2" xml:space="preserve">
+    <value>拒絕</value>
+  </data>
+  <data name="status3" xml:space="preserve">
+    <value>到期</value>
+  </data>
+  <data name="subDomain" xml:space="preserve">
+    <value>前置域名</value>
+  </data>
+  <data name="tunnelId" xml:space="preserve">
+    <value>隧道ID</value>
+  </data>
+  <data name="tunnelName" xml:space="preserve">
+    <value>隧道名稱</value>
+  </data>
+  <data name="tunnelProtocol" xml:space="preserve">
+    <value>隧道協議</value>
   </data>
 </root>

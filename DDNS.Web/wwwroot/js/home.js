@@ -3,8 +3,11 @@
     if (culture.indexOf("zh-CN") >= 0) {
         $(".language span:eq(0)").addClass("active");
     }
-    if (culture.indexOf("en-US") >= 0) {
+    if (culture.indexOf("zh-CHT") >= 0) {
         $(".language span:eq(1)").addClass("active");
+    }
+    if (culture.indexOf("en-US") >= 0) {
+        $(".language span:eq(2)").addClass("active");
     }
     $(".language span").click(function () {
         var _this = $(this);

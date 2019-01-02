@@ -117,7 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="email" xml:space="preserve">
+    <value>郵箱</value>
+  </data>
+  <data name="lastloginip" xml:space="preserve">
+    <value>上次登錄IP</value>
+  </data>
+  <data name="lastlogintime" xml:space="preserve">
+    <value>上次登錄時間</value>
+  </data>
+  <data name="registertime" xml:space="preserve">
+    <value>註冊時間</value>
+  </data>
   <data name="title" xml:space="preserve">
-    <value>DDNS</value>
+    <value>我的信息</value>
+  </data>
+  <data name="username" xml:space="preserve">
+    <value>用戶名</value>
   </data>
 </root>

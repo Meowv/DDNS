@@ -117,7 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="author" xml:space="preserve">
+    <value>qix</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>一條命令解決的外網訪問內網問題，無需任何配置，下載客戶端之後直接一條命令讓外網訪問您的內網不再是距離</value>
+  </data>
+  <data name="keywords" xml:space="preserve">
+    <value>ngrok、ngrok內網穿透、ngrok內網轉發、內外網通訊、內網映射、ngrok映射、ngrok微信開發、本地微信開發、內網端口映射工具、內網端口映射、怎麼做內網映射、怎麼內網映射、ngrok免費服務器</value>
+  </data>
+  <data name="login" xml:space="preserve">
+    <value>登錄</value>
+  </data>
+  <data name="nav_home" xml:space="preserve">
+    <value>首頁</value>
+  </data>
+  <data name="register" xml:space="preserve">
+    <value>註冊</value>
+  </data>
   <data name="title" xml:space="preserve">
-    <value>DDNS</value>
+    <value>內網穿透</value>
   </data>
 </root>

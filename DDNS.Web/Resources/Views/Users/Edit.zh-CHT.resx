@@ -117,7 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="title" xml:space="preserve">
-    <value>DDNS</value>
+  <data name="btn" xml:space="preserve">
+    <value>修改</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>郵箱</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>密碼</value>
+  </data>
+  <data name="username" xml:space="preserve">
+    <value>用戶名</value>
+  </data>
+  <data name="verify.email" xml:space="preserve">
+    <value>郵箱格式不正確</value>
+  </data>
+  <data name="verify.username1" xml:space="preserve">
+    <value>用戶名爲3到12位</value>
+  </data>
+  <data name="verify.username2" xml:space="preserve">
+    <value>用戶名不能有特殊字符</value>
+  </data>
+  <data name="verify.username3" xml:space="preserve">
+    <value>用戶名首尾不能出現下劃線</value>
+  </data>
+  <data name="verify.username4" xml:space="preserve">
+    <value>用戶名不能全爲數字</value>
   </data>
 </root>
