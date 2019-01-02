@@ -27,7 +27,7 @@ namespace DDNS.Web.Controllers
         /// 隧道列表
         /// </summary>
         /// <returns></returns>
-        public IActionResult Index(int? userId)
+        public IActionResult Index()
         {
             return View();
         }
@@ -78,6 +78,20 @@ namespace DDNS.Web.Controllers
             var tunnel = await _tunnelProvider.GetTunnel(tunnelId);
 
             return View(tunnel);
+        }
+
+        /// <summary>
+        /// 隧道列表
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [PermissionFilter]
+        [HttpGet]
+        public IActionResult List(int userId)
+        {
+            ViewData["UserId"] = userId;
+
+            return View();
         }
     }
 }

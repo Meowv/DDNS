@@ -225,6 +225,9 @@
   <data name="tip" xml:space="preserve">
     <value>系统提示</value>
   </data>
+  <data name="tunnel" xml:space="preserve">
+    <value>用户已开隧道</value>
+  </data>
   <data name="username" xml:space="preserve">
     <value>用户名</value>
   </data>

@@ -277,7 +277,14 @@
                         }
                     });
                 } else if (obj.event === 'opened') {
-
+                    var index = layer.open({
+                        type: 2,
+                        title: '@_localizer["tunnel"]',
+                        maxmin: true,
+                        area: ['800px', '400px'],
+                        content: '/tunnel/list?userid=' + obj.data.id
+                    });
+                    layer.full(index);
                 }
             });
 

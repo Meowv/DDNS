@@ -225,6 +225,9 @@
   <data name="tip" xml:space="preserve">
     <value>System prompt</value>
   </data>
+  <data name="tunnel" xml:space="preserve">
+    <value>The user has tunnelled</value>
+  </data>
   <data name="username" xml:space="preserve">
     <value>UserName</value>
   </data>
