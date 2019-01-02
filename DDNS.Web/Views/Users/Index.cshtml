@@ -279,7 +279,7 @@
                 } else if (obj.event === 'opened') {
                     var index = layer.open({
                         type: 2,
-                        title: '@_localizer["tunnel"]',
+                        title: '【' + obj.data.userName + '】@_localizer["tunnel"]',
                         maxmin: true,
                         area: ['800px', '400px'],
                         content: '/tunnel/list?userid=' + obj.data.id
@@ -300,26 +300,31 @@
             });
 
             resetToken = function (id) {
-                $.ajax({
-                    type: "get",
-                    dataType: 'json',
-                    url: '/api/reset_token?userId=' + id,
-                    contentType: 'application/json;charset=UTF-8',
-                    success: function (result) {
-                        if (result.code == 0) {
-                            layer.msg("@_localizer["reset"]！", {
-                                icon: 1,
-                                time: 1000
-                            }, function () {
-                                table.reload('userlist');
-                            });
-                        } else {
-                            layer.msg(result.msg, {
-                                icon: 2,
-                                time: 1000
-                            });
+                layer.confirm("@_localizer["reset.title"]", {
+                    title: '@_localizer["tip"]'
+                    , btn: ['@_localizer["btn.confirm"]', '@_localizer["btn.cancel"]']
+                }, function (index) {
+                    $.ajax({
+                        type: "get",
+                        dataType: 'json',
+                        url: '/api/reset_token?userId=' + id,
+                        contentType: 'application/json;charset=UTF-8',
+                        success: function (result) {
+                            if (result.code == 0) {
+                                layer.msg("@_localizer["reset.msg"]！", {
+                                    icon: 1,
+                                    time: 1000
+                                }, function () {
+                                    table.reload('userlist');
+                                });
+                            } else {
+                                layer.msg(result.msg, {
+                                    icon: 2,
+                                    time: 1000
+                                });
+                            }
                         }
-                    }
+                    });
                 });
             }
         });

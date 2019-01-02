@@ -117,121 +117,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="adduser" xml:space="preserve">
-    <value>Add User</value>
+  <data name="checkstatus" xml:space="preserve">
+    <value>check status</value>
   </data>
-  <data name="btn.cancel" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="btn.confirm" xml:space="preserve">
-    <value>Confirm</value>
-  </data>
-  <data name="btn.del" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="btn.disable" xml:space="preserve">
-    <value>Disable</value>
-  </data>
-  <data name="btn.edit" xml:space="preserve">
+  <data name="edit" xml:space="preserve">
     <value>Edit</value>
   </data>
-  <data name="btn.ok" xml:space="preserve">
-    <value>Remove Disable</value>
+  <data name="edit_tunnel.msg" xml:space="preserve">
+    <value>Successfully</value>
   </data>
-  <data name="btn.open" xml:space="preserve">
-    <value>New Tunnel</value>
+  <data name="edit_tunnel.title" xml:space="preserve">
+    <value>Modify tunnel name</value>
   </data>
-  <data name="btn.opened" xml:space="preserve">
-    <value>Opened Tunnel</value>
+  <data name="expiredTime" xml:space="preserve">
+    <value>ExpiredTime</value>
   </data>
-  <data name="btn.reset" xml:space="preserve">
-    <value>Reset</value>
+  <data name="fullUrl" xml:space="preserve">
+    <value>URL</value>
   </data>
-  <data name="del.msg" xml:space="preserve">
-    <value>successfully delete</value>
+  <data name="isopen" xml:space="preserve">
+    <value>Whether opening</value>
   </data>
-  <data name="del.title" xml:space="preserve">
-    <value>Are you sure to delete this user?</value>
+  <data name="localPort" xml:space="preserve">
+    <value>LocalPort</value>
   </data>
-  <data name="disable.msg" xml:space="preserve">
-    <value>Disable successful！</value>
+  <data name="none" xml:space="preserve">
+    <value>No date</value>
   </data>
-  <data name="disable.title" xml:space="preserve">
-    <value>Are you sure you want to disable this user?</value>
+  <data name="offline" xml:space="preserve">
+    <value>Tunnel closed</value>
   </data>
-  <data name="edit.msg" xml:space="preserve">
-    <value>modify successfully</value>
+  <data name="online" xml:space="preserve">
+    <value>Tunnel out of line</value>
   </data>
-  <data name="edit.title" xml:space="preserve">
-    <value>Modify user information</value>
-  </data>
-  <data name="email" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="error" xml:space="preserve">
-    <value>Please try again later！</value>
-  </data>
-  <data name="filter.email" xml:space="preserve">
-    <value>Filter by mail</value>
-  </data>
-  <data name="filter.status" xml:space="preserve">
-    <value>Whether to disable</value>
-  </data>
-  <data name="filter.token" xml:space="preserve">
-    <value>Filter by user Token</value>
-  </data>
-  <data name="filter.username" xml:space="preserve">
-    <value>Filter by user name</value>
-  </data>
-  <data name="open.msg" xml:space="preserve">
-    <value>Opened successfully</value>
+  <data name="openTime" xml:space="preserve">
+    <value>OpenTime</value>
   </data>
   <data name="operate" xml:space="preserve">
-    <value>Operation</value>
-  </data>
-  <data name="registertime" xml:space="preserve">
-    <value>RegisterTime</value>
-  </data>
-  <data name="remove_disable.msg" xml:space="preserve">
-    <value>The ban was lifted successfully!</value>
-  </data>
-  <data name="remove_disable.title" xml:space="preserve">
-    <value>Are you sure you want to unban this user？</value>
-  </data>
-  <data name="reset.msg" xml:space="preserve">
-    <value>Reset successfully</value>
-  </data>
-  <data name="reset.title" xml:space="preserve">
-    <value>Are you sure to reset this user  token?</value>
+    <value>Operate</value>
   </data>
   <data name="status" xml:space="preserve">
     <value>Status</value>
   </data>
-  <data name="status.0" xml:space="preserve">
-    <value>Normal</value>
+  <data name="status0" xml:space="preserve">
+    <value>Audit</value>
   </data>
-  <data name="status.1" xml:space="preserve">
-    <value>Disabled</value>
+  <data name="status1" xml:space="preserve">
+    <value>Pass</value>
   </data>
-  <data name="status.9" xml:space="preserve">
-    <value>Nonactivated</value>
+  <data name="status2" xml:space="preserve">
+    <value>Refuse</value>
   </data>
-  <data name="status.no" xml:space="preserve">
-    <value>no</value>
+  <data name="status3" xml:space="preserve">
+    <value>Expire</value>
   </data>
-  <data name="status.yes" xml:space="preserve">
-    <value>yse</value>
+  <data name="subDomain" xml:space="preserve">
+    <value>SubDomain</value>
   </data>
-  <data name="text" xml:space="preserve">
-    <value>no data</value>
+  <data name="tunnelId" xml:space="preserve">
+    <value>TunnelId</value>
   </data>
-  <data name="tip" xml:space="preserve">
-    <value>System prompt</value>
+  <data name="tunnelName" xml:space="preserve">
+    <value>TunnelName</value>
   </data>
-  <data name="tunnel" xml:space="preserve">
-    <value>tunnels</value>
-  </data>
-  <data name="username" xml:space="preserve">
-    <value>UserName</value>
+  <data name="tunnelProtocol" xml:space="preserve">
+    <value>TunnelProtocol</value>
   </data>
 </root>

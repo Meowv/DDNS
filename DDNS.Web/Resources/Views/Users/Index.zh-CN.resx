@@ -198,8 +198,11 @@
   <data name="remove_disable.title" xml:space="preserve">
     <value>确定解禁此用户？</value>
   </data>
-  <data name="reset" xml:space="preserve">
+  <data name="reset.msg" xml:space="preserve">
     <value>重置成功</value>
+  </data>
+  <data name="reset.title" xml:space="preserve">
+    <value>确定重置此用户？</value>
   </data>
   <data name="status" xml:space="preserve">
     <value>状态</value>
@@ -226,7 +229,7 @@
     <value>系统提示</value>
   </data>
   <data name="tunnel" xml:space="preserve">
-    <value>用户已开隧道</value>
+    <value>已开隧道</value>
   </data>
   <data name="username" xml:space="preserve">
     <value>用户名</value>
