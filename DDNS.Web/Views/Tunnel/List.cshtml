@@ -1,5 +1,123 @@
-﻿@{
-    ViewData["Title"] = "TunnelList";
-}
+﻿<div class="layui-card">
+    <div class="layui-card-body">
+        <table id="userlist" lay-filter="userlist"></table>
+        <script type="text/html" id="statusTpl">
+            {{# if(d.status === 0) { }}
+            <button class="layui-btn-primary layui-btn-xs">@_localizer["status0"]</button>
+            {{# } else if(d.status === 1) { }}
+            <button class="layui-btn-primary layui-btn-xs">@_localizer["status1"]</button>
+            {{# } else if(d.status === -1) { }}
+            <button class="layui-btn-primary layui-btn-xs">@_localizer["status2"]</button>
+            {{# } else if(d.status === 9) { }}
+            <button class="layui-btn-primary layui-btn-xs">@_localizer["status3"]</button>
+            {{# } }}
+        </script>
+        <script type="text/html" id="onlineTpl">
+            <a class="layui-btn layui-btn-xs" lay-event="online">@_localizer["checkstatus"]</a>
+        </script>
+        <script type="text/html" id="table-content-list">
+            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>@_localizer["edit"]</a>
+        </script>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        layui.config({
+            base: '../../../layuiadmin/'
+        }).extend({
+            index: 'lib/index'
+        }).use(['index', 'table'], function () {
+            var table = layui.table
+                , $ = layui.jquery;
 
-<h1>@ViewData["UserId"]</h1>
+            table.render({
+                elem: '#userlist'
+                , url: '/api/tunnel_list?userId=@ViewData["UserId"]'
+                , cols: [
+                    [{
+                        field: 'tunnelId',
+                        title: '@_localizer["tunnelId"]'
+                    }, {
+                        field: 'tunnelName',
+                        title: '@_localizer["tunnelName"]',
+                    }, {
+                        field: 'tunnelProtocol',
+                        title: '@_localizer["tunnelProtocol"]'
+                    }, {
+                        field: 'subDomain',
+                        title: '@_localizer["subDomain"]',
+                    }, {
+                        field: 'openTime',
+                        title: '@_localizer["openTime"]',
+                        sort: true,
+                    }, {
+                        field: 'expiredTime',
+                        title: '@_localizer["expiredTime"]',
+                        sort: true,
+                    }, {
+                        field: 'fullUrl',
+                        title: '@_localizer["fullUrl"]',
+                    }, {
+                        field: 'status',
+                        title: '@_localizer["isopen"]',
+                        templet: '#statusTpl',
+                        align: 'center',
+                    }, {
+                        title: '@_localizer["status"]',
+                        templet: '#onlineTpl',
+                        align: 'center',
+                    }, {
+                        title: '@_localizer["operate"]',
+                        align: 'center',
+                        fixed: 'right',
+                        toolbar: '#table-content-list'
+                    }]
+                ],
+                page: true,
+                limit: 10,
+                limits: [10, 15, 20, 25, 30],
+                text: {
+                    none: '@_localizer["none"]'
+                }
+            });
+
+            table.on('tool(userlist)', function (obj) {
+                if (obj.event === 'edit') {
+                    layer.prompt({
+                        title: '@_localizer["edit_tunnel.title"]'
+                        , value: obj.data.tunnelName
+                    }, function (text, index) {
+                        var d = new Object();
+                        d.tunnelName = text;
+                        $.ajax({
+                            type: "post",
+                            dataType: 'json',
+                            url: '/api/edit_tunnel?tunnelId=' + obj.data.tunnelId,
+                            data: JSON.stringify(d),
+                            contentType: 'application/json;charset=UTF-8',
+                            success: function (result) {
+                                if (result.code == 0) {
+                                    layer.msg("@_localizer["edit_tunnel.msg"]！", {
+                                        icon: 1,
+                                        time: 1000
+                                    }, function () {
+                                        layer.close(index);
+                                        obj.update({
+                                            tunnelName: text
+                                        });
+                                    });
+                                }
+                            }
+                        });
+                    });
+                } else if (obj.event === 'online') {
+                    if (obj.data.status == 1) {
+                        layer.msg("@_localizer["online"]");
+                    } else {
+                        layer.msg("@_localizer["offline"]");
+                    }
+                }
+            });
+        });
+    </script>
+}
