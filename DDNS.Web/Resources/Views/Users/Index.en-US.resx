@@ -139,7 +139,13 @@
     <value>Remove Disable</value>
   </data>
   <data name="btn.open" xml:space="preserve">
-    <value>Open Tunnel</value>
+    <value>New Tunnel</value>
+  </data>
+  <data name="btn.opened" xml:space="preserve">
+    <value>Opened Tunnel</value>
+  </data>
+  <data name="btn.reset" xml:space="preserve">
+    <value>Reset</value>
   </data>
   <data name="del.msg" xml:space="preserve">
     <value>successfully delete</value>
@@ -171,8 +177,14 @@
   <data name="filter.status" xml:space="preserve">
     <value>Whether to disable</value>
   </data>
+  <data name="filter.token" xml:space="preserve">
+    <value>Filter by user Token</value>
+  </data>
   <data name="filter.username" xml:space="preserve">
     <value>Filter by user name</value>
+  </data>
+  <data name="open.msg" xml:space="preserve">
+    <value>Opened successfully</value>
   </data>
   <data name="operate" xml:space="preserve">
     <value>Operation</value>
@@ -186,11 +198,14 @@
   <data name="remove_disable.title" xml:space="preserve">
     <value>Are you sure you want to unban this user？</value>
   </data>
+  <data name="reset" xml:space="preserve">
+    <value>Reset successfully</value>
+  </data>
   <data name="status" xml:space="preserve">
     <value>Status</value>
   </data>
   <data name="status.0" xml:space="preserve">
-    <value>Activated</value>
+    <value>Normal</value>
   </data>
   <data name="status.1" xml:space="preserve">
     <value>Disabled</value>

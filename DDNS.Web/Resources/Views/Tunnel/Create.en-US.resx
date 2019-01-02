@@ -123,6 +123,9 @@
   <data name="btn" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="fullurl" xml:space="preserve">
+    <value>URL</value>
+  </data>
   <data name="localPort" xml:space="preserve">
     <value>LocalPort</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="tunnelName" xml:space="preserve">
     <value>TunnelName</value>
+  </data>
+  <data name="tunnelName.tip" xml:space="preserve">
+    <value>Used only to mark tunnels and may not be filled in</value>
   </data>
   <data name="tunnelProtocol" xml:space="preserve">
     <value>TunnelProtocol</value>

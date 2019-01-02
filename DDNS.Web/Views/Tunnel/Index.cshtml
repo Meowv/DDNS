@@ -2,13 +2,15 @@
     <div class="layui-card-body">
         <table id="userlist" lay-filter="userlist"></table>
         <script type="text/html" id="statusTpl">
-            {{#  if(d.status === 0) { }}
+            {{# if(d.status === 0) { }}
             <button class="layui-btn-primary layui-btn-xs">@_localizer["status0"]</button>
-            {{#  } else if(d.status === 1) { }}
+            {{# } else if(d.status === 1) { }}
             <button class="layui-btn-primary layui-btn-xs">@_localizer["status1"]</button>
-            {{#  } else { }}
+            {{# } else if(d.status === -1) { }}
             <button class="layui-btn-primary layui-btn-xs">@_localizer["status2"]</button>
-            {{#  } }}
+            {{# } else if(d.status === 9) { }}
+            <button class="layui-btn-primary layui-btn-xs">@_localizer["status3"]</button>
+            {{# } }}
         </script>
         <script type="text/html" id="onlineTpl">
             <a class="layui-btn layui-btn-xs" lay-event="online">@_localizer["checkstatus"]</a>
@@ -41,9 +43,6 @@
                     }, {
                         field: 'tunnelProtocol',
                         title: '@_localizer["tunnelProtocol"]'
-                    }, {
-                        field: 'localPort',
-                        title: '@_localizer["localPort"]',
                     }, {
                         field: 'subDomain',
                         title: '@_localizer["subDomain"]',

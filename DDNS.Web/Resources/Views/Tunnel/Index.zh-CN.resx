@@ -163,10 +163,13 @@
     <value>待审核</value>
   </data>
   <data name="status1" xml:space="preserve">
-    <value>已通过</value>
+    <value>正常</value>
   </data>
   <data name="status2" xml:space="preserve">
     <value>拒绝</value>
+  </data>
+  <data name="status3" xml:space="preserve">
+    <value>到期</value>
   </data>
   <data name="subDomain" xml:space="preserve">
     <value>前置域名</value>

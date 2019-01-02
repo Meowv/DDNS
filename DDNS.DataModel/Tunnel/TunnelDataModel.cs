@@ -1,6 +1,7 @@
 ﻿using DDNS.Entity;
 using DDNS.Entity.Tunnel;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -81,8 +82,9 @@ namespace DDNS.DataModel.Tunnel
         /// <param name="userName"></param>
         /// <param name="email"></param>
         /// <param name="status"></param>
+        /// <param name="subDomain"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<UserTunnelsEntity>> Tunnels(string userName = null, string email = null, int status = 0)
+        public async Task<IEnumerable<UserTunnelsEntity>> Tunnels(string userName = null, string email = null, int status = 0, string subDomain = null)
         {
             var list = await _content.Tunnels.Join(_content.Users, t => t.UserId, u => u.Id, (t, u) => new UserTunnelsEntity
             {
@@ -110,8 +112,18 @@ namespace DDNS.DataModel.Tunnel
             {
                 list = list.Where(x => x.Email.Contains(email)).ToList();
             }
-
-            list = list.Where(x => x.Status == status).OrderBy(x => x.CreateTime).ToList();
+            if (!string.IsNullOrEmpty(subDomain))
+            {
+                list = list.Where(x => x.SubDomain.Contains(subDomain)).ToList();
+            }
+            if (status == 9)
+            {
+                list = list.Where(x => x.ExpiredTime <= DateTime.Now && x.ExpiredTime != null).ToList();
+            }
+            else
+            {
+                list = list.Where(x => x.Status == status && (x.ExpiredTime > DateTime.Now || x.ExpiredTime is null)).OrderBy(x => x.CreateTime).ToList();
+            }
 
             return list;
         }

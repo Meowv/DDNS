@@ -75,6 +75,7 @@ namespace DDNS.Web.API.Tunnels
                 TunnelName = vm.TunnelName,
                 SubDomain = vm.SubDomain,
                 LocalPort = vm.LocalPort,
+                FullUrl = vm.FullUrl,
                 Status = (int)TunnelStatusEnum.Audit,
                 CreateTime = DateTime.Now
             };
@@ -178,18 +179,40 @@ namespace DDNS.Web.API.Tunnels
         /// <returns></returns>
         [HttpGet]
         [Route("tunnels")]
-        public async Task<ResponseViewModel<List<TunnelsEntity>>> Tunnels(int page, int limit)
+        public async Task<ResponseViewModel<List<UserTunnelsViewModel>>> Tunnels(int page, int limit)
         {
+            var tunnels = new List<UserTunnelsViewModel>();
+
             var userId = HttpContext.User.FindFirst(u => u.Type == ClaimTypes.NameIdentifier).Value;
 
             var list = await _tunnelProvider.Tunnels(Convert.ToInt32(userId));
 
             var curList = list.ToList().Skip(limit * (page - 1)).Take(limit).ToList();
+            curList.ForEach(x =>
+            {
+                var status = (x.Status == 1 && x.ExpiredTime <= DateTime.Now && x.ExpiredTime != null) ? 9 : x.Status;
 
-            var result = new ResponseViewModel<List<TunnelsEntity>>
+                var vm = new UserTunnelsViewModel
+                {
+                    TunnelId = x.TunnelId,
+                    UserId = x.UserId,
+                    TunnelProtocol = x.TunnelProtocol,
+                    TunnelName = x.TunnelName,
+                    SubDomain = x.SubDomain,
+                    LocalPort = x.LocalPort,
+                    Status = status,
+                    CreateTime = x.CreateTime.ToLongDateString(),
+                    OpenTime = x.OpenTime == null ? null : Convert.ToDateTime(x.OpenTime).ToLongDateString(),
+                    ExpiredTime = x.ExpiredTime == null ? null : Convert.ToDateTime(x.ExpiredTime).ToLongDateString(),
+                    FullUrl = x.FullUrl
+                };
+                tunnels.Add(vm);
+            });
+
+            var result = new ResponseViewModel<List<UserTunnelsViewModel>>
             {
                 Count = list.ToList().Count,
-                Data = curList
+                Data = tunnels
             };
 
             return result;
@@ -203,16 +226,17 @@ namespace DDNS.Web.API.Tunnels
         /// <param name="userName"></param>
         /// <param name="email"></param>
         /// <param name="status"></param>
+        /// <param name="subDomain"></param>
         /// <returns></returns>
         /// <returns></returns>
         [HttpGet]
         [Route("v2/tunnels")]
         [PermissionFilter]
-        public async Task<ResponseViewModel<List<UserTunnelsViewModel>>> Tunnels(int page, int limit, string userName, string email, int status)
+        public async Task<ResponseViewModel<List<UserTunnelsViewModel>>> Tunnels(int page, int limit, string userName, string email, int status,string subDomain)
         {
             var tunnels = new List<UserTunnelsViewModel>();
 
-            var list = await _tunnelProvider.Tunnels(userName, email, status);
+            var list = await _tunnelProvider.Tunnels(userName, email, status, subDomain);
 
             var curList = list.ToList().Skip(limit * (page - 1)).Take(limit).ToList();
             curList.ForEach(x =>

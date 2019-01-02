@@ -102,10 +102,11 @@ namespace DDNS.Provider.Users
         /// <param name="userName"></param>
         /// <param name="email"></param>
         /// <param name="status"></param>
+        /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IEnumerable<UsersEntity>> UserList(string userName = null, string email = null, int status = 0)
+        public Task<IEnumerable<UsersEntity>> UserList(string userName = null, string email = null, int status = 0, string token = null)
         {
-            return _data.UserList(userName, email, status);
+            return _data.UserList(userName, email, status, token);
         }
     }
 }

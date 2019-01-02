@@ -29,14 +29,14 @@
             <label class="layui-form-label">@_localizer["subDomain"]：</label>
             <div class="layui-form-mid">@Model.SubDomain</div>
         </div>
-        <div class="layui-form-item">
+        <div class="layui-form-item layui-hide">
             <label class="layui-form-label">@_localizer["localPort"]：</label>
             <div class="layui-form-mid">@Model.LocalPort</div>
         </div>
-        <div class="layui-form-item">
+        <div class="layui-form-item layui-hide">
             <label class="layui-form-label">@_localizer["remotePort"]：</label>
             <div class="layui-input-inline">
-                <input type="text" name="remotePort" lay-verify="number" lay-verType="tips"  autocomplete="off" class="layui-input">
+                <input type="text" name="remotePort" lay-verify="number" lay-verType="tips"  autocomplete="off" class="layui-input" value="0">
             </div>
         </div>
         <div class="layui-form-item">

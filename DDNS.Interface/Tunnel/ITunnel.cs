@@ -46,7 +46,8 @@ namespace DDNS.Interface.Tunnel
         /// <param name="userName"></param>
         /// <param name="email"></param>
         /// <param name="status"></param>
+        /// <param name="subDomain"></param>
         /// <returns></returns>
-        Task<IEnumerable<UserTunnelsEntity>> Tunnels(string userName = null, string email = null, int status = 0);
+        Task<IEnumerable<UserTunnelsEntity>> Tunnels(string userName = null, string email = null, int status = 0, string subDomain = null);
     }
 }

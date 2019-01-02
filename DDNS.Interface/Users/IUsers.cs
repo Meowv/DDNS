@@ -69,7 +69,8 @@ namespace DDNS.Interface.Users
         /// <param name="userName"></param>
         /// <param name="email"></param>
         /// <param name="status"></param>
+        /// <param name="token"></param>
         /// <returns></returns>
-        Task<IEnumerable<UsersEntity>> UserList(string userName = null, string email = null, int status = 0);
+        Task<IEnumerable<UsersEntity>> UserList(string userName = null, string email = null, int status = 0, string token = null);
     }
 }

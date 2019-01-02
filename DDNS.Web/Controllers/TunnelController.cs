@@ -1,8 +1,10 @@
-﻿using DDNS.Provider.Tunnel;
+﻿using DDNS.Entity.AppSettings;
+using DDNS.Provider.Tunnel;
 using DDNS.Provider.Users;
 using DDNS.Web.Filter;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
 
 namespace DDNS.Web.Controllers
@@ -12,10 +14,13 @@ namespace DDNS.Web.Controllers
     {
         private readonly UsersProvider _usersProvider;
         private readonly TunnelProvider _tunnelProvider;
-        public TunnelController(UsersProvider usersProvider, TunnelProvider tunnelProvider)
+        private readonly TunnelConfig _tunnelConfig;
+
+        public TunnelController(UsersProvider usersProvider, TunnelProvider tunnelProvider, IOptions<TunnelConfig> config)
         {
             _usersProvider = usersProvider;
             _tunnelProvider = tunnelProvider;
+            _tunnelConfig = config.Value;
         }
 
         /// <summary>
@@ -24,11 +29,6 @@ namespace DDNS.Web.Controllers
         /// <returns></returns>
         public IActionResult Index(int? userId)
         {
-            if (userId == null)
-            {
-                return NotFound();
-            }
-
             return View();
         }
 
@@ -38,6 +38,8 @@ namespace DDNS.Web.Controllers
         /// <returns></returns>
         public IActionResult Create()
         {
+            ViewData["Domain"] = _tunnelConfig.Domain;
+
             return View();
         }
 
@@ -49,6 +51,9 @@ namespace DDNS.Web.Controllers
         public async Task<IActionResult> AdminCreate(int userId)
         {
             var user = await _usersProvider.GetUserInfo(userId);
+
+            ViewData["Domain"] = _tunnelConfig.Domain;
+
             return View(user);
         }
 

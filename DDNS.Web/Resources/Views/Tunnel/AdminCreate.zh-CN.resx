@@ -126,6 +126,9 @@
   <data name="fullurl" xml:space="preserve">
     <value>访问地址</value>
   </data>
+  <data name="laydate.lang" xml:space="preserve">
+    <value>cn</value>
+  </data>
   <data name="localport" xml:space="preserve">
     <value>本地端口</value>
   </data>
@@ -145,10 +148,13 @@
     <value>前置域名</value>
   </data>
   <data name="subdomain.tip" xml:space="preserve">
-    <value>请输入纯字母或者纯数字的字符</value>
+    <value>请输入字母或者数字组成的名称，全局唯一</value>
   </data>
   <data name="tunnelname" xml:space="preserve">
     <value>隧道名称</value>
+  </data>
+  <data name="tunnelname.tip" xml:space="preserve">
+    <value>仅用于标记隧道，可以不填写</value>
   </data>
   <data name="tunnelprotocol" xml:space="preserve">
     <value>隧道协议</value>

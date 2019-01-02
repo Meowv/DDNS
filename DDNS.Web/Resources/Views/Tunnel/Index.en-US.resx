@@ -168,6 +168,9 @@
   <data name="status2" xml:space="preserve">
     <value>Refuse</value>
   </data>
+  <data name="status3" xml:space="preserve">
+    <value>Expire</value>
+  </data>
   <data name="subDomain" xml:space="preserve">
     <value>SubDomain</value>
   </data>

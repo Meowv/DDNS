@@ -91,5 +91,39 @@ namespace DDNS.Utility
             }
             WriteFile(path, list);
         }
+
+        /// <summary>
+        /// 重置Token,写入文本数据
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="oldToken"></param>
+        /// <param name="newToken"></param>
+        /// <returns></returns>
+        public static async Task ResetUserToken(string path, string oldToken, string newToken)
+        {
+            var list = new List<string>();
+
+            var contentList = await ReadFile(path);
+            if (contentList != null)
+            {
+                foreach (var item in contentList)
+                {
+                    var row = item.ToString().Split("|");
+                    var authToken = row[0];
+                    var subDomains = row[1];
+                    var remotePorts = row[2];
+                    var userName = row[3];
+
+                    if (authToken == oldToken)
+                    {
+                        authToken = newToken;
+                    }
+                    var _item = authToken + "|" + subDomains + "|" + remotePorts + "|" + userName;
+                    list.Add(_item);
+                }
+            }
+
+            WriteFile(path, list);
+        }
     }
 }

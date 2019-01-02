@@ -96,12 +96,15 @@
                                 <span class="layui-nav-more"></span>
                             </a>
                             <dl class="layui-nav-child">
-                                <dd><a lay-href="@Url.Action("Index", "Tunnel", new { userId = 1 })">@_localizer["tunnels"]</a></dd>
-                                <dd><a lay-href="@Url.Action("Create", "Tunnel")">@_localizer["createtunnel"]</a></dd>
                                 @{
                                     if (Model.IsAdmin == 1)
                                     {
                                         <dd><a lay-href="@Url.Action("Audit", "Tunnel")">@_localizer["audittunnel"]</a></dd>
+                                    }
+                                    else
+                                    {
+                                        <dd><a lay-href="@Url.Action("Index", "Tunnel")">@_localizer["tunnels"]</a></dd>
+                                        <dd><a lay-href="@Url.Action("Create", "Tunnel")">@_localizer["createtunnel"]</a></dd>
                                     }
                                 }
                             </dl>

@@ -9,6 +9,12 @@
                     </div>
                 </div>
                 <div class="layui-inline">
+                    <label class="layui-form-label">@_localizer["Token"]</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="token" placeholder="@_localizer["filter.token"]" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
                     <label class="layui-form-label">@_localizer["email"]</label>
                     <div class="layui-input-inline">
                         <input type="text" name="email" placeholder="@_localizer["filter.email"]" autocomplete="off" class="layui-input">
@@ -49,13 +55,20 @@
                 {{# } else if(d.status === 1) { }}
                 <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="ok"><i class="layui-icon layui-icon-ok"></i>@_localizer["btn.ok"]</a>
                 {{# } }}
-                <a class="layui-btn layui-btn layui-btn-xs" lay-event="open"><i class="layui-icon layui-icon-senior"></i>@_localizer["btn.open"]</a>
+                <a class="layui-btn layui-btn-xs" lay-event="open"><i class="layui-icon layui-icon-senior"></i>@_localizer["btn.open"]</a>
+                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="opened"><i class="layui-icon layui-icon-senior"></i>@_localizer["btn.opened"]</a>
+            </script>
+            <script type="text/html" id="resetTokenTpl">
+                {{ d.token }}
+                <a class="layui-btn layui-btn-primary layui-btn-xs" onclick="resetToken('{{ d.id }}')">@_localizer["btn.reset"]</a>
             </script>
         </div>
     </div>
 </div>
 @section Scripts{
-    <script>
+<script>
+        var resetToken;
+
         layui.config({
             base: '../../../layuiadmin/'
         }).extend({
@@ -69,7 +82,7 @@
 
             form.on('submit(search)', function (data) {
                 var field = data.field;
-                if (field.email != "" || field.username != "") {
+                if (field.email != "" || field.username != "" || field.token != "") {
                     table.reload('userlist', {
                         where: field
                         , page: {
@@ -99,6 +112,11 @@
                         width: 100,
                         title: 'ID'
                     }, {
+                        field: 'token',
+                        width: 100,
+                        title: 'Token',
+                            toolbar: '#resetTokenTpl'
+                    }, {
                         field: 'userName',
                         width: 150,
                         title: '@_localizer["username"]',
@@ -117,7 +135,7 @@
                         align: 'center'
                     }, {
                         title: '@_localizer["operate"]',
-                        width: 350,
+                        width: 400,
                         align: 'center',
                         fixed: 'right',
                         toolbar: '#table-content-list'
@@ -219,7 +237,7 @@
                 } else if (obj.event === 'open') {
                     layer.open({
                         type: 2,
-                        title: '@_localizer["开通隧道"]',
+                        title: '@_localizer["btn.open"]',
                         content: '/tunnel/admincreate?userId=' + obj.data.id,
                         maxmin: true,
                         area: ['800px', '550px'],
@@ -239,7 +257,7 @@
                                     contentType: 'application/json;charset=UTF-8',
                                     success: function (result) {
                                         if (result.code == 0) {
-                                            layer.msg("开通成功！", {
+                                            layer.msg("@_localizer["open.msg"]！", {
                                                 icon: 1,
                                                 time: 1000
                                             }, function () {
@@ -258,19 +276,45 @@
                             submit.trigger('click');
                         }
                     });
+                } else if (obj.event === 'opened') {
+
                 }
             });
 
             var active = {
                 add: function () {
                     var topLayui = parent === self ? layui : top.layui;
-                    topLayui.index.openTabsPage("/users/create", "adduser");
+                    topLayui.index.openTabsPage("/users/create", "@_localizer["adduser"]");
                 }
             };
             $('.layui-btn.layuiadmin-btn-list').on('click', function () {
                 var type = $(this).data('type');
                 active[type] ? active[type].call(this) : '';
             });
+
+            resetToken = function (id) {
+                $.ajax({
+                    type: "get",
+                    dataType: 'json',
+                    url: '/api/reset_token?userId=' + id,
+                    contentType: 'application/json;charset=UTF-8',
+                    success: function (result) {
+                        if (result.code == 0) {
+                            layer.msg("@_localizer["reset"]！", {
+                                icon: 1,
+                                time: 1000
+                            }, function () {
+                                table.reload('userlist');
+                            });
+                        } else {
+                            layer.msg(result.msg, {
+                                icon: 2,
+                                time: 1000
+                            });
+                        }
+                    }
+                });
+            }
         });
-    </script>
+</script>
 }

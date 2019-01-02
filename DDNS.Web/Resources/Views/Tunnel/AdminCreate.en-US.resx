@@ -126,6 +126,9 @@
   <data name="fullurl" xml:space="preserve">
     <value>URL</value>
   </data>
+  <data name="laydate.lang" xml:space="preserve">
+    <value>en</value>
+  </data>
   <data name="localport" xml:space="preserve">
     <value>LocalPort</value>
   </data>
@@ -145,10 +148,13 @@
     <value>SubDomain</value>
   </data>
   <data name="subdomain.tip" xml:space="preserve">
-    <value>Please enter characters that are pure letters or Numbers</value>
+    <value>Please enter an alphabetic or numeric name that is globally unique</value>
   </data>
   <data name="tunnelname" xml:space="preserve">
     <value>TunnelName</value>
+  </data>
+  <data name="tunnelname.tip" xml:space="preserve">
+    <value>Used only to mark tunnels and may not be filled in</value>
   </data>
   <data name="tunnelprotocol" xml:space="preserve">
     <value>TunnelProtocol</value>

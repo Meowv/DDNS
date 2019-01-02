@@ -118,10 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="add_tunnel.msg" xml:space="preserve">
-    <value>开通成功</value>
+    <value>申请成功</value>
   </data>
   <data name="btn" xml:space="preserve">
     <value>确认</value>
+  </data>
+  <data name="fullurl" xml:space="preserve">
+    <value>访问地址</value>
   </data>
   <data name="localPort" xml:space="preserve">
     <value>本地端口</value>
@@ -143,6 +146,9 @@
   </data>
   <data name="tunnelName" xml:space="preserve">
     <value>隧道名称</value>
+  </data>
+  <data name="tunnelName.tip" xml:space="preserve">
+    <value>仅用于标记隧道，可以不填写</value>
   </data>
   <data name="tunnelProtocol" xml:space="preserve">
     <value>隧道协议</value>

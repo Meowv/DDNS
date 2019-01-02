@@ -15,6 +15,12 @@
                     </div>
                 </div>
                 <div class="layui-inline">
+                    <label class="layui-form-label">@_localizer["subDomain"]</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="subDomain" placeholder="@_localizer["filter.subDomain"]" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
                     <button class="layui-btn" lay-submit lay-filter="search">
                         <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                     </button>
@@ -24,6 +30,7 @@
                         <input type="radio" name="status" value="0" title="@_localizer["status0"]" checked="">
                         <input type="radio" name="status" value="-1" title="@_localizer["status1"]">
                         <input type="radio" name="status" value="1" title="@_localizer["status2"]">
+                        <input type="radio" name="status" value="9" title="@_localizer["status3"]">
                     </div>
                 </div>
             </div>
@@ -58,7 +65,7 @@
 
             form.on('submit(search)', function (data) {
                 var field = data.field;
-                if (field.email != "" || field.username != "") {
+                if (field.email != "" || field.username != "" || field.subDomain != "") {
                     table.reload('tunnelList', {
                         where: field
                         , page: {
@@ -77,6 +84,7 @@
                         status: data.value
                         , username: ''
                         , email: ''
+                        , subDomain: ''
                     }
                     , page: {
                         curr: 1
@@ -93,7 +101,7 @@
                         title: '@_localizer["tunnelId"]'
                     }, {
                         field: 'userName',
-                        title: '@_localizer["tunnelName"]'
+                        title: '@_localizer["username"]'
                     }, {
                         field: 'email',
                         title: '@_localizer["email"]'
@@ -104,11 +112,11 @@
                         field: 'tunnelProtocol',
                         title: '@_localizer["tunnelProtocol"]'
                     }, {
-                        field: 'localPort',
-                        title: '@_localizer["localPort"]'
-                    }, {
                         field: 'subDomain',
                         title: '@_localizer["subDomain"]'
+                    },{
+                        field: 'fullUrl',
+                        title: '@_localizer["fullUrl"]'
                     }, {
                         field: 'createTime',
                         title: '@_localizer["createTime"]'

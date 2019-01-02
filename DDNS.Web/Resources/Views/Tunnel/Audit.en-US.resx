@@ -172,7 +172,7 @@
     <value>Refuse</value>
   </data>
   <data name="status2" xml:space="preserve">
-    <value>Pass</value>
+    <value>Pass-Normal</value>
   </data>
   <data name="subDomain" xml:space="preserve">
     <value>SubDomain</value>
@@ -191,5 +191,14 @@
   </data>
   <data name="username" xml:space="preserve">
     <value>UserName</value>
+  </data>
+  <data name="fullUrl" xml:space="preserve">
+    <value>URL</value>
+  </data>
+  <data name="status3" xml:space="preserve">
+    <value>Pass-Expire</value>
+  </data>
+  <data name="filter.subDomain" xml:space="preserve">
+    <value>Filter by sub domain</value>
   </data>
 </root>

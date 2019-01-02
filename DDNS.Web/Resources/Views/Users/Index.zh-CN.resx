@@ -139,7 +139,13 @@
     <value>解禁</value>
   </data>
   <data name="btn.open" xml:space="preserve">
-    <value>开通隧道</value>
+    <value>新建隧道</value>
+  </data>
+  <data name="btn.opened" xml:space="preserve">
+    <value>已开隧道</value>
+  </data>
+  <data name="btn.reset" xml:space="preserve">
+    <value>重置</value>
   </data>
   <data name="del.msg" xml:space="preserve">
     <value>删除成功！</value>
@@ -171,8 +177,14 @@
   <data name="filter.status" xml:space="preserve">
     <value>是否禁用</value>
   </data>
+  <data name="filter.token" xml:space="preserve">
+    <value>按用户Token筛选</value>
+  </data>
   <data name="filter.username" xml:space="preserve">
     <value>按用户名筛选</value>
+  </data>
+  <data name="open.msg" xml:space="preserve">
+    <value>开通成功</value>
   </data>
   <data name="operate" xml:space="preserve">
     <value>操作</value>
@@ -186,14 +198,17 @@
   <data name="remove_disable.title" xml:space="preserve">
     <value>确定解禁此用户？</value>
   </data>
+  <data name="reset" xml:space="preserve">
+    <value>重置成功</value>
+  </data>
   <data name="status" xml:space="preserve">
     <value>状态</value>
   </data>
   <data name="status.0" xml:space="preserve">
-    <value>已激活</value>
+    <value>正常</value>
   </data>
   <data name="status.1" xml:space="preserve">
-    <value>已禁用</value>
+    <value>禁用</value>
   </data>
   <data name="status.9" xml:space="preserve">
     <value>未激活</value>

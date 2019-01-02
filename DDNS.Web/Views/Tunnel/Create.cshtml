@@ -17,18 +17,26 @@
                             <div class="layui-input-inline">
                                 <input type="text" name="tunnelName" autocomplete="off" class="layui-input">
                             </div>
+                            <div class="layui-form-mid layui-word-aux">@_localizer["tunnelName.tip"]</div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">@_localizer["subDomain"]</label>
+                            <label class="layui-form-label">@_localizer["subDomain"]<span style="color:red">(*)</span></label>
                             <div class="layui-input-inline">
-                                <input type="text" name="subDomain" lay-verify="required" lay-verType="tips" autocomplete="off" class="layui-input">
+                                <input type="text" name="subDomain" lay-verify="required" lay-verType="tips" autocomplete="off" class="layui-input" oninput="setFullUrl(this)" onpropertychange="setFullUrl(this)">
                             </div>
                             <div class="layui-form-mid layui-word-aux">@_localizer["subDomain.tip"]</div>
                         </div>
                         <div class="layui-form-item">
+                            <label class="layui-form-label">@_localizer["fullurl"]</label>
+                            <div class="layui-input-inline layui-hide">
+                                <input type="text" name="fullUrl" id="fullUrl" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid"><span id="domain"></span>@ViewData["Domain"]</div>
+                        </div>
+                        <div class="layui-form-item layui-hide">
                             <label class="layui-form-label">@_localizer["localPort"]</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="localPort" autocomplete="off" class="layui-input" value="80">
+                                <input type="text" name="localPort" autocomplete="off" class="layui-input" value="0">
                             </div>
                             <div class="layui-form-mid layui-word-aux">@_localizer["localPort.tip"]</div>
                         </div>
@@ -45,6 +53,8 @@
 </div>
 @section Scripts{
     <script>
+        var setFullUrl;
+
         layui.config({
             base: '../../../layuiadmin/'
         }).extend({
@@ -82,6 +92,12 @@
                     }
                 });
             });
+
+            setFullUrl = function (e) {
+                var value = $(e).val();
+                $("#fullUrl").text(value);
+                $("#domain").text(value);
+            }
         });
     </script>
 }

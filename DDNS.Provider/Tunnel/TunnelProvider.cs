@@ -70,10 +70,11 @@ namespace DDNS.Provider.Tunnel
         /// <param name="userName"></param>
         /// <param name="email"></param>
         /// <param name="status"></param>
+        /// <param name="subDomain"></param>
         /// <returns></returns>
-        public Task<IEnumerable<UserTunnelsEntity>> Tunnels(string userName = null, string email = null, int status = 0)
+        public Task<IEnumerable<UserTunnelsEntity>> Tunnels(string userName = null, string email = null, int status = 0, string subDomain = null)
         {
-            return _data.Tunnels(userName, email, status);
+            return _data.Tunnels(userName, email, status, subDomain);
         }
     }
 }

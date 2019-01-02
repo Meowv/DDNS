@@ -121,7 +121,7 @@
     <value>审核隧道</value>
   </data>
   <data name="createtunnel" xml:space="preserve">
-    <value>开通隧道</value>
+    <value>申请隧道</value>
   </data>
   <data name="createuser" xml:space="preserve">
     <value>添加用户</value>

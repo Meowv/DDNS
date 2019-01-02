@@ -1,4 +1,5 @@
-﻿using DDNS.Entity.Users;
+﻿using DDNS.Entity.AppSettings;
+using DDNS.Entity.Users;
 using DDNS.Provider.LoginLog;
 using DDNS.Provider.Users;
 using DDNS.Utility;
@@ -8,6 +9,7 @@ using DDNS.Web.Filter;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,12 +26,14 @@ namespace DDNS.Web.API.Users
         private readonly UsersProvider _usersProvider;
         private readonly LoginLogProvider _loginLogProvider;
         private readonly IStringLocalizer<UsersApiController> _localizer;
+        private readonly TunnelConfig _tunnelConfig;
 
-        public UsersApiController(UsersProvider usersProvider, LoginLogProvider loginLogProvider, IStringLocalizer<UsersApiController> localizer)
+        public UsersApiController(UsersProvider usersProvider, LoginLogProvider loginLogProvider, IStringLocalizer<UsersApiController> localizer, IOptions<TunnelConfig> config)
         {
             _usersProvider = usersProvider;
             _loginLogProvider = loginLogProvider;
             _localizer = localizer;
+            _tunnelConfig = config.Value;
         }
 
         /// <summary>
@@ -40,14 +44,15 @@ namespace DDNS.Web.API.Users
         /// <param name="userName"></param>
         /// <param name="email"></param>
         /// <param name="status"></param>
+        /// <param name="token"></param>
         /// <returns></returns>
         [HttpGet]
         [Route("users")]
-        public async Task<ResponseViewModel<List<UsersViewModel>>> Users(int page, int limit, string userName, string email, int status)
+        public async Task<ResponseViewModel<List<UsersViewModel>>> Users(int page, int limit, string userName, string email, int status,string token)
         {
             var users = new List<UsersViewModel>();
 
-            var list = await _usersProvider.UserList(userName, email, status);
+            var list = await _usersProvider.UserList(userName, email, status, token);
 
             var curList = list.ToList().Skip(limit * (page - 1)).Take(limit).ToList();
             curList.ForEach(x =>
@@ -55,6 +60,7 @@ namespace DDNS.Web.API.Users
                 var vm = new UsersViewModel
                 {
                     Id = x.Id,
+                    Token = x.AuthToken,
                     UserName = x.UserName,
                     Email = x.Email,
                     Status = x.Status,
@@ -195,6 +201,43 @@ namespace DDNS.Web.API.Users
             {
                 Data = await _usersProvider.RemoveDisable(userId)
             };
+
+            return data;
+        }
+
+        /// <summary>
+        /// 重置Token
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("reset_token")]
+        public async Task<ResponseViewModel<bool>> ResetToken(int userId)
+        {
+            var data = new ResponseViewModel<bool>();
+
+            var user = await _usersProvider.GetUserInfo(userId);
+            if (user != null)
+            {
+                var oldToken = user.AuthToken;
+                var newToken = GuidUtil.GenerateGuid();
+
+                try
+                {
+                    await FileUtil.ResetUserToken(_tunnelConfig.FilePath, oldToken, newToken);
+                }
+                catch (Exception e)
+                {
+                    data.Code = 1;
+                    data.Msg = e.Message;
+
+                    return data;
+                }
+
+                user.AuthToken = newToken;
+            }
+
+            data.Data = await _usersProvider.UpdateUser(user);
 
             return data;
         }

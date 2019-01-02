@@ -18,6 +18,10 @@
             <div class="layui-form-mid">@Model.UserName</div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">@_localizer["Token"]</label>
+            <div class="layui-form-mid" id="token">@Model.AuthToken</div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">@_localizer["tunnelprotocol"]</label>
             <div class="layui-input-block">
                 <input type="radio" name="tunnelProtocol" value="http" title="http" checked="">
@@ -29,37 +33,39 @@
             <div class="layui-input-inline">
                 <input type="text" name="tunnelName" autocomplete="off" class="layui-input">
             </div>
+            <div class="layui-form-mid layui-word-aux">@_localizer["tunnelname.tip"]</div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">@_localizer["subdomain"]</label>
+            <label class="layui-form-label">@_localizer["subdomain"]<span style="color:red">(*)</span></label>
             <div class="layui-input-inline">
-                <input type="text" name="subDomain" lay-verify="required" lay-verType="tips" autocomplete="off" class="layui-input">
+                <input type="text" name="subDomain" lay-verify="required" lay-verType="tips" autocomplete="off" class="layui-input" oninput="setFullUrl(this)" onpropertychange="setFullUrl(this)">
             </div>
             <div class="layui-form-mid layui-word-aux">@_localizer["subdomain.tip"]</div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">@_localizer["fullurl"]</label>
+            <div class="layui-input-inline layui-hide">
+                <input type="text" name="fullUrl" id="fullUrl" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid"><span id="domain"></span>@ViewData["Domain"]</div>
+        </div>
+        <div class="layui-form-item layui-hide">
             <label class="layui-form-label">@_localizer["localport"]</label>
             <div class="layui-input-inline">
-                <input type="text" name="localPort" autocomplete="off" class="layui-input" value="80">
+                <input type="text" name="localPort" autocomplete="off" class="layui-input" value="0">
             </div>
             <div class="layui-form-mid layui-word-aux">@_localizer["localport.tip"]</div>
         </div>
-        <div class="layui-form-item">
+        <div class="layui-form-item layui-hide">
             <label class="layui-form-label">@_localizer["remoteport"]</label>
             <div class="layui-input-inline">
-                <input type="text" name="remotePort" lay-verify="number" autocomplete="off" class="layui-input">
+                <input type="text" name="remotePort" lay-verify="number" autocomplete="off" class="layui-input" value="0">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">@_localizer["expiredtime"]</label>
             <div class="layui-input-inline">
                 <input type="text" name="expiredTime" id="expiredTime" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">@_localizer["fullurl"]</label>
-            <div class="layui-input-inline">
-                <input type="text" name="fullUrl" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item layui-hide">
@@ -72,18 +78,21 @@
 </html>
 <script src="~/layuiadmin/layui/layui.js"></script>
 <script>
+    var setFullUrl;
+
     layui.config({
         base: '../../../layuiadmin/'
     }).extend({
         index: 'lib/index'
     }).use(['index', 'form', 'laydate'], function () {
         var form = layui.form
+            , $ = layui.jquery
             , laydate = layui.laydate;
 
         laydate.render({
             elem: '#expiredTime'
             , type: 'datetime'
-            , lang: 'en'
+            , lang: '@_localizer["laydate.lang"]'
         });
 
         form.verify({
@@ -92,5 +101,11 @@
                 if (!e || isNaN(e)) return "@_localizer["number"]"
             }
         });
+
+        setFullUrl = function (e) {
+            var value = $(e).val();
+            $("#fullUrl").text(value);
+            $("#domain").text(value);
+        }
     });
 </script>

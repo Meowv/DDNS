@@ -135,8 +135,9 @@ namespace DDNS.DataModel.Users
         /// <param name="userName"></param>
         /// <param name="email"></param>
         /// <param name="status"></param>
+        /// <param name="token"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<UsersEntity>> UserList(string userName = null, string email = null, int status = 0)
+        public async Task<IEnumerable<UsersEntity>> UserList(string userName = null, string email = null, int status = 0, string token = null)
         {
             var list = await _content.Users.Where(x => x.IsDelete == (int)UserDeleteEnum.Normal && x.IsAdmin == (int)UserTypeEnum.IsUser).ToListAsync();
 
@@ -147,6 +148,10 @@ namespace DDNS.DataModel.Users
             if (!string.IsNullOrEmpty(email))
             {
                 list = list.Where(x => x.Email.Contains(email)).ToList();
+            }
+            if (!string.IsNullOrEmpty(token))
+            {
+                list = list.Where(x => x.AuthToken == token).ToList();
             }
 
             list = list.Where(x => x.Status == status).OrderByDescending(x => x.RegisterTime).ToList();
