@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="audittunnel" xml:space="preserve">
-    <value>審覈隧道</value>
+    <value>隧道管理</value>
   </data>
   <data name="createtunnel" xml:space="preserve">
     <value>申請隧道</value>
