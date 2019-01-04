@@ -131,7 +131,7 @@ namespace DDNS.Web
             });
             app.UseSession();
             app.UseAuthentication();
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseMvcWithDefaultRoute();

@@ -1,4 +1,5 @@
-﻿using DDNS.Entity.LoginLog;
+﻿using DDNS.Entity.Events;
+using DDNS.Entity.LoginLog;
 using DDNS.Entity.Tunnel;
 using DDNS.Entity.Users;
 using DDNS.Entity.Verify;
@@ -17,6 +18,10 @@ namespace DDNS.Entity
         public DbSet<LoginLogEntity> LoginLog { get; set; }
 
         public DbSet<TunnelsEntity> Tunnels { get; set; }
+
+        public DbSet<CloseConnectionEntity> CloseConnections { get; set; }
+
+        public DbSet<CloseTunnelEntity> CloseTunnels { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
