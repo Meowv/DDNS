@@ -90,7 +90,7 @@ namespace DDNS.Web.API.Account
                 Status = (int)UserStatusEnum.Normal,
                 IsDelete = (int)UserDeleteEnum.Normal,
                 IsAdmin = (int)UserTypeEnum.IsUser,
-                AuthToken = GuidUtil.GenerateGuid()
+                AuthToken = GuidUtil.GetGuid()
             };
 
             data.Data = await _userProvider.AddUser(user);

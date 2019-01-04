@@ -90,6 +90,23 @@ namespace DDNS.Web.API.Users
         {
             var data = new ResponseViewModel<bool>();
 
+            var _user = await _usersProvider.GetUserInfo(vm.UserName);
+            if (_user != null)
+            {
+                data.Code = 1;
+                data.Msg = _localizer["username"];
+
+                return data;
+            }
+            _user = await _usersProvider.GetUserInfo(vm.Email);
+            if (_user != null)
+            {
+                data.Code = 1;
+                data.Msg = _localizer["email"];
+
+                return data;
+            }
+
             var user = new UsersEntity
             {
                 UserName = vm.UserName,
@@ -99,7 +116,7 @@ namespace DDNS.Web.API.Users
                 Status = (int)UserStatusEnum.Normal,
                 IsDelete = (int)UserDeleteEnum.Normal,
                 IsAdmin = (int)UserTypeEnum.IsUser,
-                AuthToken = GuidUtil.GenerateGuid()
+                AuthToken = GuidUtil.GetGuid()
             };
 
             data.Data = await _usersProvider.AddUser(user);
@@ -220,7 +237,7 @@ namespace DDNS.Web.API.Users
             if (user != null)
             {
                 var oldToken = user.AuthToken;
-                var newToken = GuidUtil.GenerateGuid();
+                var newToken = GuidUtil.GetGuid();
 
                 try
                 {
