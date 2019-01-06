@@ -91,7 +91,7 @@ namespace DDNS.Web
                     {
                         new CultureInfo("en-US"),
                         new CultureInfo("zh-CN"),
-                        new CultureInfo("zh-CHT")
+                        new CultureInfo("zh-TW")
                     };
 
                 options.DefaultRequestCulture = new RequestCulture("zh-CN");
@@ -121,7 +121,7 @@ namespace DDNS.Web
                 {
                     new CultureInfo("en-US"),
                     new CultureInfo("zh-CN"),
-                    new CultureInfo("zh-CHT")
+                    new CultureInfo("zh-TW")
                 };
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
